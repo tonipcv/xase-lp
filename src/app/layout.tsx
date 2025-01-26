@@ -1,34 +1,48 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import { Metadata } from 'next'
+import { Montserrat } from 'next/font/google'
+import './globals.css'
 
-const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500'],
+  variable: '--font-montserrat',
+})
 
 export const metadata: Metadata = {
-  title: "XASE Security | Enterprise Cybersecurity Solutions",
-  description: "XASE provides enterprise-grade cybersecurity solutions, including threat detection, penetration testing, and incident response services. Protect your business with industry-leading security.",
-  keywords: "cybersecurity, threat detection, penetration testing, incident response, security consulting, XASE security",
+  title: 'XASE - Technology Infrastructure for Creators',
+  description: 'Build and scale your content empire with enterprise-grade technology. Custom platforms, community management, and monetization solutions for creators.',
+  keywords: [
+    'content creator platform',
+    'influencer technology',
+    'creator infrastructure',
+    'content monetization',
+    'community platform',
+    'audience analytics',
+    'live streaming infrastructure',
+    'digital content platform'
+  ],
   openGraph: {
-    title: "XASE Security | Enterprise Cybersecurity Solutions",
-    description: "Protect your business with enterprise-grade cybersecurity solutions. 24/7 monitoring, threat detection, and incident response.",
-    url: "https://xase.com",
-    siteName: "XASE Security",
+    title: 'XASE - Power Your Content Empire',
+    description: 'Enterprise technology infrastructure for content creators and influencers. Scale your digital presence with advanced tech solutions.',
+    url: 'https://xase.com',
+    siteName: 'XASE',
     images: [
       {
-        url: "/og-image.jpg",
+        url: 'https://xase.com/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: "XASE Security - Enterprise Cybersecurity Solutions",
-      },
+        alt: 'XASE - Creator Technology Infrastructure'
+      }
     ],
-    locale: "en_US",
-    type: "website",
+    locale: 'en_US',
+    type: 'website',
   },
   twitter: {
-    card: "summary_large_image",
-    title: "XASE Security | Enterprise Cybersecurity Solutions",
-    description: "Protect your business with enterprise-grade cybersecurity solutions. 24/7 monitoring, threat detection, and incident response.",
-    images: ["/og-image.jpg"],
+    card: 'summary_large_image',
+    title: 'XASE - Technology for Creators',
+    description: 'Scale your content empire with enterprise-grade technology infrastructure.',
+    creator: '@xase',
+    images: ['https://xase.com/twitter-image.jpg'],
   },
   robots: {
     index: true,
@@ -36,18 +50,19 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
     },
   },
   verification: {
-    google: "your-google-verification-code",
+    google: 'your-google-verification-code',
+    yandex: 'your-yandex-verification-code',
   },
   alternates: {
-    canonical: "https://xase.com",
+    canonical: 'https://xase.com',
   },
-};
+}
 
 export default function RootLayout({
   children,
@@ -57,13 +72,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <title>XASE - Technology Infrastructure for Creators</title>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#000000" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={montserrat.className}>{children}</body>
     </html>
   )
 }

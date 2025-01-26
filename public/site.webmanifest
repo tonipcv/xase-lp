@@ -1,10 +1,10 @@
 {
-  "name": "XASE Security",
+  "name": "XASE - Technology Infrastructure for Creators",
   "short_name": "XASE",
-  "description": "Enterprise Cybersecurity Solutions",
+  "description": "Enterprise Technology Infrastructure for Content Creators",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#fafafa",
+  "background_color": "#000000",
   "theme_color": "#000000",
   "icons": [
     {

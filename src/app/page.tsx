@@ -22,7 +22,7 @@ function JsonLd() {
           name: "XASE",
           url: "https://xase.com",
           logo: "https://xase.com/logo.png",
-          description: "Infrastructure Technology Solutions for Influencers. We help content creators scale their digital presence with enterprise-grade technology.",
+          description: "Enterprise Technology Infrastructure for Content Creators. Build and scale your content empire with our advanced tech solutions.",
           slogan: "Power Your Content Empire",
           address: {
             "@type": "PostalAddress",
@@ -33,7 +33,7 @@ function JsonLd() {
             telephone: "+1-XXX-XXX-XXXX",
             contactType: "sales",
             areaServed: "Worldwide",
-            availableLanguage: ["English"]
+            availableLanguage: ["English", "Portuguese"]
           },
           sameAs: [
             "https://twitter.com/xase",
@@ -45,32 +45,32 @@ function JsonLd() {
             offers: [
               {
                 "@type": "Offer",
-                name: "Content Platform Development",
-                description: "Custom platforms for content monetization and audience engagement"
+                name: "Content Platform",
+                description: "Custom-built platforms for content monetization and audience engagement"
               },
               {
                 "@type": "Offer",
-                name: "Audience Analytics",
-                description: "Advanced analytics and engagement tracking systems"
+                name: "Community Hub",
+                description: "Scalable community platforms with advanced member management"
               },
               {
                 "@type": "Offer",
-                name: "Monetization Infrastructure",
-                description: "Robust payment and subscription management systems"
+                name: "Analytics Dashboard",
+                description: "Real-time analytics and insights for audience engagement"
               },
               {
                 "@type": "Offer",
-                name: "Community Platform",
-                description: "Scalable community and membership platforms"
+                name: "Monetization System",
+                description: "Robust payment infrastructure for multiple revenue streams"
               }
             ]
           },
           knowsAbout: [
             "Content Platform Development",
+            "Community Management",
             "Audience Analytics",
             "Monetization Systems",
-            "Community Management",
-            "Live Streaming Infrastructure",
+            "Live Streaming",
             "Digital Product Delivery",
             "Member Management",
             "Content Distribution"
@@ -775,10 +775,10 @@ export default function Home() {
               <div>
                 <h3 className="font-medium mb-4">Services</h3>
                 <ul className="text-[#f5f5f7] space-y-2 font-light hover:text-white">
-                  <li>Threat Detection</li>
-                  <li>Penetration Testing</li>
-                  <li>Incident Response</li>
-                  <li>Security Consulting</li>
+                  <li>Content Platform</li>
+                  <li>Community Hub</li>
+                  <li>Analytics Dashboard</li>
+                  <li>Monetization System</li>
                 </ul>
               </div>
               <div>
@@ -801,7 +801,7 @@ export default function Home() {
               </div>
             </div>
             <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-700 font-normal">
-              <p>© 2024 XASE - SaaS Security & Scaling Solutions. All rights reserved.</p>
+              <p>© 2024 XASE - Technology Infrastructure for Creators. All rights reserved.</p>
             </div>
           </div>
         </footer>
