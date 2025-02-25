@@ -9,21 +9,21 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: 'XASE - Technology Infrastructure for Creators',
-  description: 'Build and scale your content empire with enterprise-grade technology. Custom platforms, community management, and monetization solutions for creators.',
+  title: 'Guia Definitivo: Como Ganhar Dinheiro com IA | XASE',
+  description: 'Descubra como pessoas comuns estão lucrando mais de R$10.000 por mês com inteligência artificial. Baixe nosso guia gratuito e comece agora.',
   keywords: [
-    'content creator platform',
-    'influencer technology',
-    'creator infrastructure',
-    'content monetization',
-    'community platform',
-    'audience analytics',
-    'live streaming infrastructure',
-    'digital content platform'
+    'ganhar dinheiro com ia',
+    'renda com inteligência artificial',
+    'guia ia',
+    'lucrar com ia',
+    'negócios com ia',
+    'renda extra ia',
+    'chatgpt dinheiro',
+    'ia para iniciantes'
   ],
   openGraph: {
-    title: 'XASE - Power Your Content Empire',
-    description: 'Enterprise technology infrastructure for content creators and influencers. Scale your digital presence with advanced tech solutions.',
+    title: 'Como Ganhar +R$10.000/mês com IA - Guia Gratuito',
+    description: 'Aprenda como pessoas comuns estão lucrando com inteligência artificial. Baixe agora nosso guia exclusivo e comece sua jornada.',
     url: 'https://xase.com',
     siteName: 'XASE',
     images: [
@@ -31,16 +31,16 @@ export const metadata: Metadata = {
         url: 'https://xase.com/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'XASE - Creator Technology Infrastructure'
+        alt: 'Guia Definitivo: Como Ganhar Dinheiro com IA'
       }
     ],
-    locale: 'en_US',
+    locale: 'pt_BR',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'XASE - Technology for Creators',
-    description: 'Scale your content empire with enterprise-grade technology infrastructure.',
+    title: 'Guia Gratuito: Como Lucrar com IA',
+    description: 'Descubra as estratégias que estão gerando +R$10.000/mês com inteligência artificial.',
     creator: '@xase',
     images: ['https://xase.com/twitter-image.jpg'],
   },
