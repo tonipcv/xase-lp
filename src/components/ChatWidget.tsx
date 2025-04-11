@@ -122,7 +122,7 @@ export function ChatWidget({ showChat = false, onClose }: ChatWidgetProps) {
     
     if (step === conversationFlow.length - 1) {
       if (option === "Contact via WhatsApp") {
-        const whatsappNumber = "11976638147";
+        const whatsappNumber = "971552655809";
         const message = `Hi! I'm ${userData.name} and I'd like to schedule a demo for XASE.`;
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
