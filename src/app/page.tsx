@@ -27,47 +27,47 @@ export default function Home() {
 
   const features = [
     {
-      title: "Múltiplos Canais de Atendimento",
-      description: "Integração completa com WhatsApp Oficial (WABA), APIs não oficiais, Facebook Messenger, Instagram, Webchat, Email e Telegram.",
+      title: "Multiple Service Channels",
+      description: "Complete integration with Official WhatsApp (WABA), unofficial APIs, Facebook Messenger, Instagram, Webchat, Email, and Telegram.",
       icon: Globe,
       subFeatures: [
-        "API WhatsApp Oficial (WABA)",
-        "APIs WhatsApp não oficiais (bailyes, webjs, meow, evolution)",
-        "Hub Notificame (Facebook Messenger, Instagram, Webchat, Email)",
+        "Official WhatsApp API (WABA)",
+        "Unofficial WhatsApp APIs (bailyes, webjs, meow, evolution)",
+        "Notificame Hub (Facebook Messenger, Instagram, Webchat, Email)",
         "Telegram"
       ]
     },
     {
-      title: "Gestão Centralizada",
-      description: "Todos os chats em uma única tela com sistema de tickets e setorização de atendimento.",
+      title: "Centralized Management",
+      description: "All chats in a single screen with ticket system and service sectorization.",
       icon: MessageSquare,
       subFeatures: [
-        "Todos chats em uma única tela",
-        "Sistema de Tickets",
-        "Setorização de atendimento (filas)",
-        "Múltiplos Atendentes"
+        "All chats in one screen",
+        "Ticket System",
+        "Service sectorization (queues)",
+        "Multiple Agents"
       ]
     },
     {
-      title: "Automação Inteligente",
-      description: "Agendamentos de mensagem e integração com chatbots para otimizar seu atendimento.",
+      title: "Smart Automation",
+      description: "Message scheduling and chatbot integration to optimize your service.",
       icon: Bot,
       subFeatures: [
-        "Agendamentos de mensagem",
-        "Integração com Chatbots",
-        "Inteligência artificial integrada",
-        "Disparo em massa"
+        "Message scheduling",
+        "Chatbot integration",
+        "Integrated artificial intelligence",
+        "Bulk messaging"
       ]
     },
     {
-      title: "Análise e Gestão",
-      description: "Dashboard analítico completo com relatórios e métricas de atendimento.",
+      title: "Analysis and Management",
+      description: "Complete analytical dashboard with reports and service metrics.",
       icon: BarChart,
       subFeatures: [
-        "Dashboard de analítica",
-        "Relatórios gerais de atendimento",
-        "Avaliações de Atendimento",
-        "Exportar contatos do WhatsApp"
+        "Analytics dashboard",
+        "General service reports",
+        "Service evaluations",
+        "Export WhatsApp contacts"
       ]
     }
   ];
@@ -88,17 +88,6 @@ export default function Home() {
           <div className="flex items-center gap-2">
             <div className="text-xl font-light tracking-tight text-white">XASE</div>
           </div>
-          <nav className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-sm hover:text-[#7B61FF] transition-colors">Funcionalidades</a>
-            <a href="#pricing" className="text-sm hover:text-[#7B61FF] transition-colors">Planos</a>
-            <a href="#contact" className="text-sm hover:text-[#7B61FF] transition-colors">Contato</a>
-          </nav>
-          <button 
-            onClick={() => setShowChat(true)}
-            className="bg-gradient-to-r from-[#7B61FF] to-[#C0C0C0] hover:from-[#6A4FFF] hover:to-[#A0A0A0] px-6 py-2 rounded-md transition-colors text-sm font-medium"
-          >
-            Agendar Demonstração
-          </button>
         </div>
       </header>
 
@@ -107,24 +96,24 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#7B61FF]/5 to-transparent" />
         <div className="container mx-auto max-w-3xl text-center relative">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 mb-6 backdrop-blur-sm">
-            <span className="text-xs text-[#7B61FF]">Nova Versão 2.0</span>
+            <span className="text-xs text-[#7B61FF]">New Version 2.0</span>
             <ChevronRight className="w-3 h-3 text-[#7B61FF]" />
           </div>
           
           <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-            CRM Completo para Whatsapp <span className="text-[#7B61FF]">com IA</span> e Múltiplos Canais
+            Complete CRM for WhatsApp <span className="text-[#7B61FF]">with AI</span> and Multiple Channels
           </h1>
           
           <p className="text-base text-gray-400 mb-8 max-w-xl mx-auto leading-relaxed">
-            Gerencie todos os seus canais de atendimento em uma única plataforma. 
-            Automatize processos, melhore a experiência do cliente e aumente suas vendas.
+            Manage all your customer service channels in a single platform. 
+            Automate processes, improve customer experience, and increase your sales.
           </p>
           
           <button 
             onClick={() => setShowChat(true)}
             className="bg-gradient-to-r from-[#7B61FF] to-[#C0C0C0] hover:from-[#6A4FFF] hover:to-[#A0A0A0] px-6 py-3 rounded-md transition-all duration-300 text-sm font-medium transform hover:scale-105"
           >
-            Agendar Demonstração
+            Schedule Demo
           </button>
         </div>
       </section>
@@ -132,7 +121,7 @@ export default function Home() {
       {/* Features Section */}
       <section id="features" className="py-16 px-6">
         <div className="container mx-auto max-w-5xl">
-          <h2 className="text-3xl font-bold text-center mb-12 tracking-[-0.03em]">Funcionalidades Principais</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 tracking-[-0.03em]">Key Features</h2>
           
           <div className="grid md:grid-cols-2 gap-6">
             {features.map((feature, index) => (
@@ -165,15 +154,15 @@ export default function Home() {
       {/* Additional Features */}
       <section className="py-16 px-6 bg-black/20">
         <div className="container mx-auto max-w-5xl">
-          <h2 className="text-3xl font-bold text-center mb-12 tracking-[-0.03em]">Mais Recursos</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 tracking-[-0.03em]">More Features</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { icon: Tag, title: "Etiquetas", description: "Organize seus contatos com etiquetas personalizadas" },
-              { icon: Clipboard, title: "Protocolos", description: "Crie protocolos de atendimento padronizados" },
-              { icon: Send, title: "Disparo em Massa", description: "Envie mensagens para múltiplos contatos" },
-              { icon: Users, title: "Gerenciamento de Grupo", description: "Gerencie grupos do WhatsApp com facilidade" },
-              { icon: Calendar, title: "Agendamentos", description: "Programe mensagens para datas específicas" },
-              { icon: Bell, title: "Notificações", description: "Receba alertas de novos contatos e mensagens" }
+              { icon: Tag, title: "Labels", description: "Organize your contacts with custom labels" },
+              { icon: Clipboard, title: "Protocols", description: "Create standardized service protocols" },
+              { icon: Send, title: "Bulk Messaging", description: "Send messages to multiple contacts" },
+              { icon: Users, title: "Group Management", description: "Manage WhatsApp groups easily" },
+              { icon: Calendar, title: "Scheduling", description: "Schedule messages for specific dates" },
+              { icon: Bell, title: "Notifications", description: "Receive alerts for new contacts and messages" }
             ].map((feature, index) => (
               <div key={index} className="bg-black/30 p-5 rounded-xl border border-purple-500/20">
                 <feature.icon className="w-6 h-6 text-purple-400 mb-3" />
@@ -191,10 +180,10 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-3xl font-bold mb-6 tracking-[-0.03em]">
-                Plugue <span className="text-purple-400">Agentes de I.A</span> com Facilidade
+                Plug <span className="text-purple-400">AI Agents</span> with Ease
               </h2>
               <p className="text-lg text-gray-300 mb-8">
-                Integração direta com as principais plataformas de IA do mercado para soluções personalizadas.
+                Direct integration with leading AI platforms in the market for customized solutions.
               </p>
               <div className="grid grid-cols-2 gap-3">
                 {[
@@ -215,26 +204,26 @@ export default function Home() {
               </div>
             </div>
             <div className="bg-black/30 p-6 rounded-xl border border-purple-500/20">
-              <h3 className="text-xl font-bold mb-4 tracking-[-0.03em]">Soluções Open Source</h3>
+              <h3 className="text-xl font-bold mb-4 tracking-[-0.03em]">Open Source Solutions</h3>
               <p className="text-gray-300 text-sm mb-6">
-                Implemente soluções de IA no seu próprio servidor com total controle e segurança.
+                Implement AI solutions on your own server with total control and security.
               </p>
               <ul className="space-y-2">
                 <li className="flex items-center gap-2 text-gray-300 text-sm">
                   <CheckCircle className="w-4 h-4 text-purple-400" />
-                  Total controle sobre seus dados
+                  Total control over your data
                 </li>
                 <li className="flex items-center gap-2 text-gray-300 text-sm">
                   <CheckCircle className="w-4 h-4 text-purple-400" />
-                  Personalização completa
+                  Complete customization
                 </li>
                 <li className="flex items-center gap-2 text-gray-300 text-sm">
                   <CheckCircle className="w-4 h-4 text-purple-400" />
-                  Integração simplificada
+                  Simplified integration
                 </li>
                 <li className="flex items-center gap-2 text-gray-300 text-sm">
                   <CheckCircle className="w-4 h-4 text-purple-400" />
-                  Suporte técnico dedicado
+                  Dedicated technical support
                 </li>
               </ul>
             </div>
@@ -249,10 +238,10 @@ export default function Home() {
           <div className="flex items-center justify-between mb-16">
             <div>
               <h2 className="text-3xl font-bold mb-4 tracking-tight">
-                Dashboard <span className="text-[#7B61FF]">Inteligente</span>
+                Smart <span className="text-[#7B61FF]">Dashboard</span>
               </h2>
               <p className="text-gray-400 max-w-xl">
-                Análise completa e em tempo real de todos os seus atendimentos e métricas de desempenho.
+                Complete and real-time analysis of all your services and performance metrics.
               </p>
             </div>
             <div className="hidden md:flex items-center gap-2">
@@ -266,7 +255,7 @@ export default function Home() {
             {/* Gráficos de Evolução */}
             <div className="bg-[#0A0A0A] p-8 rounded-xl border border-white/5 backdrop-blur-sm">
               <div className="flex items-center justify-between mb-8">
-                <h3 className="text-xl font-bold tracking-tight">Evolução de Atendimentos</h3>
+                <h3 className="text-xl font-bold tracking-tight">Service Evolution</h3>
                 <div className="flex items-center gap-2 text-[#7B61FF] text-sm">
                   <ArrowUpRight className="w-4 h-4" />
                   <span>+12.5%</span>
@@ -298,8 +287,8 @@ export default function Home() {
             {/* Distribuição por Canal */}
             <div className="bg-[#0A0A0A] p-8 rounded-xl border border-white/5">
               <div className="flex items-center justify-between mb-8">
-                <h3 className="text-xl font-bold tracking-tight">Distribuição por Canal</h3>
-                <div className="text-sm text-gray-400">Últimos 7 dias</div>
+                <h3 className="text-xl font-bold tracking-tight">Distribution by Channel</h3>
+                <div className="text-sm text-gray-400">Last 7 days</div>
               </div>
               <div className="grid grid-cols-2 gap-6">
                 {[
@@ -358,7 +347,7 @@ export default function Home() {
           {/* Gráfico de Área */}
           <div className="bg-[#0A0A0A] p-8 rounded-xl border border-white/5 backdrop-blur-sm">
             <div className="flex items-center justify-between mb-8">
-              <h3 className="text-xl font-bold tracking-tight">Evolução de Receita</h3>
+              <h3 className="text-xl font-bold tracking-tight">Revenue Evolution</h3>
               <div className="flex items-center gap-2 text-[#7B61FF] text-sm">
                 <ArrowUpRight className="w-4 h-4" />
                 <span>+18.3%</span>
@@ -443,20 +432,20 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#7B61FF]/5 to-transparent" />
         <div className="container mx-auto max-w-3xl text-center relative">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 mb-8 backdrop-blur-sm">
-            <span className="text-sm text-[#7B61FF]">Agende sua demonstração</span>
+            <span className="text-sm text-[#7B61FF]">Schedule your demo</span>
             <ChevronRight className="w-4 h-4 text-[#7B61FF]" />
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-            Veja o <span className="text-[#7B61FF]">XASE</span> em ação
+            See <span className="text-[#7B61FF]">XASE</span> in Action
           </h2>
           <p className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Agende uma demonstração personalizada e descubra como o XASE pode transformar seu atendimento ao cliente.
+            Schedule a personalized demo and discover how XASE can transform your customer service.
           </p>
           <button 
             onClick={() => setShowChat(true)}
             className="bg-gradient-to-r from-[#7B61FF] to-[#C0C0C0] hover:from-[#6A4FFF] hover:to-[#A0A0A0] px-8 py-4 rounded-md transition-colors text-sm font-medium"
           >
-            Agendar Demonstração
+            Schedule Demo
           </button>
         </div>
       </section>
@@ -468,38 +457,38 @@ export default function Home() {
             <div>
               <div className="text-xl font-bold mb-4 tracking-[-0.03em]">XASE</div>
               <p className="text-gray-400 text-sm">
-                A solução completa para gerenciamento de atendimento e relacionamento com clientes.
+                The complete solution for customer service management and customer relationship.
               </p>
             </div>
             <div>
-              <h3 className="font-bold mb-4 text-sm">Produto</h3>
+              <h3 className="font-bold mb-4 text-sm">Product</h3>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li>Funcionalidades</li>
-                <li>Preços</li>
-                <li>Integrações</li>
+                <li>Features</li>
+                <li>Pricing</li>
+                <li>Integrations</li>
                 <li>API</li>
               </ul>
             </div>
             <div>
-              <h3 className="font-bold mb-4 text-sm">Suporte</h3>
+              <h3 className="font-bold mb-4 text-sm">Support</h3>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li>Central de Ajuda</li>
-                <li>Documentação</li>
-                <li>Tutoriais</li>
-                <li>Contato</li>
+                <li>Help Center</li>
+                <li>Documentation</li>
+                <li>Tutorials</li>
+                <li>Contact</li>
               </ul>
             </div>
             <div>
               <h3 className="font-bold mb-4 text-sm">Legal</h3>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li>Termos de Uso</li>
-                <li>Privacidade</li>
+                <li>Terms of Use</li>
+                <li>Privacy</li>
                 <li>Cookies</li>
               </ul>
             </div>
           </div>
           <div className="border-t border-purple-500/20 mt-10 pt-8 text-center text-gray-400 text-sm">
-            © 2024 XASE. Todos os direitos reservados.
+            © 2024 XASE. All rights reserved.
           </div>
         </div>
       </footer>

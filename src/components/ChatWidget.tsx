@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChatBubbleLeftIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { MessageSquare, X, Send } from 'lucide-react';
 import { ChatMessage } from './ChatMessage';
 import { createLead } from '@/services/leadService';
 
@@ -15,8 +15,8 @@ interface UserData {
   name: string;
   whatsapp: string;
   email: string;
-  segment?: string;
-  budget?: string;
+  segment: string;
+  budget: string;
 }
 
 interface ChatWidgetProps {
@@ -27,70 +27,68 @@ interface ChatWidgetProps {
 export function ChatWidget({ showChat = false, onClose }: ChatWidgetProps) {
   const [isOpen, setIsOpen] = useState(showChat);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [currentStep, setCurrentStep] = useState(0);
+  const [step, setStep] = useState(0);
   const [inputValue, setInputValue] = useState('');
   const [userData, setUserData] = useState<UserData>({
     name: '',
     whatsapp: '',
-    email: ''
+    email: '',
+    segment: '',
+    budget: ''
   });
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const conversationFlow = [
     {
-      question: "Olá! eu sou o assistente do XASE!\n\nDeixa eu te apresentar o XASE e seus planos?",
-      options: ["Claro! Quero conhecer mais detalhes"]
+      question: "Hi! I'm here to help you schedule a demo. What's your name?",
+      options: [],
+      inputType: "text",
+      field: "name"
     },
     {
-      question: "Qual é o seu nome?",
-      isInput: true,
-      onAnswer: (answer: string) => {
-        const newData = { ...userData, name: answer };
-        setUserData(newData);
-        return newData;
-      }
+      question: "Great! What's your WhatsApp number?",
+      options: [],
+      inputType: "text",
+      field: "whatsapp"
     },
     {
-      question: (data: UserData) => `Prazer, ${data.name}! 👋\n\nQual o seu whatsapp? para enviarmos as informações para você conhecer os nossos planos`,
-      isInput: true,
-      onAnswer: (answer: string) => {
-        const newData = { ...userData, whatsapp: answer };
-        setUserData(newData);
-        return newData;
-      }
+      question: "What's your email address?",
+      options: [],
+      inputType: "text",
+      field: "email"
     },
     {
-      question: (data: UserData) => `Confirma que seu numero de whatsapp está correto? ${data.whatsapp}, é importante que esteja certo para que nosso time consiga falar com você!`,
-      options: ["Sim, está correto"]
-    },
-    {
-      question: "Qual o seu e-mail mais utilizado?",
-      isInput: true,
-      onAnswer: (answer: string) => {
-        const newData = { ...userData, email: answer };
-        setUserData(newData);
-        return newData;
-      }
-    },
-    {
-      question: "Você tem uma empresa de qual segmento?",
+      question: "What's your business segment?",
       options: [
-        "Comércio",
-        "Serviços",
-        "Indústria",
-        "Outros"
-      ]
+        "E-commerce",
+        "Retail",
+        "Services",
+        "Education",
+        "Healthcare",
+        "Other"
+      ],
+      inputType: "options",
+      field: "segment"
     },
     {
-      question: "Nosso investimento mínimo anual é de R$2.880,00. Este valor está dentro do seu orçamento atual?",
+      question: "What's your monthly budget for this solution?",
       options: [
-        "Sim, tenho orçamento para investir se tudo fizer sentido.",
-        "Não, meu orçamento é menor que R$2.880,00."
-      ]
+        "Up to $500",
+        "$500 - $1,000",
+        "$1,000 - $2,000",
+        "Above $2,000"
+      ],
+      inputType: "options",
+      field: "budget"
     },
     {
-      question: "Obrigado pelas informações, em instantes o nosso time entrará em contato com você, fique atento(a)!",
-      isFinal: true
+      question: "Perfect! I'll send this information to our team. How would you like to proceed?",
+      options: [
+        "Contact via WhatsApp",
+        "End conversation"
+      ],
+      inputType: "options",
+      field: "final"
     }
   ];
 
@@ -104,89 +102,103 @@ export function ChatWidget({ showChat = false, onClose }: ChatWidgetProps) {
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
-      const firstQuestion = typeof conversationFlow[0].question === 'function' 
-        ? conversationFlow[0].question(userData)
-        : conversationFlow[0].question;
-      setMessages([{ text: firstQuestion, isUser: false }]);
+      setMessages([{ text: conversationFlow[0].question, isUser: false }]);
     }
   }, [isOpen]);
 
   useEffect(() => {
-    setIsOpen(showChat);
+    if (showChat !== isOpen) {
+      setIsOpen(showChat);
+    }
   }, [showChat]);
 
   const handleClose = () => {
     setIsOpen(false);
-    onClose?.();
-  };
-
-  const handleSendMessage = () => {
-    if (inputValue.trim() === '') return;
-
-    const currentQuestion = conversationFlow[currentStep];
-    let newUserData = userData;
-
-    if (currentQuestion.onAnswer) {
-      newUserData = currentQuestion.onAnswer(inputValue);
-      setUserData(newUserData);
-    }
-
-    setMessages((prev) => [...prev, { text: inputValue, isUser: true }]);
-    setInputValue('');
-
-    setTimeout(() => {
-      if (currentStep < conversationFlow.length - 1) {
-        const nextStep = currentStep + 1;
-        setCurrentStep(nextStep);
-        const nextQuestion = conversationFlow[nextStep];
-        const questionText = typeof nextQuestion.question === 'function'
-          ? nextQuestion.question(newUserData)
-          : nextQuestion.question;
-        setMessages((prev) => [
-          ...prev,
-          { text: questionText, isUser: false },
-        ]);
-      }
-    }, 1000);
+    if (onClose) onClose();
   };
 
   const handleOptionClick = (option: string) => {
-    const currentQuestion = conversationFlow[currentStep];
-    let newUserData = userData;
+    setMessages(prev => [...prev, { text: option, isUser: true }]);
+    
+    if (step === conversationFlow.length - 1) {
+      if (option === "Contact via WhatsApp") {
+        const whatsappNumber = "11976638147";
+        const message = `Hi! I'm ${userData.name} and I'd like to schedule a demo for XASE.`;
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+        handleClose();
+      } else {
+        handleClose();
+      }
+    } else {
+      setUserData(prev => ({
+        ...prev,
+        [conversationFlow[step].field]: option
+      }));
+      setStep(prev => prev + 1);
+      setMessages(prev => [...prev, { text: conversationFlow[step + 1].question, isUser: false }]);
+    }
+  };
 
-    if (currentQuestion.onAnswer) {
-      newUserData = currentQuestion.onAnswer(option);
-      setUserData(newUserData);
+  const handleSendMessage = async () => {
+    if (!inputValue.trim()) return;
+
+    const currentStep = conversationFlow[step];
+    const newMessage = {
+      text: inputValue,
+      isUser: true
+    };
+
+    setMessages(prev => [...prev, newMessage]);
+    setInputValue("");
+
+    if (currentStep.field === "whatsapp") {
+      const whatsappRegex = /^(\+?55)?\s?\(?\d{2}\)?\s?\d{4,5}[-.\s]?\d{4}$/;
+      if (!whatsappRegex.test(inputValue)) {
+        setMessages(prev => [...prev, {
+          text: "Please enter a valid WhatsApp number in the format: (XX) XXXXX-XXXX",
+          isUser: false
+        }]);
+        return;
+      }
     }
 
-    setMessages((prev) => [...prev, { text: option, isUser: true }]);
-    
-    setTimeout(() => {
-      if (currentStep < conversationFlow.length - 1) {
-        const nextStep = currentStep + 1;
-        setCurrentStep(nextStep);
-        const nextQuestion = conversationFlow[nextStep];
-        const questionText = typeof nextQuestion.question === 'function'
-          ? nextQuestion.question(newUserData)
-          : nextQuestion.question;
-        setMessages((prev) => [
-          ...prev,
-          { text: questionText, isUser: false },
-        ]);
-
-        if (nextQuestion.isFinal) {
-          createLead({
-            name: newUserData.name,
-            whatsapp: newUserData.whatsapp,
-            email: newUserData.email,
-            segment: newUserData.segment || '',
-            budget: newUserData.budget || '',
-          }).catch(error => {
-            console.error('Error saving lead:', error);
-          });
-        }
+    if (currentStep.field === "email") {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(inputValue)) {
+        setMessages(prev => [...prev, {
+          text: "Please enter a valid email address",
+          isUser: false
+        }]);
+        return;
       }
-    }, 1000);
+    }
+
+    setUserData(prev => ({
+      ...prev,
+      [currentStep.field]: inputValue
+    }));
+
+    if (step === conversationFlow.length - 1) {
+      try {
+        await createLead(userData);
+        setMessages(prev => [...prev, {
+          text: "Thank you! Your information has been sent successfully. Our team will contact you soon.",
+          isUser: false
+        }]);
+      } catch (error) {
+        setMessages(prev => [...prev, {
+          text: "Sorry, there was an error sending your information. Please try again later.",
+          isUser: false
+        }]);
+      }
+    } else {
+      setStep(prev => prev + 1);
+      setMessages(prev => [...prev, {
+        text: conversationFlow[step + 1].question,
+        isUser: false
+      }]);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -195,7 +207,7 @@ export function ChatWidget({ showChat = false, onClose }: ChatWidgetProps) {
     }
   };
 
-  const currentQuestion = conversationFlow[currentStep];
+  const currentQuestion = conversationFlow[step];
   const isFinalStep = currentQuestion.isFinal;
   const currentQuestionText = typeof currentQuestion.question === 'function'
     ? currentQuestion.question(userData)
@@ -203,114 +215,75 @@ export function ChatWidget({ showChat = false, onClose }: ChatWidgetProps) {
 
   return (
     <>
-      {/* Chat Button */}
       <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 bg-[#7B61FF] text-white p-4 rounded-full shadow-lg hover:bg-[#6A4FFF] transition-colors"
+        className="fixed bottom-6 right-6 bg-[#7B61FF] text-white p-4 rounded-full shadow-lg hover:bg-[#6A4FFF] transition-colors z-[100]"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
       >
-        <ChatBubbleLeftIcon className="h-6 w-6" />
+        <MessageSquare className="w-6 h-6" />
       </motion.button>
 
-      {/* Chat Window */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="fixed bottom-24 right-6 z-50 w-96 h-[600px] bg-white rounded-xl shadow-xl overflow-hidden flex flex-col"
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : 20 }}
+        transition={{ duration: 0.3 }}
+        className={`fixed bottom-24 right-6 w-96 bg-[#0A0A0A] rounded-xl shadow-xl border border-purple-500/20 overflow-hidden z-[100] flex flex-col max-h-[80vh] ${isOpen ? 'block' : 'hidden'}`}
+      >
+        <div className="p-4 border-b border-purple-500/20 flex justify-between items-center">
+          <h3 className="text-white font-medium">Schedule a Demo</h3>
+          <button
+            onClick={handleClose}
+            className="text-gray-400 hover:text-white"
           >
-            {/* Chat Header */}
-            <div className="bg-[#7B61FF] text-white p-4 flex justify-between items-center">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                  <ChatBubbleLeftIcon className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="font-medium">XASE</h3>
-                  <p className="text-sm text-white/80">Como posso ajudar?</p>
-                </div>
-              </div>
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          {messages.map((message, index) => (
+            <ChatMessage
+              key={index}
+              message={message.text}
+              isUser={message.isUser}
+            />
+          ))}
+          <div ref={messagesEndRef} />
+        </div>
+
+        <div className="p-4 border-t border-purple-500/20 bg-[#0A0A0A]">
+          {conversationFlow[step].inputType === "options" ? (
+            <div className="grid grid-cols-2 gap-2">
+              {conversationFlow[step].options.map((option, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleOptionClick(option)}
+                  className="bg-[#7B61FF]/10 hover:bg-[#7B61FF]/20 text-white px-4 py-2 rounded-md transition-colors"
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder="Type your message..."
+                className="flex-1 bg-[#0F0F0F] text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7B61FF]"
+              />
               <button
-                onClick={handleClose}
-                className="p-1 hover:bg-white/10 rounded-full transition-colors"
+                onClick={handleSendMessage}
+                className="bg-[#7B61FF] text-white px-4 py-2 rounded-md hover:bg-[#6A4FFF] transition-colors"
               >
-                <XMarkIcon className="h-5 w-5" />
+                <Send className="w-5 h-5" />
               </button>
             </div>
-
-            {/* Chat Messages */}
-            <div className="flex-1 p-4 overflow-y-auto bg-gray-50">
-              <div className="space-y-4">
-                {messages.map((message, index) => (
-                  <ChatMessage
-                    key={index}
-                    message={message.text}
-                    isUser={message.isUser}
-                  />
-                ))}
-                <div ref={messagesEndRef} />
-              </div>
-            </div>
-
-            {/* Chat Input or Options */}
-            <div className="p-4 border-t border-gray-200">
-              {!isFinalStep ? (
-                currentQuestion.isInput ? (
-                  <div className="flex items-center space-x-2">
-                    <input
-                      type="text"
-                      value={inputValue}
-                      onChange={(e) => setInputValue(e.target.value)}
-                      onKeyPress={handleKeyPress}
-                      placeholder="Digite sua resposta..."
-                      className="flex-1 px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#7B61FF] focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
-                    />
-                    <button
-                      onClick={handleSendMessage}
-                      className="bg-[#7B61FF] text-white p-2 rounded-lg hover:bg-[#6A4FFF] transition-colors"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                ) : (
-                  <div className="space-y-2">
-                    {currentQuestion.options?.map((option, index) => (
-                      <button
-                        key={index}
-                        onClick={() => handleOptionClick(option)}
-                        className="w-full px-4 py-2 text-left rounded-lg border border-[#7B61FF] bg-[#7B61FF] text-white hover:bg-[#6A4FFF] transition-colors"
-                      >
-                        {option}
-                      </button>
-                    ))}
-                  </div>
-                )
-              ) : (
-                <button
-                  onClick={() => window.location.href = 'https://xase.com.br'}
-                  className="w-full bg-[#7B61FF] text-white py-2 rounded-lg hover:bg-[#6A4FFF] transition-colors"
-                >
-                  Acessar agora!
-                </button>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </div>
+      </motion.div>
     </>
   );
 } 
