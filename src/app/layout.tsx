@@ -9,21 +9,21 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: 'Guia: Revolucione seu Recrutamento com IA | XASE',
-  description: 'Descubra como contratar talentos excepcionais usando IA. Economize tempo e dinheiro com processos seletivos otimizados por inteligência artificial.',
+  title: 'XASE | Complete CRM for WhatsApp with AI and Multiple Channels',
+  description: 'Transform your customer service with XASE. Integrate WhatsApp, email, and social media in one platform. AI-powered automation for better customer experience.',
   keywords: [
-    'recrutamento com ia',
-    'contratar usando ia',
-    'seleção de talentos',
-    'ia para rh',
-    'automação de recrutamento',
-    'entrevistas com ia',
-    'otimização de contratação',
-    'recursos humanos ia'
+    'whatsapp crm',
+    'multichannel crm',
+    'ai customer service',
+    'business automation',
+    'whatsapp business',
+    'customer service platform',
+    'ai integration',
+    'customer relationship management'
   ],
   openGraph: {
-    title: 'Como Economizar +R$10.000 por Contratação usando IA',
-    description: 'Aprenda a encontrar os melhores talentos 3x mais rápido com inteligência artificial. Baixe nosso guia exclusivo.',
+    title: 'XASE - Smart CRM with WhatsApp and AI Integration',
+    description: 'Manage all your customer service channels in one platform. Automate processes, improve customer experience, and increase your sales with AI.',
     url: 'https://xase.com',
     siteName: 'XASE',
     images: [
@@ -31,10 +31,10 @@ export const metadata: Metadata = {
         url: 'https://xase.com/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Guia Definitivo: Como Ganhar Dinheiro com IA'
+        alt: 'XASE - Complete CRM Solution'
       }
     ],
-    locale: 'pt_BR',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {
