@@ -207,12 +207,6 @@ export function ChatWidget({ showChat = false, onClose }: ChatWidgetProps) {
     }
   };
 
-  const currentQuestion = conversationFlow[step];
-  const isFinalStep = currentQuestion.isFinal;
-  const currentQuestionText = typeof currentQuestion.question === 'function'
-    ? currentQuestion.question(userData)
-    : currentQuestion.question;
-
   return (
     <>
       <motion.button
