@@ -9,21 +9,21 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: 'Guia Definitivo: Como Ganhar Dinheiro com IA | XASE',
-  description: 'Descubra como pessoas comuns estão lucrando mais de R$10.000 por mês com inteligência artificial. Baixe nosso guia gratuito e comece agora.',
+  title: 'Guia: Revolucione seu Recrutamento com IA | XASE',
+  description: 'Descubra como contratar talentos excepcionais usando IA. Economize tempo e dinheiro com processos seletivos otimizados por inteligência artificial.',
   keywords: [
-    'ganhar dinheiro com ia',
-    'renda com inteligência artificial',
-    'guia ia',
-    'lucrar com ia',
-    'negócios com ia',
-    'renda extra ia',
-    'chatgpt dinheiro',
-    'ia para iniciantes'
+    'recrutamento com ia',
+    'contratar usando ia',
+    'seleção de talentos',
+    'ia para rh',
+    'automação de recrutamento',
+    'entrevistas com ia',
+    'otimização de contratação',
+    'recursos humanos ia'
   ],
   openGraph: {
-    title: 'Como Ganhar +R$10.000/mês com IA - Guia Gratuito',
-    description: 'Aprenda como pessoas comuns estão lucrando com inteligência artificial. Baixe agora nosso guia exclusivo e comece sua jornada.',
+    title: 'Como Economizar +R$10.000 por Contratação usando IA',
+    description: 'Aprenda a encontrar os melhores talentos 3x mais rápido com inteligência artificial. Baixe nosso guia exclusivo.',
     url: 'https://xase.com',
     siteName: 'XASE',
     images: [
