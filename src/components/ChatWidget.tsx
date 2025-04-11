@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send } from 'lucide-react';
 import { ChatMessage } from './ChatMessage';
-import { createLead } from '@/services/leadService';
+import { createLead, saveChatMessage } from '@/services/leadService';
 
 interface Message {
   text: string;
@@ -36,6 +36,7 @@ export function ChatWidget({ showChat = false, onClose }: ChatWidgetProps) {
     segment: '',
     budget: ''
   });
+  const [currentLead, setCurrentLead] = useState<any>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const conversationFlow = [
@@ -117,12 +118,18 @@ export function ChatWidget({ showChat = false, onClose }: ChatWidgetProps) {
     if (onClose) onClose();
   };
 
-  const handleOptionClick = (option: string) => {
-    setMessages(prev => [...prev, { text: option, isUser: true }]);
-    
+  const handleOptionClick = async (option: string) => {
+    const newMessage = { text: option, isUser: true };
+    setMessages(prev => [...prev, newMessage]);
+
+    // Save user message
+    if (currentLead) {
+      await saveChatMessage(currentLead.id, option, true);
+    }
+
     if (step === conversationFlow.length - 1) {
       if (option === "Contact via WhatsApp") {
-        const whatsappNumber = "971552655809";
+        const whatsappNumber = "11976638147";
         const message = `Hi! I'm ${userData.name} and I'd like to schedule a demo for XASE.`;
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
@@ -136,68 +143,67 @@ export function ChatWidget({ showChat = false, onClose }: ChatWidgetProps) {
         [conversationFlow[step].field]: option
       }));
       setStep(prev => prev + 1);
-      setMessages(prev => [...prev, { text: conversationFlow[step + 1].question, isUser: false }]);
+
+      // Add bot response
+      const botResponse = { text: conversationFlow[step + 1].question, isUser: false };
+      setMessages(prev => [...prev, botResponse]);
+
+      // Save bot message
+      if (currentLead) {
+        await saveChatMessage(currentLead.id, botResponse.text, false);
+      }
+
+      // If we've collected all the data, create the lead
+      if (step === conversationFlow.length - 2) {
+        try {
+          const lead = await createLead(userData);
+          setCurrentLead(lead);
+        } catch (error) {
+          console.error('Error creating lead:', error);
+        }
+      }
     }
   };
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
 
-    const currentStep = conversationFlow[step];
-    const newMessage = {
-      text: inputValue,
-      isUser: true
-    };
-
+    const newMessage = { text: inputValue, isUser: true };
     setMessages(prev => [...prev, newMessage]);
-    setInputValue("");
+    setInputValue('');
 
-    if (currentStep.field === "whatsapp") {
-      const whatsappRegex = /^(\+?55)?\s?\(?\d{2}\)?\s?\d{4,5}[-.\s]?\d{4}$/;
-      if (!whatsappRegex.test(inputValue)) {
-        setMessages(prev => [...prev, {
-          text: "Please enter a valid WhatsApp number in the format: (XX) XXXXX-XXXX",
-          isUser: false
-        }]);
-        return;
-      }
+    // Save user message
+    if (currentLead) {
+      await saveChatMessage(currentLead.id, inputValue, true);
     }
 
-    if (currentStep.field === "email") {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(inputValue)) {
-        setMessages(prev => [...prev, {
-          text: "Please enter a valid email address",
-          isUser: false
-        }]);
-        return;
-      }
-    }
-
+    // Process the response based on the current step
+    const currentQuestion = conversationFlow[step];
     setUserData(prev => ({
       ...prev,
-      [currentStep.field]: inputValue
+      [currentQuestion.field]: inputValue
     }));
 
-    if (step === conversationFlow.length - 1) {
+    // Move to next step
+    setStep(prev => prev + 1);
+
+    // Add bot response
+    const botResponse = { text: conversationFlow[step + 1].question, isUser: false };
+    setMessages(prev => [...prev, botResponse]);
+
+    // Save bot message
+    if (currentLead) {
+      await saveChatMessage(currentLead.id, botResponse.text, false);
+    }
+
+    // If we've collected all the data, create the lead
+    if (step === conversationFlow.length - 2) {
       try {
-        await createLead(userData);
-        setMessages(prev => [...prev, {
-          text: "Thank you! Your information has been sent successfully. Our team will contact you soon.",
-          isUser: false
-        }]);
+        const lead = await createLead(userData);
+        setCurrentLead(lead);
       } catch (error) {
-        setMessages(prev => [...prev, {
-          text: "Sorry, there was an error sending your information. Please try again later.",
-          isUser: false
-        }]);
+        console.error('Error creating lead:', error);
       }
-    } else {
-      setStep(prev => prev + 1);
-      setMessages(prev => [...prev, {
-        text: conversationFlow[step + 1].question,
-        isUser: false
-      }]);
     }
   };
 
