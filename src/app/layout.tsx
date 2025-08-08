@@ -9,21 +9,21 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: 'XASE | Complete CRM for WhatsApp with AI and Multiple Channels',
-  description: 'Transform your customer service with XASE. Integrate WhatsApp, email, and social media in one platform. AI-powered automation for better customer experience.',
+  title: 'XASE | AI Agent Provider',
+  description: 'A real customer service AI agent that can handle all your customer service needs. Professional automation in minutes.',
   keywords: [
-    'whatsapp crm',
-    'multichannel crm',
+    'ai agent whatsapp',
+    'whatsapp automation',
     'ai customer service',
-    'business automation',
-    'whatsapp business',
-    'customer service platform',
+    'whatsapp ai agent',
+    'virtual assistant whatsapp',
+    'customer service automation',
     'ai integration',
-    'customer relationship management'
+    'whatsapp business solution'
   ],
   openGraph: {
-    title: 'XASE - Smart CRM with WhatsApp and AI Integration',
-    description: 'Manage all your customer service channels in one platform. Automate processes, improve customer experience, and increase your sales with AI.',
+    title: 'XASE - AI Agent Provider for WhatsApp',
+    description: 'A real AI agent that handles your WhatsApp customer service. Just scan the QR code to get started with professional automation in minutes.',
     url: 'https://xase.com',
     siteName: 'XASE',
     images: [
