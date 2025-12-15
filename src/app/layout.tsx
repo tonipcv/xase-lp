@@ -9,21 +9,25 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: 'XASE | AI Agent Provider',
-  description: 'A real customer service AI agent that can handle all your customer service needs. Professional automation in minutes.',
+  title: 'Xase — The Evidence Layer for AI Agents',
+  description: "Turn automated decisions into immutable legal records. Don't just log what your AI did — prove why it was right.",
   keywords: [
-    'ai agent whatsapp',
-    'whatsapp automation',
-    'ai customer service',
-    'whatsapp ai agent',
-    'virtual assistant whatsapp',
-    'customer service automation',
-    'ai integration',
-    'whatsapp business solution'
+    'evidence layer for ai',
+    'ai compliance',
+    'ai audit trail',
+    'immutable logs',
+    'cryptographic proof',
+    'ai governance',
+    'model risk management',
+    'eu ai act',
+    'soc2',
+    'gdpr',
+    'fintech compliance',
+    'healthcare compliance'
   ],
   openGraph: {
-    title: 'XASE - AI Agent Provider for WhatsApp',
-    description: 'A real AI agent that handles your WhatsApp customer service. Just scan the QR code to get started with professional automation in minutes.',
+    title: 'Xase — The Evidence Layer for AI Agents',
+    description: "Turn automated decisions into immutable legal records. Don't just log what your AI did — prove why it was right.",
     url: 'https://xase.com',
     siteName: 'XASE',
     images: [
@@ -31,7 +35,7 @@ export const metadata: Metadata = {
         url: 'https://xase.com/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'XASE - Complete CRM Solution'
+        alt: 'Xase — Evidence Layer for AI Agents'
       }
     ],
     locale: 'en_US',
@@ -39,8 +43,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Guia Gratuito: Como Lucrar com IA',
-    description: 'Descubra as estratégias que estão gerando +R$10.000/mês com inteligência artificial.',
+    title: 'Xase — The Evidence Layer for AI Agents',
+    description: "Turn automated decisions into immutable legal records.",
     creator: '@xase',
     images: ['https://xase.com/twitter-image.jpg'],
   },
@@ -72,12 +76,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>XASE - Smart CRM with WhatsApp and AI Integration</title>
+        <title>Xase — The Evidence Layer for AI Agents</title>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#16181b" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       </head>
