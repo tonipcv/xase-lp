@@ -8,16 +8,16 @@ export default function DocsIntroduction() {
   return (
     <div className="flex min-h-screen bg-[#000] text-white">
       <Sidebar />
-      <main className="flex-1 px-8 md:px-12 py-10 max-w-[900px]">
-        <h1 className="text-4xl font-light tracking-tight mb-4">Introduction</h1>
-        <p className="text-lg text-gray-400 mb-8">
-          XASE is the evidence infrastructure for AI decisions. We provide cryptographic proof that humans supervised AI outputs, enabling compliance with EU AI Act, LGPD, SOC 2, and other regulations.
+      <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
+        <h1 className="text-3xl md:text-4xl font-light tracking-tight mb-3">Introduction</h1>
+        <p className="text-base md:text-lg text-gray-400 mb-6">
+          Evidence infrastructure for AI decisions. Cryptographic proof of human oversight for EU AI Act, LGPD, SOC 2.
         </p>
 
-        <h2 className="text-2xl font-light mt-12 mb-4">What XASE Does</h2>
-        <div className="overflow-hidden rounded-lg border border-[#222]">
-          <table className="w-full text-sm">
-            <thead className="bg-[#0a0a0a]">
+        <h2 className="text-xl md:text-2xl font-light mt-8 md:mt-12 mb-3">What XASE Does</h2>
+        <div className="overflow-x-auto rounded-lg border border-white/10">
+          <table className="w-full text-xs md:text-sm">
+            <thead className="bg-white/5">
               <tr>
                 <th className="text-left px-4 py-3 text-gray-400 font-medium">Capability</th>
                 <th className="text-left px-4 py-3 text-gray-400 font-medium">Description</th>
@@ -31,7 +31,7 @@ export default function DocsIntroduction() {
                 ['Model Registry', 'Track which model version made each decision'],
                 ['Evidence Export', 'Generate offline-verifiable bundles for audits'],
               ].map(([cap, desc], i) => (
-                <tr key={i} className={i % 2 === 0 ? 'bg-[#0a0a0a]' : 'bg-black'}>
+                <tr key={i} className={i % 2 === 0 ? 'bg-white/5' : 'bg-black'}>
                   <td className="px-4 py-3 text-white font-medium">{cap}</td>
                   <td className="px-4 py-3 text-gray-400">{desc}</td>
                 </tr>
@@ -40,7 +40,7 @@ export default function DocsIntroduction() {
           </table>
         </div>
 
-        <h2 className="text-2xl font-light mt-12 mb-4">What XASE is NOT</h2>
+        <h2 className="text-xl md:text-2xl font-light mt-8 md:mt-12 mb-3">What XASE is NOT</h2>
         <div className="space-y-2">
           {[
             'A workflow tool (we record actions, not manage them)',
@@ -55,8 +55,8 @@ export default function DocsIntroduction() {
           ))}
         </div>
 
-        <h2 className="text-2xl font-light mt-12 mb-4">How It Works</h2>
-        <div className="bg-[#0a0a0a] border border-[#222] rounded-lg p-6 font-mono text-sm">
+        <h2 className="text-xl md:text-2xl font-light mt-8 md:mt-12 mb-3">How It Works</h2>
+        <div className="bg-[#080808] border border-white/10 rounded-lg p-4 md:p-6 font-mono text-xs md:text-sm overflow-x-auto">
           <pre className="text-gray-300 leading-relaxed whitespace-pre">{`Your AI System          XASE                Auditor
    │                   │                     │
    ├── Decision made ──────────►             │

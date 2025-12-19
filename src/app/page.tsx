@@ -63,7 +63,7 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6">
+      <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 px-4 md:px-6">
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
           
           {/* Announcement Badge */}
@@ -73,11 +73,11 @@ export default function Home() {
             <ArrowRight className="w-3 h-3" />
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-medium tracking-tighter bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent mb-8 leading-[1.1]">
+          <h1 className="text-[11vw] sm:text-6xl md:text-8xl font-medium tracking-tighter bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent mb-6 md:mb-8 leading-[1.08] break-words">
             The Evidence Layer<br />for AI Decisions.
           </h1>
 
-          <p className="max-w-2xl text-lg md:text-xl text-gray-400 font-light leading-relaxed mb-10">
+          <p className="max-w-2xl text-base md:text-xl text-gray-400 font-light leading-relaxed mb-8 md:mb-10 px-2">
             Cryptographic proof of human oversight. Built for the auditors of the EU AI Act and LGPD.
           </p>
 

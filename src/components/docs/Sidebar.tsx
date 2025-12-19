@@ -1,6 +1,6 @@
 'use client';
-import { useState } from 'react';
-import { ChevronDown, ChevronRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 
 interface NavItem {
@@ -132,18 +132,59 @@ function NavSection({ section, level = 0 }: { section: NavItem; level?: number }
 }
 
 export default function Sidebar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 100);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <aside className="w-[280px] border-r border-[#222222] h-screen sticky top-0 overflow-y-auto">
-      <div className="p-6">
-        <Link href="/" className="text-xl font-light tracking-tight mb-8 block">
-          XASE
-        </Link>
-        <nav className="space-y-1">
-          {navigation.map((section, i) => (
-            <NavSection key={i} section={section} />
-          ))}
-        </nav>
-      </div>
-    </aside>
+    <>
+      {/* Mobile Menu Button */}
+      <button
+        onClick={() => setMobileOpen(!mobileOpen)}
+        className="md:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-black/80 backdrop-blur border border-white/10 text-white"
+        aria-label="Toggle menu"
+      >
+        {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+      </button>
+
+      {/* Mobile Overlay */}
+      {mobileOpen && (
+        <div
+          className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside
+        className={`${
+          mobileOpen ? 'translate-x-0' : '-translate-x-full'
+        } md:translate-x-0 fixed md:sticky top-0 left-0 z-40 w-[280px] h-screen border-r border-white/10 bg-black overflow-y-auto transition-transform duration-300`}
+      >
+        <div className="p-6">
+          <Link
+            href="/"
+            className="text-xl font-light tracking-tight mb-8 block"
+            onClick={() => setMobileOpen(false)}
+          >
+            XASE
+          </Link>
+          <nav className="space-y-1">
+            {navigation.map((section, i) => (
+              <div key={i} onClick={() => setMobileOpen(false)}>
+                <NavSection section={section} />
+              </div>
+            ))}
+          </nav>
+        </div>
+      </aside>
+    </>
   );
 }

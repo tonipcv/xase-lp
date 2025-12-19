@@ -10,7 +10,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: 'Xase — The Evidence Layer for AI Agents',
+  title: 'Xase: The Evidence Layer for AI Agents',
   description: "Turn automated decisions into immutable legal records. Don't just log what your AI did — prove why it was right.",
   keywords: [
     'evidence layer for ai',

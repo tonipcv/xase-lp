@@ -11,7 +11,7 @@ Hash Chain         SHA-256           N/A (deterministic)`;
   return (
     <div className="flex min-h-screen bg-[#000] text-white">
       <Sidebar />
-      <main className="flex-1 px-8 md:px-12 py-10 max-w-[900px]">
+      <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
         <h1 className="text-4xl font-light tracking-tight mb-2">Encryption</h1>
         <p className="text-lg text-gray-400 mb-8">Industry-standard encryption at every layer.</p>
 

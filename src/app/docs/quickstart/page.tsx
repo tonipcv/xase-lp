@@ -65,11 +65,11 @@ await bundle.download('./evidence_bundle.zip');`;
   return (
     <div className="flex min-h-screen bg-[#000] text-white">
       <Sidebar />
-      <main className="flex-1 px-8 md:px-12 py-10 max-w-[900px]">
-        <h1 className="text-4xl font-light tracking-tight mb-2">Quickstart</h1>
-        <p className="text-lg text-gray-400 mb-8">Get XASE running in 5 minutes. The examples below show Python and Node.js, but the concepts apply to all SDKs.</p>
+      <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
+        <h1 className="text-3xl md:text-4xl font-light tracking-tight mb-2">Quickstart</h1>
+        <p className="text-base md:text-lg text-gray-400 mb-6">Record your first AI decision in 5 minutes.</p>
 
-        <h2 className="text-2xl font-light mt-8 mb-3">1. Get Your API Key</h2>
+        <h2 className="text-xl md:text-2xl font-light mt-6 md:mt-8 mb-3">1. Get Your API Key</h2>
         <ol className="list-decimal list-inside text-gray-300 space-y-1">
           <li>Go to dashboard.xase.ai</li>
           <li>Create an account (free tier available)</li>
@@ -79,7 +79,7 @@ await bundle.download('./evidence_bundle.zip');`;
         </ol>
         <Callout type="warning">Store your API key securely. It won't be shown again.</Callout>
 
-        <h2 className="text-2xl font-light mt-8 mb-3">2. Install the SDK</h2>
+        <h2 className="text-xl md:text-2xl font-light mt-6 md:mt-8 mb-3">2. Install SDK</h2>
         <Tabs
           tabs={[
             { title: 'Python', content: <CodeBlock language="bash" code={pythonInstall} /> },
@@ -89,7 +89,7 @@ await bundle.download('./evidence_bundle.zip');`;
           ]}
         />
 
-        <h2 className="text-2xl font-light mt-8 mb-3">3. Capture Your First Decision</h2>
+        <h2 className="text-xl md:text-2xl font-light mt-6 md:mt-8 mb-3">3. Record a Decision</h2>
         <Tabs
           tabs={[
             { title: 'Python', content: <CodeBlock language="python" filename="first.py" code={pythonFirstRecord} /> },
@@ -98,14 +98,14 @@ await bundle.download('./evidence_bundle.zip');`;
           ]}
         />
 
-        <h2 className="text-2xl font-light mt-8 mb-3">4. Record Human Intervention</h2>
+        <h2 className="text-xl md:text-2xl font-light mt-6 md:mt-8 mb-3">4. Record Human Intervention</h2>
         <Tabs
           tabs={[
             { title: 'cURL', content: <CodeBlock language="bash" code={curlIntervene} /> },
           ]}
         />
 
-        <h2 className="text-2xl font-light mt-8 mb-3">5. Export Evidence Bundle</h2>
+        <h2 className="text-xl md:text-2xl font-light mt-6 md:mt-8 mb-3">5. Export Evidence Bundle</h2>
         <Tabs
           tabs={[
             { title: 'Python', content: <CodeBlock language="python" filename="export.py" code={pythonExport} /> },
@@ -113,17 +113,17 @@ await bundle.download('./evidence_bundle.zip');`;
           ]}
         />
 
-        <h2 className="text-2xl font-light mt-8 mb-3">6. Verify the Bundle (Offline)</h2>
+        <h2 className="text-xl md:text-2xl font-light mt-6 md:mt-8 mb-3">6. Verify the Bundle (Offline)</h2>
         <CodeBlock language="bash" code={`unzip evidence_bundle.zip\n./verify.sh\n\n# ✓ Signature valid\n# ✓ Hash chain intact\n# ✓ Timestamps consistent\n# RESULT: Evidence is authentic`} />
 
-        <div className="mt-10 grid md:grid-cols-2 gap-3">
-          <a href="/docs/concepts" className="p-4 bg-[#0a0a0a] border border-[#222] rounded-lg hover:border-[#333] transition-colors">
-            <div className="text-white">Core Concepts</div>
-            <div className="text-sm text-gray-500">Understand the architecture</div>
+        <div className="mt-8 md:mt-10 grid md:grid-cols-2 gap-3">
+          <a href="/docs/concepts" className="p-4 bg-[#080808] border border-white/10 rounded-lg hover:border-white/20 transition-colors">
+            <div className="text-white text-sm md:text-base">Core Concepts</div>
+            <div className="text-xs md:text-sm text-gray-500">Understand the architecture</div>
           </a>
-          <a href="/docs/sdk/python" className="p-4 bg-[#0a0a0a] border border-[#222] rounded-lg hover:border-[#333] transition-colors">
-            <div className="text-white">Python SDK</div>
-            <div className="text-sm text-gray-500">Full installation guide</div>
+          <a href="/docs/sdk/python" className="p-4 bg-[#080808] border border-white/10 rounded-lg hover:border-white/20 transition-colors">
+            <div className="text-white text-sm md:text-base">Python SDK</div>
+            <div className="text-xs md:text-sm text-gray-500">Full installation guide</div>
           </a>
         </div>
       </main>
