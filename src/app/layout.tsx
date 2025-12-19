@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import './globals.css'
+import JsonLd from '../components/JsonLd'
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -84,6 +85,31 @@ export default function RootLayout({
         <meta name="theme-color" content="#16181b" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <JsonLd
+          data={{
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'XASE',
+            url: 'https://xase.com',
+            logo: 'https://xase.com/icon.svg',
+            sameAs: ['https://github.com/xase-ai'],
+          }}
+        />
+        <JsonLd
+          data={{
+            '@context': 'https://schema.org',
+            '@type': 'SoftwareApplication',
+            name: 'XASE Evidence Layer',
+            applicationCategory: 'BusinessApplication',
+            operatingSystem: 'Any',
+            url: 'https://xase.com',
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'USD',
+            },
+          }}
+        />
       </head>
       <body className={montserrat.className}>{children}</body>
     </html>
