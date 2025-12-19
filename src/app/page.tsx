@@ -32,7 +32,7 @@ export default function Home() {
       {/* Glassmorphism Nav */}
       <header className="fixed top-0 inset-x-0 z-50 border-b border-white/5 bg-black/60 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-          <div className="text-white font-medium tracking-widest text-sm">XASE</div>
+          <div className="text-white font-light tracking-tight text-sm">XASE</div>
           <nav className="hidden md:flex items-center gap-6 text-[13px] text-gray-400">
             <a href="/docs" className="hover:text-white transition-colors">Docs</a>
             <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
@@ -63,7 +63,7 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative pt-28 md:pt-32 pb-16 md:pb-20 px-4 md:px-6">
+      <section className="relative pt-32 pb-20 px-6">
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
           
           {/* Announcement Badge */}
@@ -73,11 +73,11 @@ export default function Home() {
             <ArrowRight className="w-3 h-3" />
           </div>
 
-          <h1 className="text-[11vw] sm:text-6xl md:text-8xl font-medium tracking-tighter bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent mb-6 md:mb-8 leading-[1.08] break-words">
+          <h1 className="text-4xl sm:text-5xl md:text-8xl font-medium tracking-tighter bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent mb-8 leading-[1.12]">
             The Evidence Layer<br />for AI Decisions.
           </h1>
 
-          <p className="max-w-2xl text-base md:text-xl text-gray-400 font-light leading-relaxed mb-8 md:mb-10 px-2">
+          <p className="max-w-2xl text-lg md:text-xl text-gray-400 font-light leading-relaxed mb-10">
             Cryptographic proof of human oversight. Built for the auditors of the EU AI Act and LGPD.
           </p>
 
