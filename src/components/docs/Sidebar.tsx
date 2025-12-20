@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import { ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import Search from './Search';
+import { useDocsTheme } from '../../app/docs/ThemeContext';
 
 interface NavItem {
   title: string;
@@ -81,7 +83,7 @@ const navigation: NavItem[] = [
   },
 ];
 
-function NavSection({ section, level = 0 }: { section: NavItem; level?: number }) {
+function NavSection({ section, level = 0, light = false }: { section: NavItem; level?: number; light?: boolean }) {
   const [isOpen, setIsOpen] = useState(true);
   const hasItems = section.items && section.items.length > 0;
 
@@ -89,7 +91,7 @@ function NavSection({ section, level = 0 }: { section: NavItem; level?: number }
     return (
       <Link
         href={section.href}
-        className="block py-2 px-3 text-sm text-gray-400 hover:text-white hover:bg-[#0a0a0a] rounded-lg transition-colors"
+        className={`block py-2 px-3 text-sm rounded-lg transition-colors ${light ? 'text-gray-600 hover:text-black hover:bg-gray-100' : 'text-gray-400 hover:text-white hover:bg-[#0a0a0a]'}`}
       >
         {section.title}
       </Link>
@@ -102,7 +104,7 @@ function NavSection({ section, level = 0 }: { section: NavItem; level?: number }
         <>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="w-full flex items-center justify-between py-2 px-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-[#0a0a0a] rounded-lg transition-colors"
+            className={`w-full flex items-center justify-between py-2 px-3 text-sm font-medium rounded-lg transition-colors ${light ? 'text-gray-700 hover:text-black hover:bg-gray-100' : 'text-gray-300 hover:text-white hover:bg-[#0a0a0a]'}`}
           >
             <span>{section.title}</span>
             {isOpen ? (
@@ -114,7 +116,7 @@ function NavSection({ section, level = 0 }: { section: NavItem; level?: number }
           {isOpen && (
             <div className="ml-2 mt-1 space-y-1">
               {section.items?.map((item, i) => (
-                <NavSection key={i} section={item} level={level + 1} />
+                <NavSection key={i} section={item} level={level + 1} light={light} />
               ))}
             </div>
           )}
@@ -122,7 +124,7 @@ function NavSection({ section, level = 0 }: { section: NavItem; level?: number }
       ) : (
         <Link
           href={section.href || '#'}
-          className="block py-2 px-3 text-sm text-gray-400 hover:text-white hover:bg-[#0a0a0a] rounded-lg transition-colors"
+          className={`block py-2 px-3 text-sm rounded-lg transition-colors ${light ? 'text-gray-600 hover:text-black hover:bg-gray-100' : 'text-gray-400 hover:text-white hover:bg-[#0a0a0a]'}`}
         >
           {section.title}
         </Link>
@@ -134,6 +136,7 @@ function NavSection({ section, level = 0 }: { section: NavItem; level?: number }
 export default function Sidebar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const light = useDocsTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -145,14 +148,20 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Mobile Menu Button */}
-      <button
-        onClick={() => setMobileOpen(!mobileOpen)}
-        className="md:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-black/80 backdrop-blur border border-white/10 text-white"
-        aria-label="Toggle menu"
-      >
-        {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-      </button>
+      {/* Mobile Top Bar with Logo + Menu */}
+      <div className={`md:hidden fixed top-0 inset-x-0 z-[60] h-14 backdrop-blur flex items-center gap-3 px-4 border-b ${light ? 'bg-white/80 border-gray-200' : 'bg-black/80 border-white/10'}`}>
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className={`p-2 rounded-lg border ${light ? 'border-gray-300 text-black' : 'border-white/10 text-white'}`}
+          aria-label="Toggle menu"
+        >
+          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+        <Link href="/" className={`${light ? 'text-black' : 'text-white'} font-light tracking-tight`}>XASE</Link>
+        <div className="flex-1 min-w-0">
+          <Search light={light} />
+        </div>
+      </div>
 
       {/* Mobile Overlay */}
       {mobileOpen && (
@@ -166,12 +175,12 @@ export default function Sidebar() {
       <aside
         className={`${
           mobileOpen ? 'translate-x-0' : '-translate-x-full'
-        } md:translate-x-0 fixed md:sticky top-0 left-0 z-40 w-[280px] h-screen border-r border-white/10 bg-black overflow-y-auto transition-transform duration-300`}
+        } md:translate-x-0 fixed md:sticky top-14 md:top-0 left-0 z-40 w-[280px] h-screen overflow-y-auto transition-transform duration-300 border-r ${light ? 'bg-white border-gray-200' : 'bg-black border-white/10'}`}
       >
         <div className="p-6">
           <Link
             href="/"
-            className="text-xl font-light tracking-tight mb-8 block"
+            className="md:hidden text-xl font-light tracking-tight mb-8 block"
             onClick={() => setMobileOpen(false)}
           >
             XASE
@@ -179,7 +188,7 @@ export default function Sidebar() {
           <nav className="space-y-1">
             {navigation.map((section, i) => (
               <div key={i} onClick={() => setMobileOpen(false)}>
-                <NavSection section={section} />
+                <NavSection section={section} light={light} />
               </div>
             ))}
           </nav>

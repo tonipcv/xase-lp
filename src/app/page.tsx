@@ -84,12 +84,12 @@ export default function Home() {
             Cryptographic proof of human oversight. Built for the auditors of the EU AI Act and LGPD.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 items-center mb-20">
+          <div className="hidden sm:flex gap-4 items-center mb-20">
             <button className="h-12 px-8 rounded-lg bg-white text-black font-medium hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all">
               Start Building
             </button>
-            <button className="h-12 px-8 rounded-lg bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all">
-              Request Demo
+            <button onClick={() => { setWaitlistSubmitted(false); setWaitlistOpen(true); }} className="h-12 px-8 rounded-lg bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all">
+              Join Waitlist
             </button>
           </div>
 
@@ -537,11 +537,8 @@ const bundle = await xase.export({ recordId: record.id });
           <h2 className="text-4xl md:text-5xl font-light mb-4 tracking-tight">Build AI that regulators respect.</h2>
           <p className="text-gray-400 mb-8">Stop building internal audit tools. Use infrastructure designed for the age of AI accountability.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="w-full sm:w-auto h-12 px-8 rounded-lg bg-white text-black font-medium hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all">
-              Deploy XASE Free
-            </button>
-            <button className="w-full sm:w-auto h-12 px-8 rounded-lg bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all">
-              Schedule Technical Briefing
+            <button onClick={() => { setWaitlistSubmitted(false); setWaitlistOpen(true); }} className="w-full sm:w-auto h-12 px-8 rounded-lg bg-white text-black font-medium hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all">
+              Join Waitlist
             </button>
           </div>
           <div className="mt-8 text-sm text-gray-600">Questions? founders@xase.ai • We respond in &lt;24h.</div>
@@ -558,7 +555,7 @@ const bundle = await xase.export({ recordId: record.id });
       {/* Sticky mobile CTA */}
       <div className="fixed bottom-4 inset-x-4 md:hidden z-50 pb-[env(safe-area-inset-bottom)]">
         <div className="bg-black/90 backdrop-blur border border-white/10 rounded-full p-2 flex gap-2">
-          <a href="#final-cta" className="flex-1 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 bg-white text-black text-sm font-medium hover:bg-gray-200">Deploy Free <ArrowRight className="w-4 h-4" /></a>
+          <button onClick={() => { setWaitlistSubmitted(false); setWaitlistOpen(true); }} className="flex-1 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 bg-white text-black text-sm font-medium hover:bg-gray-200">Join Waitlist <ArrowRight className="w-4 h-4" /></button>
           <a href="/docs" className="flex-1 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 bg-transparent text-white border border-white/10 text-sm hover:bg-white/10">Docs</a>
         </div>
       </div>

@@ -39,7 +39,7 @@ const searchIndex: SearchResult[] = [
   { title: 'Support', href: '/docs/support', category: 'Resources' },
 ];
 
-export default function Search() {
+export default function Search({ light = false }: { light?: boolean }) {
   const [q, setQ] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -73,17 +73,17 @@ export default function Search() {
 
   return (
     <div ref={searchRef} className="relative w-full">
-      <SearchIcon className="w-4 h-4 text-gray-500 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+      <SearchIcon className={`w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none ${light ? 'text-gray-400' : 'text-gray-500'}`} />
       <input
         value={q}
         onChange={(e) => setQ(e.target.value)}
         onFocus={() => q.length >= 2 && setIsOpen(true)}
         placeholder="Search docs..."
-        className="w-full pl-9 pr-3 py-2 rounded-lg bg-[#0a0a0a] border border-white/10 text-xs md:text-sm text-gray-200 placeholder:text-gray-600 focus:outline-none focus:border-white/20"
+        className={`w-full pl-9 pr-3 py-2 rounded-lg text-xs md:text-sm focus:outline-none ${light ? 'bg-white border border-gray-300 text-gray-900 placeholder:text-gray-500 focus:border-gray-400' : 'bg-[#0a0a0a] border border-white/10 text-gray-200 placeholder:text-gray-600 focus:border-white/20'}`}
       />
 
       {isOpen && results.length > 0 && (
-        <div className="absolute top-full mt-2 w-full bg-[#0a0a0a] border border-white/10 rounded-lg shadow-2xl max-h-[400px] overflow-y-auto z-50">
+        <div className={`absolute top-full mt-2 w-full rounded-lg shadow-2xl max-h-[400px] overflow-y-auto z-50 ${light ? 'bg-white border border-gray-200' : 'bg-[#0a0a0a] border border-white/10'}`}>
           {results.map((result, i) => (
             <Link
               key={i}
@@ -92,12 +92,12 @@ export default function Search() {
                 setIsOpen(false);
                 setQ("");
               }}
-              className="flex items-start gap-3 px-4 py-3 hover:bg-white/5 transition-colors border-b border-white/5 last:border-0"
+              className={`flex items-start gap-3 px-4 py-3 transition-colors border-b last:border-0 ${light ? 'hover:bg-gray-50 border-gray-100' : 'hover:bg-white/5 border-white/5'}`}
             >
-              <FileText className="w-4 h-4 text-gray-500 mt-0.5 flex-shrink-0" />
+              <FileText className={`w-4 h-4 mt-0.5 flex-shrink-0 ${light ? 'text-gray-500' : 'text-gray-500'}`} />
               <div className="flex-1 min-w-0">
-                <div className="text-sm text-white truncate">{result.title}</div>
-                <div className="text-xs text-gray-500">{result.category}</div>
+                <div className={`text-sm truncate ${light ? 'text-gray-900' : 'text-white'}`}>{result.title}</div>
+                <div className={`text-xs ${light ? 'text-gray-500' : 'text-gray-500'}`}>{result.category}</div>
               </div>
             </Link>
           ))}

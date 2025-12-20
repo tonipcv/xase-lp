@@ -3,9 +3,10 @@ import { AlertCircle, AlertTriangle, Info, Lightbulb } from 'lucide-react';
 interface CalloutProps {
   type?: 'info' | 'warning' | 'danger' | 'tip';
   children: React.ReactNode;
+  light?: boolean;
 }
 
-export default function Callout({ type = 'info', children }: CalloutProps) {
+export default function Callout({ type = 'info', children, light = false }: CalloutProps) {
   const config = {
     info: {
       icon: Info,
@@ -38,7 +39,7 @@ export default function Callout({ type = 'info', children }: CalloutProps) {
   return (
     <div className={`${bg} ${border} border rounded-lg p-4 my-4 flex gap-3`}>
       <Icon className={`w-5 h-5 ${text} flex-shrink-0 mt-0.5`} />
-      <div className="text-sm text-gray-300 leading-relaxed">{children}</div>
+      <div className={`text-sm leading-relaxed ${light ? 'text-gray-700' : 'text-gray-300'}`}>{children}</div>
     </div>
   );
 }

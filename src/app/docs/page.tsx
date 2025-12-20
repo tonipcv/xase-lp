@@ -1,26 +1,27 @@
-import Sidebar from '../../components/docs/Sidebar';
+'use client';
+import DocsContent from '../../components/docs/DocsContent';
 import CodeBlock from '../../components/docs/CodeBlock';
 import Callout from '../../components/docs/Callout';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { useDocsTheme } from './ThemeContext';
 
 export default function DocsIntroduction() {
+  const light = useDocsTheme();
   return (
-    <div className="flex min-h-screen bg-[#000] text-white">
-      <Sidebar />
-      <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
-        <h1 className="text-3xl md:text-4xl font-light tracking-tight mb-3">Introduction</h1>
-        <p className="text-base md:text-lg text-gray-400 mb-6">
+    <DocsContent>
+      <h1 className="text-3xl md:text-4xl font-light tracking-tight mb-3">Introduction</h1>
+      <p className={`text-base md:text-lg mb-6 ${light ? 'text-gray-600' : 'text-gray-400'}`}>
           Evidence infrastructure for AI decisions. Cryptographic proof of human oversight for EU AI Act, LGPD, SOC 2.
         </p>
 
-        <h2 className="text-xl md:text-2xl font-light mt-8 md:mt-12 mb-3">What XASE Does</h2>
-        <div className="overflow-x-auto rounded-lg border border-white/10">
-          <table className="w-full text-xs md:text-sm">
-            <thead className="bg-white/5">
-              <tr>
-                <th className="text-left px-4 py-3 text-gray-400 font-medium">Capability</th>
-                <th className="text-left px-4 py-3 text-gray-400 font-medium">Description</th>
+      <h2 className="text-xl md:text-2xl font-light mt-8 md:mt-12 mb-3">What XASE Does</h2>
+      <div className={`overflow-x-auto rounded-lg border ${light ? 'border-gray-200' : 'border-white/10'}`}>
+        <table className="w-full text-xs md:text-sm">
+          <thead className={light ? 'bg-gray-50' : 'bg-white/5'}>
+            <tr>
+              <th className={`text-left px-4 py-3 font-medium ${light ? 'text-gray-700' : 'text-gray-400'}`}>Capability</th>
+              <th className={`text-left px-4 py-3 font-medium ${light ? 'text-gray-700' : 'text-gray-400'}`}>Description</th>
               </tr>
             </thead>
             <tbody>
@@ -31,33 +32,33 @@ export default function DocsIntroduction() {
                 ['Model Registry', 'Track which model version made each decision'],
                 ['Evidence Export', 'Generate offline-verifiable bundles for audits'],
               ].map(([cap, desc], i) => (
-                <tr key={i} className={i % 2 === 0 ? 'bg-white/5' : 'bg-black'}>
-                  <td className="px-4 py-3 text-white font-medium">{cap}</td>
-                  <td className="px-4 py-3 text-gray-400">{desc}</td>
+                <tr key={i} className={i % 2 === 0 ? (light ? 'bg-gray-50' : 'bg-white/5') : (light ? 'bg-white' : 'bg-black')}>
+                  <td className={`px-4 py-3 font-medium ${light ? 'text-gray-900' : 'text-white'}`}>{cap}</td>
+                  <td className={`px-4 py-3 ${light ? 'text-gray-600' : 'text-gray-400'}`}>{desc}</td>
                 </tr>
               ))}
             </tbody>
-          </table>
-        </div>
+        </table>
+      </div>
 
-        <h2 className="text-xl md:text-2xl font-light mt-8 md:mt-12 mb-3">What XASE is NOT</h2>
-        <div className="space-y-2">
-          {[
-            'A workflow tool (we record actions, not manage them)',
-            "A model training platform (we don't touch your ML)",
-            "A monitoring tool (we don't track model drift)",
-            'Blockchain (we use hash chains, much simpler)',
-          ].map((item, i) => (
-            <div key={i} className="flex items-start gap-3 text-gray-400">
-              <span className="text-red-400 mt-1">✗</span>
-              <span>{item}</span>
-            </div>
-          ))}
-        </div>
+      <h2 className="text-xl md:text-2xl font-light mt-8 md:mt-12 mb-3">What XASE is NOT</h2>
+      <div className="space-y-2">
+        {[
+          'A workflow tool (we record actions, not manage them)',
+          "A model training platform (we don't touch your ML)",
+          "A monitoring tool (we don't track model drift)",
+          'Blockchain (we use hash chains, much simpler)',
+        ].map((item, i) => (
+          <div key={i} className={`flex items-start gap-3 ${light ? 'text-gray-600' : 'text-gray-400'}`}>
+            <span className="text-red-400 mt-1">✗</span>
+            <span>{item}</span>
+          </div>
+        ))}
+      </div>
 
-        <h2 className="text-xl md:text-2xl font-light mt-8 md:mt-12 mb-3">How It Works</h2>
-        <div className="bg-[#080808] border border-white/10 rounded-lg p-4 md:p-6 font-mono text-xs md:text-sm overflow-x-auto">
-          <pre className="text-gray-300 leading-relaxed whitespace-pre">{`Your AI System          XASE                Auditor
+      <h2 className="text-xl md:text-2xl font-light mt-8 md:mt-12 mb-3">How It Works</h2>
+      <div className={`rounded-lg p-4 md:p-6 font-mono text-xs md:text-sm overflow-x-auto border ${light ? 'bg-gray-50 border-gray-200' : 'bg-[#080808] border-white/10'}`}>
+        <pre className={`leading-relaxed whitespace-pre ${light ? 'text-gray-700' : 'text-gray-300'}`}>{`Your AI System          XASE                Auditor
    │                   │                     │
    ├── Decision made ──────────►             │
    │                   │ Record + Hash       │
@@ -72,14 +73,15 @@ export default function DocsIntroduction() {
    │                   ├── Export Bundle ───────►
    │                   │                     │
    │                   │         [Verify offline: ✓ Valid]`}</pre>
-        </div>
+      </div>
 
-        <Callout type="tip">
-          XASE bundles are verifiable offline. Auditors don't need to call our API or trust our infrastructure.
-        </Callout>
+      <Callout type="tip" light={light}>
+        XASE bundles are verifiable offline. Auditors don't need to call our API or trust our infrastructure.
+      </Callout>
 
-        <h2 className="text-2xl font-light mt-12 mb-4">Quick Example</h2>
-        <CodeBlock
+      <h2 className="text-2xl font-light mt-12 mb-4">Quick Example</h2>
+      <CodeBlock
+        light={light}
           language="python"
           filename="example.py"
           code={`import xase
@@ -104,36 +106,35 @@ intervention = client.records.intervene(
 # 3. Export for audit
 bundle = client.exports.create(record_id=record.id)
 bundle.download("./evidence.zip")`}
-        />
+      />
 
-        <h2 className="text-2xl font-light mt-12 mb-4">Next Steps</h2>
-        <div className="grid gap-4">
+      <h2 className="text-2xl font-light mt-12 mb-4">Next Steps</h2>
+      <div className="grid gap-4">
           {[
             { title: 'Quickstart', desc: 'Get running in 5 minutes', href: '/docs/quickstart' },
             { title: 'Core Concepts', desc: 'Understand the architecture', href: '/docs/concepts' },
             { title: 'Python SDK', desc: 'Full installation guide', href: '/docs/sdk/python' },
-          ].map((item, i) => (
-            <Link
-              key={i}
-              href={item.href}
-              className="flex items-center justify-between p-4 bg-[#0a0a0a] border border-[#222] rounded-lg hover:border-[#333] transition-colors group"
-            >
-              <div>
-                <div className="font-medium text-white mb-1">{item.title}</div>
-                <div className="text-sm text-gray-500">{item.desc}</div>
-              </div>
-              <ArrowRight className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" />
-            </Link>
-          ))}
-        </div>
+        ].map((item, i) => (
+          <Link
+            key={i}
+            href={item.href}
+            className={`flex items-center justify-between p-4 rounded-lg transition-colors group border ${light ? 'bg-gray-50 border-gray-200 hover:border-gray-300' : 'bg-[#0a0a0a] border-[#222] hover:border-[#333]'}`}
+          >
+            <div>
+              <div className={`font-medium mb-1 ${light ? 'text-gray-900' : 'text-white'}`}>{item.title}</div>
+              <div className={`text-sm ${light ? 'text-gray-600' : 'text-gray-500'}`}>{item.desc}</div>
+            </div>
+            <ArrowRight className={`w-5 h-5 transition-colors ${light ? 'text-gray-400 group-hover:text-black' : 'text-gray-600 group-hover:text-white'}`} />
+          </Link>
+        ))}
+      </div>
 
-        <div className="mt-16 pt-8 border-t border-[#222] flex items-center justify-between text-sm text-gray-500">
-          <div>Was this helpful?</div>
-          <a href="https://github.com/xase-ai/docs" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
-            Edit on GitHub
-          </a>
-        </div>
-      </main>
-    </div>
+      <div className={`mt-16 pt-8 border-t flex items-center justify-between text-sm ${light ? 'border-gray-200 text-gray-600' : 'border-[#222] text-gray-500'}`}>
+        <div>Was this helpful?</div>
+        <a href="https://github.com/xase-ai/docs" target="_blank" rel="noreferrer" className={`transition-colors ${light ? 'hover:text-black' : 'hover:text-white'}`}>
+          Edit on GitHub
+        </a>
+      </div>
+    </DocsContent>
   );
 }
