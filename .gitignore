@@ -36,3 +36,6 @@ next-env.d.ts
 
 # Keep Prisma generated files
 !prisma/generated/
+
+# Ignore public repo folder
+xase-github-repos/

@@ -16,6 +16,9 @@ const inter = Inter({
 export default function Home() {
   const [email, setEmail] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [waitlistOpen, setWaitlistOpen] = useState(false);
+  const [name, setName] = useState('');
+  const [waitlistSubmitted, setWaitlistSubmitted] = useState(false);
 
   useEffect(() => {
     const handler = () => setMenuOpen(false);
@@ -36,11 +39,11 @@ export default function Home() {
           <nav className="hidden md:flex items-center gap-6 text-[13px] text-gray-400">
             <a href="/docs" className="hover:text-white transition-colors">Docs</a>
             <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">GitHub</a>
+            <a href="https://github.com/xaseai/xase" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">GitHub</a>
           </nav>
           <div className="hidden md:flex items-center gap-4">
-            <button className="text-[13px] text-gray-400 hover:text-white transition-colors">Log in</button>
-            <button className="text-[13px] bg-white text-black px-3 py-1.5 rounded-full font-medium hover:bg-gray-200 transition-all">Sign up</button>
+            <a href="https://app.xase.ai/login?callbackUrl=%2F" className="text-[13px] text-gray-400 hover:text-white transition-colors">Log in</a>
+            <button onClick={() => { setWaitlistSubmitted(false); setWaitlistOpen(true); }} className="text-[13px] bg-white text-black px-3 py-1.5 rounded-full font-medium hover:bg-gray-200 transition-all">Sign up</button>
           </div>
           <button
             className="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg border border-white/10 text-gray-300"
@@ -55,8 +58,8 @@ export default function Home() {
             <nav className="px-6 py-4 flex flex-col gap-3 text-sm text-gray-300">
               <a href="/docs" onClick={() => setMenuOpen(false)} className="py-2">Docs</a>
               <a href="#pricing" onClick={() => setMenuOpen(false)} className="py-2">Pricing</a>
-              <a href="https://github.com" target="_blank" rel="noreferrer" className="py-2">GitHub</a>
-              <button className="mt-2 w-full bg-white text-black px-4 py-2 rounded-full font-medium">Sign up</button>
+              <a href="https://github.com/xaseai/xase" target="_blank" rel="noreferrer" className="py-2">GitHub</a>
+              <button onClick={() => { setWaitlistSubmitted(false); setWaitlistOpen(true); }} className="mt-2 w-full bg-white text-black px-4 py-2 rounded-full font-medium">Sign up</button>
             </nav>
           </div>
         )}
@@ -559,6 +562,71 @@ const bundle = await xase.export({ recordId: record.id });
           <a href="/docs" className="flex-1 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 bg-transparent text-white border border-white/10 text-sm hover:bg-white/10">Docs</a>
         </div>
       </div>
+
+      {waitlistOpen && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/70" onClick={() => setWaitlistOpen(false)}></div>
+          <div className="relative w-full max-w-md mx-auto bg-[#0b0b0b] border border-white/10 rounded-2xl p-6 shadow-2xl">
+            <div className="flex items-center justify-between mb-4">
+              <div className="text-lg font-medium text-white">Join the waitlist</div>
+              <button
+                aria-label="Close"
+                className="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-white/10 text-gray-300 hover:bg-white/5"
+                onClick={() => setWaitlistOpen(false)}
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            {waitlistSubmitted ? (
+              <div className="space-y-4 text-center">
+                <div className="text-white text-base font-medium">You're on the list!</div>
+                <div className="text-sm text-gray-400">We’ll email you at <span className="text-gray-300">{email}</span> when spots open.</div>
+                <div className="flex gap-2 justify-center">
+                  <button
+                    className="h-10 px-4 rounded-lg bg-white text-black text-sm font-medium hover:bg-gray-200 transition-all"
+                    onClick={() => { setWaitlistOpen(false); setWaitlistSubmitted(false); setName(''); setEmail(''); }}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <form
+                className="space-y-3"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setWaitlistSubmitted(true);
+                }}
+              >
+                <div className="space-y-1.5">
+                  <label className="block text-xs text-gray-400">Name</label>
+                  <input
+                    type="text"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Your name"
+                    className="w-full rounded-lg bg-black text-white placeholder:text-gray-600 border border-white/10 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white/10"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="block text-xs text-gray-400">Work email</label>
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@company.com"
+                    className="w-full rounded-lg bg-black text-white placeholder:text-gray-600 border border-white/10 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white/10"
+                  />
+                </div>
+                <button type="submit" className="w-full h-10 rounded-lg bg-white text-black text-sm font-medium hover:bg-gray-200 transition-all">Join</button>
+                <div className="text-[11px] text-gray-600 text-center">We’ll notify you as soon as spots open.</div>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
