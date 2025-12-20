@@ -13,20 +13,21 @@ export default function DocsContent({ children }: DocsContentProps) {
   // Recursively inject light prop into all components
   const injectLightProp = (child: ReactNode): ReactNode => {
     if (!isValidElement(child)) return child;
-    
-    const props: any = { ...child.props };
-    
-    // Add light prop if component accepts it
-    if (child.type && typeof child.type !== 'string') {
-      props.light = light;
+
+    const origProps = (child as any).props as Record<string, any> | undefined;
+    const newProps: Record<string, any> = origProps ? { ...origProps } : {};
+
+    // Add light prop for composite components (not DOM strings)
+    if ((child as any).type && typeof (child as any).type !== 'string') {
+      newProps.light = light;
     }
-    
-    // Recursively process children
-    if (props.children) {
-      props.children = Children.map(props.children, injectLightProp);
+
+    // Recurse into children if present
+    if (newProps.children) {
+      newProps.children = Children.map(newProps.children, injectLightProp);
     }
-    
-    return cloneElement(child, props);
+
+    return cloneElement(child, newProps);
   };
 
   return (
