@@ -1,5 +1,7 @@
-import Sidebar from '../../../../components/docs/Sidebar';
+'use client';
 import CodeBlock from '../../../../components/docs/CodeBlock';
+import { useDocsTheme } from '../../ThemeContext';
+import DocsContent from '../../../../components/docs/DocsContent';
 
 export default function ApiErrorsPage() {
   const errorFormat = `{
@@ -25,8 +27,7 @@ X-RateLimit-Remaining: 45
 X-RateLimit-Reset: 1642265700`;
 
   return (
-    <div className="flex min-h-screen bg-[#000] text-white">
-      <Sidebar />
+    <DocsContent>
       <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
         <h1 className="text-4xl font-light tracking-tight mb-2">API Reference: Errors</h1>
         <p className="text-lg text-gray-400 mb-8">Standard error formats and rate limiting headers.</p>
@@ -42,6 +43,6 @@ X-RateLimit-Reset: 1642265700`;
         <h3 className="text-lg text-gray-300 mb-2">Headers</h3>
         <CodeBlock language="text" code={rateHeaders} />
       </main>
-    </div>
+    </DocsContent>
   );
 }

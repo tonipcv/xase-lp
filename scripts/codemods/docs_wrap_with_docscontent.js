@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Codemod: Wrap all docs pages with DocsContent and remove direct Sidebar usage
- * - Targets: src/app/docs/**/page.tsx (excluding layout.tsx, ThemeContext)
+ * - Targets: all files matching src/app/docs/(any subpath)/page.tsx (excluding layout.tsx, ThemeContext)
  * - Actions:
  *   - Ensure 'use client'
  *   - Import DocsContent and useDocsTheme

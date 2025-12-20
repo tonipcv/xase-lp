@@ -1,11 +1,12 @@
-import Sidebar from '../../../../components/docs/Sidebar';
+'use client';
 import CodeBlock from '../../../../components/docs/CodeBlock';
+import { useDocsTheme } from '../../ThemeContext';
+import DocsContent from '../../../../components/docs/DocsContent';
 import Callout from '../../../../components/docs/Callout';
 
 export default function LGPDPage() {
   return (
-    <div className="flex min-h-screen bg-[#000] text-white">
-      <Sidebar />
+    <DocsContent>
       <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
         <h1 className="text-4xl font-light tracking-tight mb-2">LGPD Compliance</h1>
         <p className="text-lg text-gray-400 mb-8">Right to explanation and accountability for automated decisions.</p>
@@ -30,6 +31,6 @@ export default function LGPDPage() {
 
         <Callout type="info">LGPD requires transparency in automated decision-making. XASE provides cryptographic proof of human oversight and explainability.</Callout>
       </main>
-    </div>
+    </DocsContent>
   );
 }

@@ -1,5 +1,7 @@
-import Sidebar from '../../../../components/docs/Sidebar';
+'use client';
 import CodeBlock from '../../../../components/docs/CodeBlock';
+import { useDocsTheme } from '../../ThemeContext';
+import DocsContent from '../../../../components/docs/DocsContent';
 
 export default function StandardsPage() {
   const standards = `Standard      Coverage
@@ -10,8 +12,7 @@ FCRA          Fair credit reporting (US)
 NYC Local 144 Automated employment decisions`;
 
   return (
-    <div className="flex min-h-screen bg-[#000] text-white">
-      <Sidebar />
+    <DocsContent>
       <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
         <h1 className="text-4xl font-light tracking-tight mb-2">Evidence Standards</h1>
         <p className="text-lg text-gray-400 mb-8">XASE aligns with international standards for AI governance and evidence management.</p>
@@ -31,6 +32,6 @@ NYC Local 144 Automated employment decisions`;
           <li>Verification script (verify.sh)</li>
         </ul>
       </main>
-    </div>
+    </DocsContent>
   );
 }

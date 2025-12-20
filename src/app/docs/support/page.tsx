@@ -1,10 +1,11 @@
-import Sidebar from '../../../components/docs/Sidebar';
+'use client';
 import { Mail, MessageCircle, Github, ExternalLink } from 'lucide-react';
+import { useDocsTheme } from '../ThemeContext';
+import DocsContent from '../../../components/docs/DocsContent';
 
 export default function SupportPage() {
   return (
-    <div className="flex min-h-screen bg-[#000] text-white">
-      <Sidebar />
+    <DocsContent>
       <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
         <h1 className="text-4xl font-light tracking-tight mb-2">Support</h1>
         <p className="text-lg text-gray-400 mb-8">Get help from the XASE team and community.</p>
@@ -58,6 +59,6 @@ export default function SupportPage() {
         </ul>
         <p className="text-gray-400 mt-4">Contact <a href="mailto:sales@xase.ai" className="text-white hover:underline">sales@xase.ai</a> to upgrade.</p>
       </main>
-    </div>
+    </DocsContent>
   );
 }

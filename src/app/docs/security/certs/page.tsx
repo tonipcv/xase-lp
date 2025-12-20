@@ -1,5 +1,7 @@
-import Sidebar from '../../../../components/docs/Sidebar';
+'use client';
 import CodeBlock from '../../../../components/docs/CodeBlock';
+import { useDocsTheme } from '../../ThemeContext';
+import DocsContent from '../../../../components/docs/DocsContent';
 
 export default function CertificationsPage() {
   const certs = `Certification   Status        Audit Frequency
@@ -9,8 +11,7 @@ GDPR            Compliant     Continuous
 HIPAA           Available     On request (Enterprise)`;
 
   return (
-    <div className="flex min-h-screen bg-[#000] text-white">
-      <Sidebar />
+    <DocsContent>
       <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
         <h1 className="text-4xl font-light tracking-tight mb-2">Certifications</h1>
         <p className="text-lg text-gray-400 mb-8">Industry-recognized security and compliance certifications.</p>
@@ -28,6 +29,6 @@ HIPAA           Available     On request (Enterprise)`;
         <h2 className="text-2xl font-light mt-8 mb-3">Request Reports</h2>
         <p className="text-gray-400">Contact <a href="mailto:security@xase.ai" className="text-white hover:underline">security@xase.ai</a> to request audit reports.</p>
       </main>
-    </div>
+    </DocsContent>
   );
 }

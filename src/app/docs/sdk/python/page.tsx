@@ -1,7 +1,9 @@
+'use client';
 import Tabs from '../../../../components/docs/Tabs';
+import { useDocsTheme } from '../../ThemeContext';
+import DocsContent from '../../../../components/docs/DocsContent';
 import CodeBlock from '../../../../components/docs/CodeBlock';
 import Callout from '../../../../components/docs/Callout';
-import Sidebar from '../../../../components/docs/Sidebar';
 
 export default function PythonSDKPage() {
   const pip = `pip install xase`;
@@ -27,8 +29,7 @@ export default function PythonSDKPage() {
   const errorHandling = `import xase\nfrom xase.exceptions import (\n    XaseError, AuthenticationError, RateLimitError, ValidationError, NotFoundError\n)\n\nclient = xase.Client()\n\ntry:\n    record = client.records.create(...)\nexcept AuthenticationError:\n    print("Invalid API key")\nexcept RateLimitError as e:\n    print(f"Rate limited. Retry after {e.retry_after} seconds")\nexcept ValidationError as e:\n    print(f"Invalid request: {e.errors}")\nexcept NotFoundError:\n    print("Record not found")\nexcept XaseError as e:\n    print(f"XASE error: {e.message}")`;
 
   return (
-    <div className="flex min-h-screen bg-[#000] text-white">
-      <Sidebar />
+    <DocsContent>
       <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
         <h1 className="text-4xl font-light tracking-tight mb-2">Python SDK</h1>
         <p className="text-lg text-gray-400 mb-8">Complete guide to installing and using the XASE Python SDK.</p>
@@ -73,6 +74,6 @@ export default function PythonSDKPage() {
         <h2 className="text-2xl font-light mt-8 mb-3">Error Handling</h2>
         <CodeBlock language="python" filename="errors.py" code={errorHandling} />
       </main>
-    </div>
+    </DocsContent>
   );
 }

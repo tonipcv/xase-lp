@@ -1,5 +1,7 @@
-import Sidebar from '../../../../components/docs/Sidebar';
+'use client';
 import Tabs from '../../../../components/docs/Tabs';
+import { useDocsTheme } from '../../ThemeContext';
+import DocsContent from '../../../../components/docs/DocsContent';
 import CodeBlock from '../../../../components/docs/CodeBlock';
 import Callout from '../../../../components/docs/Callout';
 
@@ -22,8 +24,7 @@ await bundle.download('./evidence_bundle.zip');`;
 └── verify.sh`;
 
   return (
-    <div className="flex min-h-screen bg-[#000] text-white">
-      <Sidebar />
+    <DocsContent>
       <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
         <h1 className="text-4xl font-light tracking-tight mb-2">Guide: Exporting Evidence</h1>
         <p className="text-lg text-gray-400 mb-8">Create a self-contained ZIP with everything auditors need. Verifiable offline.</p>
@@ -40,6 +41,6 @@ await bundle.download('./evidence_bundle.zip');`;
         <CodeBlock language="text" code={layout} />
         <Callout type="info">You can verify with <code className='text-gray-300'>verify.sh</code> without internet access.</Callout>
       </main>
-    </div>
+    </DocsContent>
   );
 }

@@ -1,6 +1,8 @@
+'use client';
 "use client";
 import { useState } from 'react';
-import Sidebar from '../../../../components/docs/Sidebar';
+import { useDocsTheme } from '../../ThemeContext';
+import DocsContent from '../../../../components/docs/DocsContent';
 import CodeBlock from '../../../../components/docs/CodeBlock';
 import Callout from '../../../../components/docs/Callout';
 
@@ -26,8 +28,7 @@ export default function PlaygroundPage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#000] text-white">
-      <Sidebar />
+    <DocsContent>
       <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
         <h1 className="text-4xl font-light tracking-tight mb-2">API Playground</h1>
         <p className="text-lg text-gray-400 mb-8">Test XASE API endpoints interactively.</p>
@@ -59,6 +60,6 @@ export default function PlaygroundPage() {
           )}
         </div>
       </main>
-    </div>
+    </DocsContent>
   );
 }

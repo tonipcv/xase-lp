@@ -1,13 +1,14 @@
-import Sidebar from '../../../components/docs/Sidebar';
+'use client';
 import CodeBlock from '../../../components/docs/CodeBlock';
+import { useDocsTheme } from '../ThemeContext';
+import DocsContent from '../../../components/docs/DocsContent';
 import Callout from '../../../components/docs/Callout';
 
 export default function CoreConceptsPage() {
   const archDiagram = `Your App/API    XASE SDK          XASE Core                 Auditor\n    │             │                 │                        │\n    ├─ decision ─► capture()  ─────► immutable ledger        │\n    │             │                 │  (WORM + hash chain)   │\n    │             │                 │                        │\n    ├─ review  ──► intervene() ─────► signed HITL records    │\n    │             │                 │  (identity + ts)       │\n    │             │                 │                        │\n    │             │                 ├─ export()  ───────────►│\n    │             │                 │  evidence bundle       │\n    │             │                 │                        │\n    │             │                 ◄──────── verify.sh ◄────┘`;
 
   return (
-    <div className="flex min-h-screen bg-[#000] text-white">
-      <Sidebar />
+    <DocsContent>
       <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
         <h1 className="text-4xl font-light tracking-tight mb-2">Core Concepts</h1>
         <p className="text-lg text-gray-400 mb-8">Understand how XASE captures decisions, links human oversight, and produces offline-verifiable evidence.</p>
@@ -66,6 +67,6 @@ export default function CoreConceptsPage() {
           <li>Mapping: EU AI Act (Art. 11/14), LGPD, SOC 2, ISO 27001.</li>
         </ul>
       </main>
-    </div>
+    </DocsContent>
   );
 }

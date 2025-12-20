@@ -1,6 +1,8 @@
+'use client';
 "use client";
 import { useCallback, useState } from 'react';
-import Sidebar from '../../../../components/docs/Sidebar';
+import { useDocsTheme } from '../../ThemeContext';
+import DocsContent from '../../../../components/docs/DocsContent';
 import CodeBlock from '../../../../components/docs/CodeBlock';
 import Callout from '../../../../components/docs/Callout';
 
@@ -43,8 +45,7 @@ export default function InteractiveVerifierPage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#000] text-white">
-      <Sidebar />
+    <DocsContent>
       <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
         <h1 className="text-4xl font-light tracking-tight mb-2">Interactive: Verify Evidence Bundle</h1>
         <p className="text-lg text-gray-400 mb-8">Drag & drop a .zip bundle to simulate verification checks in the browser.</p>
@@ -81,6 +82,6 @@ export default function InteractiveVerifierPage() {
         <CodeBlock language="bash" code={`unzip evidence_bundle.zip\n./verify.sh`} />
         <Callout type="info">This UI simulates checks for demo purposes. Auditors verify offline with the provided shell script.</Callout>
       </main>
-    </div>
+    </DocsContent>
   );
 }

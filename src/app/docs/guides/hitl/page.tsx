@@ -1,5 +1,7 @@
-import Sidebar from '../../../../components/docs/Sidebar';
+'use client';
 import Tabs from '../../../../components/docs/Tabs';
+import { useDocsTheme } from '../../ThemeContext';
+import DocsContent from '../../../../components/docs/DocsContent';
 import CodeBlock from '../../../../components/docs/CodeBlock';
 import Callout from '../../../../components/docs/Callout';
 
@@ -39,8 +41,7 @@ evidence_urls   array    No              Links to documents
 metadata        object   No              Extra info (duration, checklist)`;
 
   return (
-    <div className="flex min-h-screen bg-[#000] text-white">
-      <Sidebar />
+    <DocsContent>
       <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
         <h1 className="text-4xl font-light tracking-tight mb-2">Guide: Human‑in‑the‑Loop (HITL)</h1>
         <p className="text-lg text-gray-400 mb-8">Record signed, identity‑linked human interventions on AI decisions.</p>
@@ -66,6 +67,6 @@ metadata        object   No              Extra info (duration, checklist)`;
 
         <Callout type="info">HITL records are signed (RSA‑SHA256), timestamped, and linked to identity. They are included in the evidence bundle.</Callout>
       </main>
-    </div>
+    </DocsContent>
   );
 }

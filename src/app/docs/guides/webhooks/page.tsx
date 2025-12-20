@@ -1,5 +1,7 @@
-import Sidebar from '../../../../components/docs/Sidebar';
+'use client';
 import CodeBlock from '../../../../components/docs/CodeBlock';
+import { useDocsTheme } from '../../ThemeContext';
+import DocsContent from '../../../../components/docs/DocsContent';
 import Callout from '../../../../components/docs/Callout';
 
 export default function GuideWebhooksPage() {
@@ -29,8 +31,7 @@ export function verifyWebhook(payload: string, signature: string, secret: string
 }`;
 
   return (
-    <div className="flex min-h-screen bg-[#000] text-white">
-      <Sidebar />
+    <DocsContent>
       <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
         <h1 className="text-4xl font-light tracking-tight mb-2">Guide: Webhooks</h1>
         <p className="text-lg text-gray-400 mb-8">Receive real-time events from XASE for automation and monitoring.</p>
@@ -45,6 +46,6 @@ export function verifyWebhook(payload: string, signature: string, secret: string
         <CodeBlock language="typescript" filename="verify.ts" code={verify} />
         <Callout type="warning">Always verify the <code className='text-gray-300'>X-Xase-Signature</code> header using your webhook secret before trusting the payload.</Callout>
       </main>
-    </div>
+    </DocsContent>
   );
 }

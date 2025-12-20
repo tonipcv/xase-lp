@@ -1,5 +1,7 @@
-import Sidebar from '../../../../components/docs/Sidebar';
+'use client';
 import Tabs from '../../../../components/docs/Tabs';
+import { useDocsTheme } from '../../ThemeContext';
+import DocsContent from '../../../../components/docs/DocsContent';
 import CodeBlock from '../../../../components/docs/CodeBlock';
 import Callout from '../../../../components/docs/Callout';
 
@@ -70,8 +72,7 @@ export default function ApiRecordsPage() {
   const fieldsTable = `Field            Type      Required  Description\nmodel_id         string    Yes       Identifier of the model that made the decision\ninput            object    Yes       Input data sent to the model\noutput           object    Yes       Model's output/decision\nconfidence       number    No        Confidence score (0-1)\ntransaction_id   string    No        Your internal reference ID\npolicy_id        string    No        Business policy applied\ncontext          object    No        Additional metadata\nexplanation      object    No        XAI data (SHAP values, etc.)`;
 
   return (
-    <div className="flex min-h-screen bg-[#000] text-white">
-      <Sidebar />
+    <DocsContent>
       <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
         <h1 className="text-4xl font-light tracking-tight mb-2">API Reference: Records</h1>
         <p className="text-lg text-gray-400 mb-8">Endpoints for creating and retrieving decision records.</p>
@@ -108,6 +109,6 @@ export default function ApiRecordsPage() {
         <h2 className="text-2xl font-light mt-8 mb-3">Errors</h2>
         <CodeBlock language="json" code={`{\n  "error": {\n    "code": "validation_error",\n    "message": "Invalid request body",\n    "details": [{ "field": "model_id", "message": "Required field missing" }]\n  }\n}`} />
       </main>
-    </div>
+    </DocsContent>
   );
 }

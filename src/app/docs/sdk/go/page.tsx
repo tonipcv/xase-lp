@@ -1,5 +1,7 @@
-import Sidebar from '../../../../components/docs/Sidebar';
+'use client';
 import Tabs from '../../../../components/docs/Tabs';
+import { useDocsTheme } from '../../ThemeContext';
+import DocsContent from '../../../../components/docs/DocsContent';
 import CodeBlock from '../../../../components/docs/CodeBlock';
 import Callout from '../../../../components/docs/Callout';
 
@@ -45,8 +47,7 @@ err = bundle.Download("./evidence_bundle.zip")
 if err != nil { panic(err) }`;
 
   return (
-    <div className="flex min-h-screen bg-[#000] text-white">
-      <Sidebar />
+    <DocsContent>
       <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
         <h1 className="text-4xl font-light tracking-tight mb-2">Go SDK</h1>
         <p className="text-lg text-gray-400 mb-8">Install and use the XASE Go SDK.</p>
@@ -65,6 +66,6 @@ if err != nil { panic(err) }`;
 
         <Callout type="info">Set <code className='text-gray-300'>XASE_API_KEY</code> in environment for production apps.</Callout>
       </main>
-    </div>
+    </DocsContent>
   );
 }

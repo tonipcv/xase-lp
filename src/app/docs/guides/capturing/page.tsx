@@ -1,5 +1,7 @@
-import Sidebar from '../../../../components/docs/Sidebar';
+'use client';
 import Tabs from '../../../../components/docs/Tabs';
+import { useDocsTheme } from '../../ThemeContext';
+import DocsContent from '../../../../components/docs/DocsContent';
 import CodeBlock from '../../../../components/docs/CodeBlock';
 import Callout from '../../../../components/docs/Callout';
 
@@ -22,8 +24,7 @@ export default function GuideCapturingPage() {
   const schema = `Field            Type      Required  Notes\nmodel_id         string    Yes       Which model produced the decision\ninput            object    Yes       Raw inputs (PII redaction is caller's responsibility)\noutput           object    Yes       Model result (decision + attributes)\nconfidence       number    No        0-1 score\nidempotency_key  string    No        Required for safe retries\npolicy_id        string    No        Business rules identifier at decision time\ncontext          object    No        Extra metadata (channel, session, etc.)\nexplanation      object    No        SHAP/LIME values if provided/auto-generated`;
 
   return (
-    <div className="flex min-h-screen bg-[#000] text-white">
-      <Sidebar />
+    <DocsContent>
       <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
         <h1 className="text-4xl font-light tracking-tight mb-2">Guide: Capturing Decisions</h1>
         <p className="text-lg text-gray-400 mb-8">Capture every AI decision with enough context to survive audits and enable offline verification.</p>
@@ -49,6 +50,6 @@ export default function GuideCapturingPage() {
           <li><span className="text-white">PII:</span> redact sensitive inputs before sending, if required.</li>
         </ul>
       </main>
-    </div>
+    </DocsContent>
   );
 }

@@ -1,5 +1,7 @@
-import Sidebar from '../../../../components/docs/Sidebar';
+'use client';
 import Tabs from '../../../../components/docs/Tabs';
+import { useDocsTheme } from '../../ThemeContext';
+import DocsContent from '../../../../components/docs/DocsContent';
 import CodeBlock from '../../../../components/docs/CodeBlock';
 import Callout from '../../../../components/docs/Callout';
 
@@ -31,8 +33,7 @@ export default function GuideModelCardsPage() {
 });`;
 
   return (
-    <div className="flex min-h-screen bg-[#000] text-white">
-      <Sidebar />
+    <DocsContent>
       <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
         <h1 className="text-4xl font-light tracking-tight mb-2">Guide: Model Cards</h1>
         <p className="text-lg text-gray-400 mb-8">Document your models: versions, hashes, metrics, schemas, intended use, limitations.</p>
@@ -47,6 +48,6 @@ export default function GuideModelCardsPage() {
 
         <Callout type="info">Include <code className='text-gray-300'>model_hash</code> (sha256) for artifact verification and schemas for downstream validation.</Callout>
       </main>
-    </div>
+    </DocsContent>
   );
 }

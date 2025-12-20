@@ -1,5 +1,7 @@
-import Sidebar from '../../../../components/docs/Sidebar';
+'use client';
 import Tabs from '../../../../components/docs/Tabs';
+import { useDocsTheme } from '../../ThemeContext';
+import DocsContent from '../../../../components/docs/DocsContent';
 import CodeBlock from '../../../../components/docs/CodeBlock';
 import Callout from '../../../../components/docs/Callout';
 
@@ -42,8 +44,7 @@ await job.download('./evidence_bundle.zip');`;
 }`;
 
   return (
-    <div className="flex min-h-screen bg-[#000] text-white">
-      <Sidebar />
+    <DocsContent>
       <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
         <h1 className="text-4xl font-light tracking-tight mb-2">API Reference: Exports</h1>
         <p className="text-lg text-gray-400 mb-8">Endpoints for creating and retrieving evidence bundles.</p>
@@ -66,6 +67,6 @@ await job.download('./evidence_bundle.zip');`;
 
         <Callout type="info">Exports are time-limited links. You can also request batch exports by `record_ids` or `filters`.</Callout>
       </main>
-    </div>
+    </DocsContent>
   );
 }
