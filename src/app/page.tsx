@@ -88,9 +88,9 @@ export default function Home() {
           </p>
 
           <div className="hidden sm:flex gap-4 items-center mb-20">
-            <button className="h-12 px-8 rounded-lg bg-white text-black font-medium hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all">
+            <a href="/docs" className="h-12 px-8 rounded-lg bg-white text-black font-medium hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all inline-flex items-center justify-center">
               Start Building
-            </button>
+            </a>
             <button onClick={() => { setWaitlistSubmitted(false); setWaitlistOpen(true); }} className="h-12 px-8 rounded-lg bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all">
               Join Waitlist
             </button>

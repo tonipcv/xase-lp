@@ -30,7 +30,10 @@ export default function DocsLayout({
         {/* Desktop: two rows with title then logo + search */}
         <div className="hidden md:block">
           <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-6">
-            <a href="/" className={`tracking-tight text-lg ${light ? 'text-black' : 'text-white'}`}>XASE</a>
+            <a href="/" className="flex items-center gap-2">
+              <img src="/logo-xase.png" alt="Xase logo" className="h-5 w-5" />
+              <span className="font-light tracking-tight text-sm text-[#BFC3C6]">XASE</span>
+            </a>
             <div className="flex-1 max-w-xl">
               <Search light={light} />
             </div>

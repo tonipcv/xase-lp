@@ -158,7 +158,10 @@ export default function Sidebar() {
         >
           {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
-        <Link href="/" className={`${light ? 'text-black' : 'text-white'} font-light tracking-tight`}>XASE</Link>
+        <Link href="/" className="flex items-center gap-2">
+          <img src="/logo-xase.png" alt="Xase logo" className="h-5 w-5" />
+          <span className="font-light tracking-tight text-sm text-[#BFC3C6]">XASE</span>
+        </Link>
         <div className="flex-1 min-w-0">
           <Search light={light} />
         </div>
@@ -181,10 +184,13 @@ export default function Sidebar() {
         <div className="p-6">
           <Link
             href="/"
-            className="md:hidden text-xl font-light tracking-tight mb-8 block"
+            className="md:hidden mb-8 block"
             onClick={() => setMobileOpen(false)}
           >
-            XASE
+            <div className="flex items-center gap-2">
+              <img src="/logo-xase.png" alt="Xase logo" className="h-5 w-5" />
+              <span className="font-light tracking-tight text-sm text-[#BFC3C6]">XASE</span>
+            </div>
           </Link>
           <nav className="space-y-1">
             {navigation.map((section, i) => (

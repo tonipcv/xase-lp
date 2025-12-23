@@ -499,7 +499,10 @@ export default function InsideSalesPage() {
 
       <div className="container mx-auto px-4 py-8 flex-1 flex flex-col">
         <div className="flex justify-center mb-16 pt-8">
-          <div className="text-2xl font-light tracking-tight text-white">XASE</div>
+          <div className="flex items-center gap-2">
+            <img src="/logo-xase.png" alt="Xase logo" className="h-5 w-5" />
+            <span className="font-light tracking-tight text-sm text-[#BFC3C6]">XASE</span>
+          </div>
         </div>
 
         <div className="flex-1 flex items-center justify-center px-4 py-8">

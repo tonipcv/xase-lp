@@ -86,7 +86,8 @@ export default function Home() {
       <header className="fixed w-full bg-[#0A0A0A]/80 backdrop-blur-sm z-50 border-b border-white/5">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <div className="text-xl font-light tracking-tight text-white">XASE</div>
+            <img src="/logo-xase.png" alt="Xase logo" className="h-5 w-5" />
+            <span className="font-light tracking-tight text-sm text-[#BFC3C6]">XASE</span>
           </div>
         </div>
       </header>
@@ -455,7 +456,12 @@ export default function Home() {
         <div className="container mx-auto max-w-5xl">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <div className="text-xl font-bold mb-4 tracking-[-0.03em]">XASE</div>
+              <div className="mb-4">
+                <div className="flex items-center gap-2">
+                  <img src="/logo-xase.png" alt="Xase logo" className="h-5 w-5" />
+                  <span className="font-light tracking-tight text-sm text-[#BFC3C6]">XASE</span>
+                </div>
+              </div>
               <p className="text-gray-400 text-sm">
                 The complete solution for customer service management and customer relationship.
               </p>
