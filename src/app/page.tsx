@@ -35,7 +35,10 @@ export default function Home() {
       {/* Glassmorphism Nav */}
       <header className="fixed top-0 inset-x-0 z-50 border-b border-white/5 bg-black/60 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-          <div className="text-white font-light tracking-tight text-sm">XASE</div>
+          <div className="flex items-center gap-2">
+            <img src="/logo-xase.png" alt="Xase logo" className="h-5 w-5" />
+            <span className="font-light tracking-tight text-sm text-[#BFC3C6]">XASE</span>
+          </div>
           <nav className="hidden md:flex items-center gap-6 text-[13px] text-gray-400">
             <a href="/docs" className="hover:text-white transition-colors">Docs</a>
             <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
