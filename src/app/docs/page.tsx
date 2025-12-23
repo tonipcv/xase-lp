@@ -113,6 +113,7 @@ bundle.download("./evidence.zip")`}
           {[
             { title: 'Quickstart', desc: 'Get running in 5 minutes', href: '/docs/quickstart' },
             { title: 'Core Concepts', desc: 'Understand the architecture', href: '/docs/concepts' },
+            { title: 'CLI', desc: 'Use the command-line interface', href: '/docs/guides/cli' },
             { title: 'Python SDK', desc: 'Full installation guide', href: '/docs/sdk/python' },
         ].map((item, i) => (
           <Link

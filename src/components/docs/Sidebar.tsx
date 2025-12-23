@@ -40,6 +40,7 @@ const navigation: NavItem[] = [
       { title: 'Exporting Evidence', href: '/docs/guides/exports' },
       { title: 'Verifying Bundles', href: '/docs/guides/verify' },
       { title: 'Dashboard & Alerts', href: '/docs/guides/dashboard' },
+      { title: 'CLI', href: '/docs/guides/cli' },
       { title: 'Webhooks', href: '/docs/guides/webhooks' },
     ],
   },

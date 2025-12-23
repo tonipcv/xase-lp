@@ -1,19 +1,19 @@
 {
-  "name": "XASE - Technology Infrastructure for Creators",
+  "name": "XASE - The Evidence Layer for AI Agents",
   "short_name": "XASE",
-  "description": "Enterprise Technology Infrastructure for Content Creators",
+  "description": "Turn automated decisions into immutable legal records",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#16181b",
+  "theme_color": "#16181b",
   "icons": [
     {
-      "src": "/android-chrome-192x192.png",
+      "src": "/icon1.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/android-chrome-512x512.png",
+      "src": "/apple-icon.png",
       "sizes": "512x512",
       "type": "image/png"
     }

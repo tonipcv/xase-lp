@@ -67,6 +67,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://xase.com',
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon0.svg', type: 'image/svg+xml' },
+      { url: '/icon1.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-icon.png' },
+    ],
+  },
+  manifest: '/site.webmanifest',
 }
 
 export default function RootLayout({
@@ -78,9 +89,6 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <title>Xase — The Evidence Layer for AI Agents</title>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#16181b" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -91,7 +99,7 @@ export default function RootLayout({
             '@type': 'Organization',
             name: 'XASE',
             url: 'https://xase.com',
-            logo: 'https://xase.com/icon.svg',
+            logo: 'https://xase.com/icon0.svg',
             sameAs: ['https://github.com/xase-ai'],
           }}
         />

@@ -90,6 +90,23 @@ await bundle.download('./evidence_bundle.zip');`;
           ]}
         />
 
+        <h2 className="text-xl md:text-2xl font-light mt-6 md:mt-8 mb-3">2.1 Use the CLI (optional)</h2>
+        <CodeBlock
+          language="bash"
+          code={`npm i -g xase
+xase --help
+
+# point to production API
+xase config set baseUrl https://api.xase.ai/api/xase/v1
+
+# authenticate and run a quick check
+xase auth login
+xase metrics summary`}
+        />
+        <p className="text-sm text-gray-500 mt-2">
+          Prefer commands? See the full guide: <a className="underline" href="/docs/guides/cli">CLI</a>
+        </p>
+
         <h2 className="text-xl md:text-2xl font-light mt-6 md:mt-8 mb-3">3. Record a Decision</h2>
         <Tabs
           tabs={[
