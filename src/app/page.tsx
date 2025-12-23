@@ -129,17 +129,101 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trusted By */}
-      <section className="py-12 px-6 border-t border-white/5">
+      
+
+      {/* Integration With - Static Minimal */}
+      <section className="py-16 px-6 border-t border-white/5">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center text-xs tracking-wider text-gray-600 mb-6">TRUSTED BY REGULATED TEAMS</div>
-          <div className="flex flex-wrap justify-center items-center gap-10 opacity-30">
-            <div className="h-6 w-24 bg-white/10 rounded"></div>
-            <div className="h-6 w-24 bg-white/10 rounded"></div>
-            <div className="h-6 w-24 bg-white/10 rounded"></div>
-            <div className="h-6 w-24 bg-white/10 rounded"></div>
-            <div className="h-6 w-24 bg-white/10 rounded"></div>
+          <div className="text-center text-xs tracking-wider text-gray-600 mb-6">INTEGRATION WITH</div>
+          {/* Mobile: minimal marquee */}
+          <div className="block md:hidden relative overflow-hidden">
+            <div className="integration-track flex items-center gap-8 py-1">
+              {(() => {
+                const names = [
+                  '1.svg',
+                  'DeepMind_logo.png',
+                  'OpenAI_Logo.svg (2).png',
+                  'Pytorch_logo.png',
+                  'grok-3.svg',
+                  'tensorflowjs.png',
+                ];
+                const all = [...names, ...names];
+                return all.map((n, i) => (
+                  <div
+                    key={`m-${i}`}
+                    className="h-6 w-[90px] flex items-center justify-center"
+                    title={n.replace(/\.[^/.]+$/, '')}
+                  >
+                    <div
+                      aria-label={n.replace(/\.[^/.]+$/, '')}
+                      className="w-full h-full"
+                      style={{
+                        backgroundColor: '#BFC3C6',
+                        WebkitMaskImage: `url("/integration/${encodeURIComponent(n)}")`,
+                        maskImage: `url("/integration/${encodeURIComponent(n)}")`,
+                        WebkitMaskRepeat: 'no-repeat',
+                        maskRepeat: 'no-repeat',
+                        WebkitMaskPosition: 'center',
+                        maskPosition: 'center',
+                        WebkitMaskSize: 'contain',
+                        maskSize: 'contain',
+                      }}
+                    />
+                  </div>
+                ));
+              })()}
+            </div>
           </div>
+
+          {/* Desktop: static grid */}
+          <div className="hidden md:flex flex-wrap justify-center items-center gap-10">
+            {(() => {
+              const names = [
+                '1.svg',
+                'DeepMind_logo.png',
+                'OpenAI_Logo.svg (2).png',
+                'Pytorch_logo.png',
+                'grok-3.svg',
+                'tensorflowjs.png',
+              ];
+              return names.map((n, i) => (
+                <div
+                  key={`d-${i}`}
+                  className="h-8 w-[110px] flex items-center justify-center"
+                  title={n.replace(/\.[^/.]+$/, '')}
+                >
+                  <div
+                    aria-label={n.replace(/\.[^/.]+$/, '')}
+                    className="w-full h-full"
+                    style={{
+                      backgroundColor: '#BFC3C6',
+                      WebkitMaskImage: `url("/integration/${encodeURIComponent(n)}")`,
+                      maskImage: `url("/integration/${encodeURIComponent(n)}")`,
+                      WebkitMaskRepeat: 'no-repeat',
+                      maskRepeat: 'no-repeat',
+                      WebkitMaskPosition: 'center',
+                      maskPosition: 'center',
+                      WebkitMaskSize: 'contain',
+                      maskSize: 'contain',
+                    }}
+                  />
+                </div>
+              ));
+            })()}
+          </div>
+          <style jsx>{`
+            .integration-track {
+              width: max-content;
+              animation: xase-scroll 28s linear infinite;
+            }
+            @keyframes xase-scroll {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            @media (prefers-reduced-motion: reduce) {
+              .integration-track { animation: none; }
+            }
+          `}</style>
         </div>
       </section>
 
