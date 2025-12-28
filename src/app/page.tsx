@@ -50,7 +50,7 @@ export default function Home() {
           </nav>
           <div className="hidden md:flex items-center gap-4">
             <a href="https://app.xase.ai/login?callbackUrl=%2F" className="text-[13px] text-gray-400 hover:text-white transition-colors">Log in</a>
-            <button onClick={() => { setWaitlistSubmitted(false); setWaitlistOpen(true); }} className="text-[13px] bg-white text-black px-3 py-1.5 rounded-full font-medium hover:bg-gray-200 transition-all">Sign up</button>
+            <button onClick={() => { setSelectedPlan('Waitlist'); setBookOpen(true); }} className="text-[13px] bg-white text-black px-3 py-1.5 rounded-full font-medium hover:bg-gray-200 transition-all">Sign up</button>
           </div>
           <button
             className="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg border border-white/10 text-gray-300"
@@ -66,7 +66,7 @@ export default function Home() {
               <a href="/docs" onClick={() => setMenuOpen(false)} className="py-2">Docs</a>
               <a href="#pricing" onClick={() => setMenuOpen(false)} className="py-2">Pricing</a>
               <a href="https://github.com/xaseai/xase" target="_blank" rel="noreferrer" className="py-2">GitHub</a>
-              <button onClick={() => { setWaitlistSubmitted(false); setWaitlistOpen(true); }} className="mt-2 w-full bg-white text-black px-4 py-2 rounded-full font-medium">Sign up</button>
+              <button onClick={() => { setSelectedPlan('Waitlist'); setBookOpen(true); }} className="mt-2 w-full bg-white text-black px-4 py-2 rounded-full font-medium">Sign up</button>
             </nav>
           </div>
         )}
@@ -95,7 +95,14 @@ export default function Home() {
             <a href="/docs" className="h-12 px-8 rounded-lg bg-white text-black font-medium hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all inline-flex items-center justify-center">
               Start Building
             </a>
-            <button onClick={() => { setWaitlistSubmitted(false); setWaitlistOpen(true); }} className="h-12 px-8 rounded-lg bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all">
+            <button onClick={() => { setSelectedPlan('Waitlist'); setBookOpen(true); }} className="h-12 px-8 rounded-lg bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all">
+              Join Waitlist
+            </button>
+          </div>
+
+          {/* Mobile CTA */}
+          <div className="sm:hidden mb-16 w-full flex items-center justify-center">
+            <button onClick={() => { setSelectedPlan('Waitlist'); setBookOpen(true); }} className="h-11 px-6 rounded-full bg-white/5 border border-white/10 text-white text-sm font-medium hover:bg-white/10 transition-all">
               Join Waitlist
             </button>
           </div>
@@ -633,7 +640,7 @@ const bundle = await xase.export({ recordId: record.id });
             </div>
           </div>
           <div className="mt-12" />
-          <BookCallModal isOpen={bookOpen} onClose={() => setBookOpen(false)} plan={selectedPlan} redirectUrl="https://app.cal.eu/xaseai/30min" />
+          <BookCallModal isOpen={bookOpen} onClose={() => setBookOpen(false)} plan={selectedPlan} redirectUrl="https://cal.com/xaseai/30min" />
           <div className="mt-12">
             <FAQ
               items={[
@@ -674,7 +681,7 @@ const bundle = await xase.export({ recordId: record.id });
           <h2 className="text-4xl md:text-5xl font-light mb-4 tracking-tight">Build AI that regulators respect.</h2>
           <p className="text-gray-400 mb-8">Stop building internal audit tools. Use infrastructure designed for the age of AI accountability.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button onClick={() => { setWaitlistSubmitted(false); setWaitlistOpen(true); }} className="w-full sm:w-auto h-12 px-8 rounded-lg bg-white text-black font-medium hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all">
+            <button onClick={() => { setSelectedPlan('Waitlist'); setBookOpen(true); }} className="w-full sm:w-auto h-12 px-8 rounded-lg bg-white text-black font-medium hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all">
               Join Waitlist
             </button>
           </div>
@@ -692,7 +699,7 @@ const bundle = await xase.export({ recordId: record.id });
       {/* Sticky mobile CTA */}
       <div className="fixed bottom-4 inset-x-4 md:hidden z-50 pb-[env(safe-area-inset-bottom)]">
         <div className="bg-black/90 backdrop-blur border border-white/10 rounded-full p-2 flex gap-2">
-          <button onClick={() => { setWaitlistSubmitted(false); setWaitlistOpen(true); }} className="flex-1 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 bg-white text-black text-sm font-medium hover:bg-gray-200">Join Waitlist <ArrowRight className="w-4 h-4" /></button>
+          <button onClick={() => { setSelectedPlan('Waitlist'); setBookOpen(true); }} className="flex-1 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 bg-white text-black text-sm font-medium hover:bg-gray-200">Join Waitlist <ArrowRight className="w-4 h-4" /></button>
           <a href="/docs" className="flex-1 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 bg-transparent text-white border border-white/10 text-sm hover:bg-white/10">Docs</a>
         </div>
       </div>

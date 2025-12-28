@@ -36,9 +36,6 @@ export default function BookCallForm({ redirectUrl, plan }: Props) {
 
   return (
     <form onSubmit={onSubmit} className="max-w-xl mx-auto mt-10 grid gap-3">
-      {plan && (
-        <div className="text-xs text-white/40">Plan: <span className="text-white/70">{plan}</span></div>
-      )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <input
           type="text"

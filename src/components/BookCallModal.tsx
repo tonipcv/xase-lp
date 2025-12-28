@@ -28,7 +28,6 @@ export default function BookCallModal({ isOpen, onClose, plan, redirectUrl }: Pr
         <div className="flex items-start justify-between">
           <div>
             <div className="text-xs uppercase tracking-wider text-white/40">Book a call</div>
-            {plan && <div className="mt-1 text-sm text-white/60">Selected plan: <span className="text-white">{plan}</span></div>}
           </div>
           <button onClick={onClose} aria-label="Close" className="text-white/50 hover:text-white">✕</button>
         </div>

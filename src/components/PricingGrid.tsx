@@ -80,7 +80,7 @@ export default function PricingGrid() {
         </div>
       </div>
 
-      <BookCallModal isOpen={bookOpen} onClose={() => setBookOpen(false)} plan={selectedPlan} redirectUrl="https://app.cal.eu/xaseai/30min" />
+      <BookCallModal isOpen={bookOpen} onClose={() => setBookOpen(false)} plan={selectedPlan} redirectUrl="https://cal.com/xaseai/30min" />
     </>
   );
 }
