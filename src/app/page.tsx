@@ -6,6 +6,8 @@ import Terminal from '../components/Terminal';
 import CodeBlock from '../components/CodeBlock';
 import PricingCard from '../components/PricingCard';
 import FAQ from '../components/FAQ';
+import BookCallForm from '../components/BookCallForm';
+import BookCallModal from '../components/BookCallModal';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -19,6 +21,8 @@ export default function Home() {
   const [waitlistOpen, setWaitlistOpen] = useState(false);
   const [name, setName] = useState('');
   const [waitlistSubmitted, setWaitlistSubmitted] = useState(false);
+  const [bookOpen, setBookOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
 
   useEffect(() => {
     const handler = () => setMenuOpen(false);
@@ -562,28 +566,74 @@ const bundle = await xase.export({ recordId: record.id });
       {/* Pricing */}
       <section id="pricing" className="py-20 md:py-32 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-light text-center mb-12 tracking-tight">Transparent. Predictable. No "call us."</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <PricingCard
-              name="Developer"
-              price="$0/month"
-              features={["1,000 decisions/month","Basic explainability","Community support","Dashboard access"]}
-              cta="Start Free"
-            />
-            <PricingCard
-              name="Scale"
-              price="$499/month"
-              features={["50,000 decisions/month","Full XAI suite (SHAP, LIME)","Priority support","Export API","Alerting & webhooks"]}
-              cta="Get Started"
-              highlighted
-            />
-            <PricingCard
-              name="Enterprise"
-              price="Custom"
-              features={["Unlimited volume","On-prem / VPC deployment","SSO / SAML","Dedicated support + SLA","Custom integrations"]}
-              cta="Talk to Sales"
-            />
+          <h2 className="text-4xl md:text-5xl font-light text-center mb-12 tracking-tight">Audit-ready evidence for AI decisions — priced by risk, not volume.</h2>
+          <div className="grid md:grid-cols-4 gap-6">
+            {/* Sandbox */}
+            <div className="bg-[#0b0c0f] border border-white/10 rounded-2xl p-8">
+              <h3 className="text-2xl font-light mb-1">Sandbox</h3>
+              <div className="mb-6"><span className="text-[11px] uppercase tracking-wider text-gray-400">On request</span></div>
+              <ul className="text-sm text-gray-300 space-y-2">
+                <li>1 use case (test)</li>
+                <li>Retention: 30 days</li>
+                <li>HITL records</li>
+                <li>Hash-only (no KMS)</li>
+                <li className="text-gray-500">Not audit-grade</li>
+              </ul>
+              <div className="mt-6">
+                <button onClick={() => { setSelectedPlan('Sandbox'); setBookOpen(true); }} className="inline-flex items-center justify-center px-4 py-2 rounded-full border border-white/10 text-sm text-white/80 hover:bg-white/5 transition">Start Sandbox</button>
+              </div>
+            </div>
+
+            {/* Team */}
+            <div className="bg-[#0b0c0f] border border-white/14 rounded-2xl p-8">
+              <h3 className="text-2xl font-light mb-1">Team</h3>
+              <div className="mb-6"><span className="text-[11px] uppercase tracking-wider text-gray-300">On request</span></div>
+              <ul className="text-sm text-gray-300 space-y-2">
+                <li>2 use cases</li>
+                <li>KMS‑signed evidence bundles</li>
+                <li>Retention: 2 years</li>
+                <li>Offline verification</li>
+                <li>Full audit logs</li>
+              </ul>
+              <div className="mt-6">
+                <button onClick={() => { setSelectedPlan('Team'); setBookOpen(true); }} className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white text-black text-sm hover:bg-gray-200 transition">Contact Sales</button>
+              </div>
+            </div>
+
+            {/* Business */}
+            <div className="bg-[#0b0c0f] border border-white/10 rounded-2xl p-8">
+              <h3 className="text-2xl font-light mb-1">Business</h3>
+              <div className="mb-6"><span className="text-[11px] uppercase tracking-wider text-gray-400">On request</span></div>
+              <ul className="text-sm text-gray-300 space-y-2">
+                <li>5 use cases</li>
+                <li>Retention: 5 years</li>
+                <li>Legal hold</li>
+                <li>Compliance reporting</li>
+                <li>Priority support</li>
+              </ul>
+              <div className="mt-6">
+                <button onClick={() => { setSelectedPlan('Business'); setBookOpen(true); }} className="inline-flex items-center justify-center px-4 py-2 rounded-full border border-white/10 text-sm text-white/80 hover:bg-white/5 transition">Request Demo</button>
+              </div>
+            </div>
+
+            {/* Enterprise */}
+            <div className="bg-[#0b0c0f] border border-white/10 rounded-2xl p-8">
+              <h3 className="text-2xl font-light mb-1">Enterprise</h3>
+              <div className="mb-6"><span className="text-[11px] uppercase tracking-wider text-gray-400">On request</span></div>
+              <ul className="text-sm text-gray-300 space-y-2">
+                <li>10+ use cases</li>
+                <li>Retention: 7–10 years</li>
+                <li>On‑prem / VPC</li>
+                <li>SSO / SIEM • SLA • DPA</li>
+                <li>Named security contact</li>
+              </ul>
+              <div className="mt-6">
+                <button onClick={() => { setSelectedPlan('Enterprise'); setBookOpen(true); }} className="inline-flex items-center justify-center px-4 py-2 rounded-full border border-white/10 text-sm text-white/80 hover:bg-white/5 transition">Contact Sales</button>
+              </div>
+            </div>
           </div>
+          <div className="mt-12" />
+          <BookCallModal isOpen={bookOpen} onClose={() => setBookOpen(false)} plan={selectedPlan} redirectUrl="https://app.cal.eu/xaseai/30min" />
           <div className="mt-12">
             <FAQ
               items={[

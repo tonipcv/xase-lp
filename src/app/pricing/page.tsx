@@ -1,4 +1,5 @@
 import JsonLd from '../../components/JsonLd';
+import PricingGrid from '../../components/PricingGrid';
 
 export default function PricingPage() {
   const faq = [
@@ -23,41 +24,8 @@ export default function PricingPage() {
       <JsonLd data={faqSchema} />
       <div className="max-w-5xl mx-auto text-center">
         <h1 className="text-4xl md:text-5xl font-light tracking-tight mb-4">Pricing</h1>
-        <p className="text-gray-400 mb-12">Transparent. Predictable. No "call us."</p>
-        <div className="grid md:grid-cols-3 gap-6 text-left">
-          <div className="bg-[#0A0A0A] border border-[#222222] rounded-2xl p-8">
-            <div className="text-2xl font-light mb-2">Developer</div>
-            <div className="text-4xl mb-4">$0</div>
-            <ul className="text-sm text-gray-300 space-y-2 list-disc pl-4">
-              <li>1,000 decisions/month</li>
-              <li>Basic explainability</li>
-              <li>Community support</li>
-              <li>Dashboard access</li>
-            </ul>
-          </div>
-          <div className="bg-[#0A0A0A] border border-white/20 rounded-2xl p-8">
-            <div className="text-2xl font-light mb-2">Scale</div>
-            <div className="text-4xl mb-4">$499</div>
-            <ul className="text-sm text-gray-300 space-y-2 list-disc pl-4">
-              <li>50,000 decisions/month</li>
-              <li>Full XAI suite (SHAP, LIME)</li>
-              <li>Priority support</li>
-              <li>Export API</li>
-              <li>Alerting & webhooks</li>
-            </ul>
-          </div>
-          <div className="bg-[#0A0A0A] border border-[#222222] rounded-2xl p-8">
-            <div className="text-2xl font-light mb-2">Enterprise</div>
-            <div className="text-4xl mb-4">Custom</div>
-            <ul className="text-sm text-gray-300 space-y-2 list-disc pl-4">
-              <li>Unlimited volume</li>
-              <li>On-prem / VPC deployment</li>
-              <li>SSO / SAML</li>
-              <li>Dedicated support + SLA</li>
-              <li>Custom integrations</li>
-            </ul>
-          </div>
-        </div>
+        <p className="text-gray-400 mb-12">Audit-ready evidence for AI decisions — priced by risk, not volume.</p>
+        <PricingGrid />
         <div className="max-w-3xl mx-auto text-left mt-16">
           <h2 className="text-2xl font-light mb-4">FAQ</h2>
           <div className="space-y-3">
