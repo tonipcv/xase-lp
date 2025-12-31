@@ -30,8 +30,12 @@ export default function BookCallForm({ redirectUrl, plan }: Props) {
       params.set('notes', existing ? `${existing} | Plan: ${plan}` : `Plan: ${plan}`);
     }
 
-    const url = `${redirectUrl}?${params.toString()}`;
-    window.location.href = url;
+    // Merge with existing query string (e.g., overlayCalendar=true) without duplicating '?'
+    const url = new URL(redirectUrl);
+    params.forEach((value, key) => {
+      url.searchParams.set(key, value);
+    });
+    window.location.href = url.toString();
   };
 
   return (
