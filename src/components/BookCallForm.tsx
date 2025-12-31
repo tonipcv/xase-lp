@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 interface Props {
-  redirectUrl: string; // e.g. https://app.cal.eu/xaseai/30min
+  redirectUrl: string; // e.g. https://app.cal.eu/xaseai/30min?overlayCalendar=true
   plan?: string;
 }
 

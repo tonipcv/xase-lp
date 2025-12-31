@@ -640,7 +640,7 @@ const bundle = await xase.export({ recordId: record.id });
             </div>
           </div>
           <div className="mt-12" />
-          <BookCallModal isOpen={bookOpen} onClose={() => setBookOpen(false)} plan={selectedPlan} redirectUrl="https://cal.com/xaseai/30min" />
+          <BookCallModal isOpen={bookOpen} onClose={() => setBookOpen(false)} plan={selectedPlan} redirectUrl="https://app.cal.eu/xaseai/30min?overlayCalendar=true" />
           <div className="mt-12">
             <FAQ
               items={[
