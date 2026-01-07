@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Inter } from 'next/font/google';
 import { ArrowRight, Menu, X } from 'lucide-react';
 import Terminal from '../components/Terminal';
 import CodeBlock from '../components/CodeBlock';
@@ -9,11 +8,7 @@ import FAQ from '../components/FAQ';
 import BookCallForm from '../components/BookCallForm';
 import BookCallModal from '../components/BookCallModal';
 
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-});
+
 
 export default function Home() {
   const [email, setEmail] = useState('');
@@ -31,7 +26,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className={`min-h-screen bg-black text-white ${inter.variable} font-sans selection:bg-white/20`}>
+    <div className={`min-h-screen bg-black text-white selection:bg-white/20`}>
       {/* Subtle background glow */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-[40%] left-[20%] w-[60%] h-[60%] bg-blue-500/5 blur-[120px] rounded-full" />
@@ -81,7 +76,7 @@ export default function Home() {
             <ArrowRight className="w-3 h-3" />
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-8xl font-medium tracking-tighter bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent mb-8 leading-[1.12]">
+          <h1 className="text-4xl sm:text-5xl md:text-8xl font-medium tracking-tighter bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent mb-8 leading-[1.12]" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>
             The Evidence Layer<br />for AI Decisions
           </h1>
 
@@ -117,7 +112,7 @@ export default function Home() {
                     '$ xase verify evidence_bundle.zip',
                     '',
                     '✓ Decision signature valid',
-                    '✓ Human intervention verified (João Silva, 14:32 UTC)',
+                    '✓ Human intervention verified (John Smith, 14:32 UTC)',
                     '✓ Model hash matches registry (credit-v4.2.1)',
                     '✓ Chain integrity: 847 blocks, no tampering detected',
                     '',
@@ -236,7 +231,7 @@ export default function Home() {
       {/* Features - Bento Grid */}
       <section className="py-20 md:py-32 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-light text-center mb-4 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-light text-center mb-4 tracking-tight" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>
             Hand auditors a ZIP, not database access.
           </h2>
           <p className="text-center text-gray-400 max-w-3xl mx-auto mb-16">
@@ -272,7 +267,7 @@ export default function Home() {
       {/* Compliance Mapping */}
       <section className="py-20 md:py-32 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-light text-center mb-4 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-light text-center mb-4 tracking-tight" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>
             Built for the regulations that matter.
           </h2>
           <p className="text-center text-gray-400 max-w-3xl mx-auto mb-10">
@@ -331,7 +326,7 @@ export default function Home() {
       {/* The Problem */}
       <section id="problem" className="py-20 md:py-32 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-light text-center mb-4 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-light text-center mb-4 tracking-tight" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>
             Regulators don't accept "trust us."
           </h2>
           <p className="text-center text-gray-400 max-w-3xl mx-auto mb-16">
@@ -368,7 +363,7 @@ export default function Home() {
       {/* The Product */}
       <section id="product" className="py-20 md:py-32 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-light text-center mb-4 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-light text-center mb-4 tracking-tight" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>
             One integration. Infinite audits.
           </h2>
           <p className="text-center text-gray-400 max-w-3xl mx-auto mb-16">
@@ -417,32 +412,32 @@ export default function Home() {
       {/* Use Cases - Bento Grid */}
       <section className="py-20 md:py-32 px-6 border-t border-white/5">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-light text-center mb-12 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-light text-center mb-12 tracking-tight" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>
             Built for High-Stakes Autonomy.
           </h2>
 
           <div className="grid md:grid-cols-3 gap-4">
             <div className="bg-[#080808] border border-white/10 rounded-xl p-6 hover:border-white/20 transition-colors">
-              <h3 className="text-xl font-medium mb-3">Fintech</h3>
+              <h3 className="text-xl font-medium mb-3" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Underwriting & Pricing</h3>
               <div className="space-y-3 text-sm">
-                <div className="text-gray-400">Credit denials & Fraud detection.</div>
-                <div className="text-gray-500 text-xs">→ FCRA Compliance proof generated instantly.</div>
+                <div className="text-gray-400">Eligibility decisions and premium setting across auto, health, and life.</div>
+                <div className="text-gray-500 text-xs">→ Justify risk factors and prevent discriminatory pricing.</div>
               </div>
             </div>
 
             <div className="bg-[#080808] border border-white/10 rounded-xl p-6 hover:border-white/20 transition-colors">
-              <h3 className="text-xl font-medium mb-3">Healthcare</h3>
+              <h3 className="text-xl font-medium mb-3" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Claims Adjudication</h3>
               <div className="space-y-3 text-sm">
-                <div className="text-gray-400">Diagnostic triage & Claims processing.</div>
-                <div className="text-gray-500 text-xs">→ Liability shield against malpractice claims.</div>
+                <div className="text-gray-400">Approve/deny claims, adjust amounts, and escalate to subrogation.</div>
+                <div className="text-gray-500 text-xs">→ Defensible denials with verifiable reasoning and timestamps.</div>
               </div>
             </div>
 
             <div className="bg-[#080808] border border-white/10 rounded-xl p-6 hover:border-white/20 transition-colors">
-              <h3 className="text-xl font-medium mb-3">Enterprise</h3>
+              <h3 className="text-xl font-medium mb-3" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Fraud & SIU</h3>
               <div className="space-y-3 text-sm">
-                <div className="text-gray-400">HR Screening & Dynamic Pricing.</div>
-                <div className="text-gray-500 text-xs">→ Defense against bias lawsuits (NYC 144).</div>
+                <div className="text-gray-400">Anomaly flags, referral scoring, and investigation triage.</div>
+                <div className="text-gray-500 text-xs">→ Evidence trail for adverse action and appeals.</div>
               </div>
             </div>
           </div>
@@ -452,7 +447,7 @@ export default function Home() {
       {/* Trust Signals */}
       <section className="py-12 px-6 border-t border-white/5">
         <div className="max-w-5xl mx-auto text-center">
-          <h3 className="text-xl font-light text-gray-500 mb-12">
+          <h3 className="text-xl font-light text-gray-500 mb-12" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>
             Designed for compliance with:
           </h3>
           <div className="flex flex-wrap justify-center items-center gap-12 opacity-40">
@@ -476,7 +471,7 @@ export default function Home() {
       {/* ROI */}
       <section id="roi" className="py-20 md:py-32 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-light text-center mb-12 tracking-tight">The math is simple.</h2>
+          <h2 className="text-4xl md:text-5xl font-light text-center mb-12 tracking-tight" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>The math is simple.</h2>
           <div className="grid md:grid-cols-3 gap-4 text-center">
             <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
               <div className="text-5xl font-medium mb-2">95%</div>
@@ -516,7 +511,7 @@ export default function Home() {
       </section>
       <section id="dx" className="py-20 md:py-32 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-light text-center mb-4 tracking-tight">APIs that don't suck.</h2>
+          <h2 className="text-4xl md:text-5xl font-light text-center mb-4 tracking-tight" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>APIs that don't suck.</h2>
           <p className="text-center text-gray-400 max-w-3xl mx-auto mb-12">Built by engineers who've integrated terrible compliance tools. We made the opposite.</p>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-2.5 text-sm">
@@ -568,11 +563,11 @@ const bundle = await xase.export({ recordId: record.id });
       {/* Pricing */}
       <section id="pricing" className="py-20 md:py-32 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-light text-center mb-12 tracking-tight">Audit-ready evidence for AI decisions — priced by risk, not volume.</h2>
+          <h2 className="text-4xl md:text-5xl font-light text-center mb-12 tracking-tight" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Audit-ready evidence for AI decisions — priced by risk, not volume.</h2>
           <div className="grid md:grid-cols-4 gap-6">
             {/* Sandbox */}
             <div className="bg-[#0b0c0f] border border-white/10 rounded-2xl p-8">
-              <h3 className="text-2xl font-light mb-1">Sandbox</h3>
+              <h3 className="text-2xl font-light mb-1" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Sandbox</h3>
               <div className="mb-6"><span className="text-[11px] uppercase tracking-wider text-gray-400">On request</span></div>
               <ul className="text-sm text-gray-300 space-y-2">
                 <li>1 use case (test)</li>
@@ -582,13 +577,13 @@ const bundle = await xase.export({ recordId: record.id });
                 <li className="text-gray-500">Not audit-grade</li>
               </ul>
               <div className="mt-6">
-                <button onClick={() => { setSelectedPlan('Sandbox'); setBookOpen(true); }} className="inline-flex items-center justify-center px-4 py-2 rounded-full border border-white/10 text-sm text-white/80 hover:bg-white/5 transition">Start Sandbox</button>
+                <button onClick={() => { setSelectedPlan('Sandbox'); setBookOpen(true); }} className="inline-flex items-center justify-center px-4 py-2 rounded-full border border-white/10 text-sm text-white/80 hover:bg-white/5 transition">Request Demo</button>
               </div>
             </div>
 
             {/* Team */}
             <div className="bg-[#0b0c0f] border border-white/14 rounded-2xl p-8">
-              <h3 className="text-2xl font-light mb-1">Team</h3>
+              <h3 className="text-2xl font-light mb-1" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Team</h3>
               <div className="mb-6"><span className="text-[11px] uppercase tracking-wider text-gray-300">On request</span></div>
               <ul className="text-sm text-gray-300 space-y-2">
                 <li>2 use cases</li>
@@ -598,13 +593,13 @@ const bundle = await xase.export({ recordId: record.id });
                 <li>Full audit logs</li>
               </ul>
               <div className="mt-6">
-                <button onClick={() => { setSelectedPlan('Team'); setBookOpen(true); }} className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white text-black text-sm hover:bg-gray-200 transition">Contact Sales</button>
+                <button onClick={() => { setSelectedPlan('Team'); setBookOpen(true); }} className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-white text-black text-sm hover:bg-gray-200 transition">Request Demo</button>
               </div>
             </div>
 
             {/* Business */}
             <div className="bg-[#0b0c0f] border border-white/10 rounded-2xl p-8">
-              <h3 className="text-2xl font-light mb-1">Business</h3>
+              <h3 className="text-2xl font-light mb-1" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Business</h3>
               <div className="mb-6"><span className="text-[11px] uppercase tracking-wider text-gray-400">On request</span></div>
               <ul className="text-sm text-gray-300 space-y-2">
                 <li>5 use cases</li>
@@ -620,7 +615,7 @@ const bundle = await xase.export({ recordId: record.id });
 
             {/* Enterprise */}
             <div className="bg-[#0b0c0f] border border-white/10 rounded-2xl p-8">
-              <h3 className="text-2xl font-light mb-1">Enterprise</h3>
+              <h3 className="text-2xl font-light mb-1" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Enterprise</h3>
               <div className="mb-6"><span className="text-[11px] uppercase tracking-wider text-gray-400">On request</span></div>
               <ul className="text-sm text-gray-300 space-y-2">
                 <li>10+ use cases</li>
@@ -630,7 +625,7 @@ const bundle = await xase.export({ recordId: record.id });
                 <li>Named security contact</li>
               </ul>
               <div className="mt-6">
-                <button onClick={() => { setSelectedPlan('Enterprise'); setBookOpen(true); }} className="inline-flex items-center justify-center px-4 py-2 rounded-full border border-white/10 text-sm text-white/80 hover:bg-white/5 transition">Contact Sales</button>
+                <button onClick={() => { setSelectedPlan('Enterprise'); setBookOpen(true); }} className="inline-flex items-center justify-center px-4 py-2 rounded-full border border-white/10 text-sm text-white/80 hover:bg-white/5 transition">Request Demo</button>
               </div>
             </div>
           </div>
@@ -652,7 +647,7 @@ const bundle = await xase.export({ recordId: record.id });
       {/* Security */}
       <section id="security" className="py-20 md:py-32 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-light text-center mb-4 tracking-tight">Trust nothing. Verify everything.</h2>
+          <h2 className="text-4xl md:text-5xl font-light text-center mb-4 tracking-tight" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Trust nothing. Verify everything.</h2>
           <p className="text-center text-gray-400 max-w-3xl mx-auto mb-12">Including us. That's why bundles are verifiable without calling our API.</p>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3 text-sm">
             <div className="bg-[#080808] border border-white/10 rounded-xl p-4"><div className="text-white font-medium mb-1">Encryption at Rest</div><div className="text-gray-400 text-xs">AES-256</div></div>
@@ -673,7 +668,7 @@ const bundle = await xase.export({ recordId: record.id });
       {/* Final CTA */}
       <section id="final-cta" className="py-20 md:py-32 px-6 border-t border-white/5">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-light mb-4 tracking-tight">Build AI that regulators respect.</h2>
+          <h2 className="text-4xl md:text-5xl font-light mb-4 tracking-tight" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Build AI that regulators respect.</h2>
           <p className="text-gray-400 mb-8">Stop building internal audit tools. Use infrastructure designed for the age of AI accountability.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button onClick={() => { setSelectedPlan('Demo'); setBookOpen(true); }} className="w-full sm:w-auto h-12 px-8 rounded-lg bg-white text-black font-medium hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all">
@@ -695,7 +690,6 @@ const bundle = await xase.export({ recordId: record.id });
       <div className="fixed bottom-4 inset-x-4 md:hidden z-50 pb-[env(safe-area-inset-bottom)]">
         <div className="bg-black/90 backdrop-blur border border-white/10 rounded-full p-2 flex gap-2">
           <button onClick={() => { setSelectedPlan('Demo'); setBookOpen(true); }} className="flex-1 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 bg-white text-black text-sm font-medium hover:bg-gray-200">Get a demo <ArrowRight className="w-4 h-4" /></button>
-          <a href="/docs" className="flex-1 inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 bg-transparent text-white border border-white/10 text-sm hover:bg-white/10">Docs</a>
         </div>
       </div>
 
