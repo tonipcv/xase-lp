@@ -10,7 +10,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: 'Xase: The Evidence Layer for AI Agents',
+  title: 'Xase: Real-World Data For AI',
   description: "Turn automated decisions into immutable legal records. Don't just log what your AI did — prove why it was right.",
   keywords: [
     'evidence layer for ai',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     'healthcare compliance'
   ],
   openGraph: {
-    title: 'Xase — The Evidence Layer for AI Agents',
+    title: 'Xase: Real-World Data For AI',
     description: "Turn automated decisions into immutable legal records. Don't just log what your AI did — prove why it was right.",
     url: 'https://xase.com',
     siteName: 'XASE',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Xase — The Evidence Layer for AI Agents',
+    title: 'Xase: Real-World Data For AI',
     description: "Turn automated decisions into immutable legal records.",
     creator: '@xase',
     images: ['https://xase.com/twitter-image.jpg'],
@@ -88,7 +88,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>Xase — The Evidence Layer for AI Agents</title>
+        <title>Xase: Real-World Data For AI</title>
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#16181b" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />

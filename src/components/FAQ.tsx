@@ -8,15 +8,17 @@ interface FAQItem {
 }
 
 interface FAQProps {
-  items: FAQItem[];
+  items?: FAQItem[];
 }
 
 export default function FAQ({ items }: FAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+  const safeItems = items ?? [];
+
   return (
     <div className="space-y-4">
-      {items.map((item, index) => (
+      {safeItems.map((item, index) => (
         <div
           key={index}
           className="bg-[#1e2024]/50 backdrop-blur border border-[#2d2d2d] rounded-xl overflow-hidden"
