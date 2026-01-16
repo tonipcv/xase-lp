@@ -95,10 +95,43 @@ export default function Home() {
             The Data Holder defines policies. The AI Lab executes within them. Evidence is automatic.
           </p>
 
+          {/* Visual Flow */}
+          <div className="flex items-center justify-center mb-16 overflow-x-auto">
+            <div className="flex items-center gap-4 min-w-fit">
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-2 border border-white/15 bg-white/5">
+                  <span className="text-gray-200 font-mono text-sm">01</span>
+                </div>
+                <span className="text-xs text-gray-500 text-center">Data Holder<br />Creates Policy</span>
+              </div>
+              
+              <div className="hidden sm:block w-12 h-px bg-gradient-to-r from-gray-700 to-gray-500"></div>
+              
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-2 border border-white/15 bg-white/5">
+                  <span className="text-gray-200 font-mono text-sm">02</span>
+                </div>
+                <span className="text-xs text-gray-500 text-center">AI Lab<br />Requests Access</span>
+              </div>
+              
+              <div className="hidden sm:block w-12 h-px bg-gradient-to-r from-gray-700 to-gray-500"></div>
+              
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-2 border border-white/15 bg-white/5">
+                  <span className="text-gray-200 font-mono text-sm">03</span>
+                </div>
+                <span className="text-xs text-gray-500 text-center">Evidence<br />Generated</span>
+              </div>
+            </div>
+          </div>
+
           <div className="grid lg:grid-cols-3 gap-8 items-start">
             {/* Step 1 */}
-            <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
-              <div className="text-xs uppercase tracking-wider text-gray-500 mb-4">Step 1 • Data Holder</div>
+            <div className="bg-[#080808] border border-white/10 rounded-xl p-8 relative">
+              <div className="absolute -top-3 left-6 rounded-full w-6 h-6 flex items-center justify-center border border-white/25 bg-white/10">
+                <span className="text-gray-100 font-mono text-xs">01</span>
+              </div>
+              <div className="text-xs uppercase tracking-wider text-gray-500 mb-4 mt-2">Data Holder</div>
               <h3 className="text-xl font-medium mb-4 text-white" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Create Access Policy</h3>
               <div className="space-y-3 text-sm text-gray-400">
                 <div>Define who can access</div>
@@ -110,8 +143,11 @@ export default function Home() {
             </div>
 
             {/* Step 2 */}
-            <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
-              <div className="text-xs uppercase tracking-wider text-gray-500 mb-4">Step 2 • AI Lab</div>
+            <div className="bg-[#080808] border border-white/10 rounded-xl p-8 relative">
+              <div className="absolute -top-3 left-6 rounded-full w-6 h-6 flex items-center justify-center border border-white/25 bg-white/10">
+                <span className="text-gray-100 font-mono text-xs">02</span>
+              </div>
+              <div className="text-xs uppercase tracking-wider text-gray-500 mb-4 mt-2">AI Lab</div>
               <h3 className="text-xl font-medium mb-4 text-white" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Request Access</h3>
               <div className="space-y-3 text-sm text-gray-400">
                 <div>Authenticate with API key</div>
@@ -123,8 +159,11 @@ export default function Home() {
             </div>
 
             {/* Step 3 */}
-            <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
-              <div className="text-xs uppercase tracking-wider text-gray-500 mb-4">Step 3 • Evidence</div>
+            <div className="bg-[#080808] border border-white/10 rounded-xl p-8 relative">
+              <div className="absolute -top-3 left-6 rounded-full w-6 h-6 flex items-center justify-center border border-white/25 bg-white/10">
+                <span className="text-gray-100 font-mono text-xs">03</span>
+              </div>
+              <div className="text-xs uppercase tracking-wider text-gray-500 mb-4 mt-2">Evidence</div>
               <h3 className="text-xl font-medium mb-4 text-white" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Automatic Proof</h3>
               <div className="space-y-3 text-sm text-gray-400">
                 <div>Every access logged</div>
@@ -219,6 +258,86 @@ if access.granted:
                 <div><span className="text-white">3. Evidence Generation:</span> Every action cryptographically logged</div>
                 <div><span className="text-white">4. Automatic Compliance:</span> Audit trail generated in real-time</div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How AI Labs Use Data */}
+      <section className="py-20 md:py-32 px-6 border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-light text-center mb-4 tracking-tight" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>
+            AI Labs use real data for
+          </h2>
+          <p className="text-center text-gray-400 max-w-3xl mx-auto mb-16">
+            Access without downloads. Training without custody. Evidence without manual work.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
+              <h3 className="text-xl font-medium mb-4 text-white" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Model Evaluation</h3>
+              <div className="space-y-3 text-sm text-gray-400">
+                <div>Test models against real-world edge cases</div>
+                <div>Benchmark performance on actual user data</div>
+                <div>Validate accuracy before production</div>
+              </div>
+            </div>
+
+            <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
+              <h3 className="text-xl font-medium mb-4 text-white" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Domain Adaptation</h3>
+              <div className="space-y-3 text-sm text-gray-400">
+                <div>Fine-tune models for specific industries</div>
+                <div>Learn from domain-specific patterns</div>
+                <div>Adapt to regional or cultural contexts</div>
+              </div>
+            </div>
+
+            <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
+              <h3 className="text-xl font-medium mb-4 text-white" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Research & Development</h3>
+              <div className="space-y-3 text-sm text-gray-400">
+                <div>Experiment with novel architectures</div>
+                <div>Study failure modes and biases</div>
+                <div>Develop safety mechanisms</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Technical FAQ */}
+      <section className="py-20 md:py-32 px-6 border-t border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-light text-center mb-16 tracking-tight" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>
+            How it works
+          </h2>
+          
+          <div className="space-y-6">
+            <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
+              <h3 className="text-lg font-medium mb-3 text-white">If it's not a download, how does training happen?</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Your model executes within our secure environment. Data never leaves our infrastructure. You get gradients, weights, and results — not raw files.
+              </p>
+            </div>
+
+            <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
+              <h3 className="text-lg font-medium mb-3 text-white">What does my model actually receive?</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Processed data streams, embeddings, or API responses — whatever the policy allows. The data holder defines exactly what format and level of access you get.
+              </p>
+            </div>
+
+            <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
+              <h3 className="text-lg font-medium mb-3 text-white">How do I prove compliance to auditors?</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Every access generates cryptographic evidence bundles. Hand auditors a ZIP file with policy enforcement proof — no database access needed.
+              </p>
+            </div>
+
+            <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
+              <h3 className="text-lg font-medium mb-3 text-white">What's the economic model?</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Usage-based access. Data holders set price per hour, AI Labs pay to use, Xase facilitates settlement. No upfront costs, no minimums.
+              </p>
             </div>
           </div>
         </div>
