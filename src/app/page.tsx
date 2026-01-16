@@ -1,8 +1,12 @@
 'use client';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import Terminal from '../components/Terminal';
 import CodeBlock from '../components/CodeBlock';
 import BookCallModal from '../components/BookCallModal';
+import AnimatedText from '../components/AnimatedText';
+import GradientMesh from '../components/GradientMesh';
+import AnimatedTerminal from '../components/AnimatedTerminal';
 
 export default function Home() {
   const [bookOpen, setBookOpen] = useState(false);
@@ -24,42 +28,135 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
+      {/* Hero Section - EPIC VERSION */}
+      <section className="relative pt-32 pb-20 px-6 overflow-hidden">
+        {/* Animated Background Layers */}
+        <GradientMesh />
+        
+        <div className="max-w-7xl mx-auto flex flex-col items-center text-center relative z-10">
           
-          <h1 className="text-4xl sm:text-5xl md:text-8xl font-medium tracking-tighter bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent mb-8 leading-[1.12]" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>
-            Governed Access To<br />Real-World Data For AI
-          </h1>
+          {/* Animated Headline with Reveal */}
+          <AnimatedText 
+            text="Governed Access To Real-World Data For AI"
+            className="text-4xl sm:text-5xl md:text-8xl font-medium tracking-tighter bg-gradient-to-b from-white via-white to-white/50 bg-clip-text text-transparent mb-8 leading-[1.12]"
+          />
 
-          <p className="max-w-2xl text-lg md:text-xl text-gray-400 font-light leading-relaxed mb-10">
+          {/* Subtitle with fade-in */}
+          <motion.p 
+            className="max-w-2xl text-lg md:text-xl text-gray-400 font-light leading-relaxed mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+          >
             Use real data without legal risk, without loss of control, and without transferring ownership.
-          </p>
+          </motion.p>
 
-          <div className="hidden sm:flex gap-4 items-center mb-20">
-            <button onClick={() => { setSelectedPlan('Demo'); setBookOpen(true); }} className="h-12 px-8 rounded-lg bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all">
-              Get a demo
-            </button>
-          </div>
+          {/* CTA with magnetic hover effect */}
+          <motion.div 
+            className="hidden sm:flex gap-4 items-center mb-20"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
+          >
+            <motion.button 
+              onClick={() => { setSelectedPlan('Demo'); setBookOpen(true); }} 
+              className="group relative h-12 px-8 rounded-lg bg-white/5 border border-white/10 text-white font-medium overflow-hidden"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20"
+                initial={{ x: '-100%' }}
+                whileHover={{ x: '100%' }}
+                transition={{ duration: 0.6 }}
+              />
+              <span className="relative z-10">Get a demo</span>
+            </motion.button>
+          </motion.div>
 
           {/* Mobile CTA */}
-          <div className="sm:hidden mb-16 w-full flex items-center justify-center">
-            <button onClick={() => { setSelectedPlan('Demo'); setBookOpen(true); }} className="h-11 px-6 rounded-full bg-white/5 border border-white/10 text-white text-sm font-medium hover:bg-white/10 transition-all">
+          <motion.div 
+            className="sm:hidden mb-16 w-full flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2 }}
+          >
+            <button 
+              onClick={() => { setSelectedPlan('Demo'); setBookOpen(true); }} 
+              className="h-11 px-6 rounded-full bg-white/5 border border-white/10 text-white text-sm font-medium hover:bg-white/10 transition-all"
+            >
               Get a demo
             </button>
-          </div>
+          </motion.div>
 
-          {/* Terminal Showcase */}
-          <div className="w-full max-w-5xl relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-purple-600/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-1000"></div>
-            <div className="relative bg-[#080808] border border-white/10 rounded-xl overflow-hidden shadow-2xl">
-              <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/5 bg-white/5">
-                <div className="w-2.5 h-2.5 rounded-full bg-red-500/20 border border-red-500/50" />
-                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20 border border-yellow-500/50" />
-                <div className="w-2.5 h-2.5 rounded-full bg-green-500/20 border border-green-500/50" />
+          {/* Terminal Showcase - EPIC CRT VERSION */}
+          <motion.div 
+            className="w-full max-w-5xl relative group"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.6, duration: 1 }}
+          >
+            {/* Glow effect on hover */}
+            <motion.div 
+              className="absolute -inset-1 bg-gradient-to-r from-green-500/20 via-blue-500/20 to-purple-600/20 rounded-2xl blur-xl"
+              animate={{
+                opacity: [0.3, 0.5, 0.3],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+            
+            <div className="relative bg-[#0a0a0a] border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+              {/* Terminal Header with CRT aesthetic */}
+              <div className="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-gradient-to-r from-green-950/20 to-transparent">
+                <div className="flex items-center gap-1.5">
+                  <motion.div 
+                    className="w-2.5 h-2.5 rounded-full bg-red-500/40 border border-red-500/60"
+                    animate={{ opacity: [0.4, 1, 0.4] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                  <motion.div 
+                    className="w-2.5 h-2.5 rounded-full bg-yellow-500/40 border border-yellow-500/60"
+                    animate={{ opacity: [0.4, 1, 0.4] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
+                  />
+                  <motion.div 
+                    className="w-2.5 h-2.5 rounded-full bg-green-500/60 border border-green-500/80"
+                    animate={{ opacity: [0.6, 1, 0.6] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
+                  />
+                </div>
+                <div className="text-xs text-green-400/60 font-mono">xase-terminal v2.0</div>
               </div>
-              <div className="p-6">
-                <Terminal
+
+              {/* Terminal Content with CRT effects */}
+              <div className="relative p-6 bg-black/40">
+                {/* Matrix rain background effect */}
+                <div className="absolute inset-0 opacity-5 pointer-events-none">
+                  <div className="text-green-400 text-xs font-mono leading-tight overflow-hidden h-full">
+                    {Array.from({ length: 20 }).map((_, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ y: -100 }}
+                        animate={{ y: 600 }}
+                        transition={{
+                          duration: 10,
+                          repeat: Infinity,
+                          delay: i * 0.5,
+                          ease: 'linear',
+                        }}
+                      >
+                        {Math.random().toString(36).substring(7)}
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Animated Terminal */}
+                <AnimatedTerminal
                   lines={[
                     '$ xase access --dataset customer-calls-2024 --purpose training',
                     '',
@@ -73,14 +170,48 @@ export default function Home() {
                     'Session: sess_8a7f3b2c',
                     'Evidence recorded.'
                   ]}
-                  speed={50}
+                  speed={40}
                 />
               </div>
+
+              {/* CRT Screen Curvature Effect */}
+              <div 
+                className="absolute inset-0 pointer-events-none rounded-xl"
+                style={{
+                  background: 'radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.3) 100%)',
+                }}
+              />
             </div>
-          </div>
+          </motion.div>
 
           <div className="mt-12 text-sm text-gray-500">
             Policy-evaluated access • Cryptographic evidence • Zero ownership transfer
+          </div>
+        </div>
+      </section>
+
+      {/* Production Ready Banner */}
+      <section className="py-12 px-6 border-t border-white/5 bg-white/[0.02]">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-sm text-gray-300">Production Ready</span>
+            </div>
+            <div className="grid grid-cols-3 gap-8 text-center">
+              <div>
+                <div className="text-2xl font-light text-white mb-1">End-to-end</div>
+                <div className="text-xs text-gray-500">Policy enforcement + billing + evidence</div>
+              </div>
+              <div>
+                <div className="text-2xl font-light text-white mb-1">AI Labs</div>
+                <div className="text-xs text-gray-500">Complete testing environment</div>
+              </div>
+              <div>
+                <div className="text-2xl font-light text-white mb-1">Live metrics</div>
+                <div className="text-xs text-gray-500">Real-time usage & revenue tracking</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -177,6 +308,60 @@ export default function Home() {
         </div>
       </section>
 
+      {/* For Data Holders - Commercial Value */}
+      <section className="py-20 md:py-32 px-6 border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-light text-center mb-4 tracking-tight" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>
+            Turn idle data into revenue
+          </h2>
+          <p className="text-center text-gray-400 max-w-3xl mx-auto mb-16">
+            Data Holders monetize datasets without selling files. Set your price, define access rules, track usage in real-time.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
+              <div className="text-3xl font-light text-white mb-2">$X/hour</div>
+              <div className="text-sm font-medium text-gray-300 mb-3">You set the price</div>
+              <div className="text-sm text-gray-400">
+                Define cost per compute hour. AI Labs pay for usage, not ownership. Automatic billing and settlement.
+              </div>
+            </div>
+
+            <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
+              <div className="text-3xl font-light text-white mb-2">Live metrics</div>
+              <div className="text-sm font-medium text-gray-300 mb-3">Real-time dashboard</div>
+              <div className="text-sm text-gray-400">
+                Track active sessions, total usage hours, revenue per dataset, and access patterns as they happen.
+              </div>
+            </div>
+
+            <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
+              <div className="text-3xl font-light text-white mb-2">Take-rate</div>
+              <div className="text-sm font-medium text-gray-300 mb-3">Platform fee model</div>
+              <div className="text-sm text-gray-400">
+                Xase takes a percentage of each transaction. You keep control, we handle infrastructure and compliance.
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
+            <div className="text-lg font-medium text-white mb-4">What you get</div>
+            <div className="grid md:grid-cols-2 gap-6 text-sm text-gray-400">
+              <div className="space-y-3">
+                <div><span className="text-white">Revenue stream:</span> Monetize data you already own</div>
+                <div><span className="text-white">Zero risk:</span> No file transfers, no custody loss</div>
+                <div><span className="text-white">Full control:</span> Revoke access anytime, audit everything</div>
+              </div>
+              <div className="space-y-3">
+                <div><span className="text-white">Automatic billing:</span> Usage tracked to the second</div>
+                <div><span className="text-white">Compliance proof:</span> Every access logged and exportable</div>
+                <div><span className="text-white">Policy enforcement:</span> Runtime guarantees, not promises</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* The Problem */}
       <section id="problem" className="py-20 md:py-32 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
@@ -263,41 +448,202 @@ if access.granted:
         </div>
       </section>
 
-      {/* How AI Labs Use Data */}
+      {/* AI Labs Environment */}
       <section className="py-20 md:py-32 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-light text-center mb-4 tracking-tight" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>
-            AI Labs use real data for
+            Complete AI Labs environment
           </h2>
           <p className="text-center text-gray-400 max-w-3xl mx-auto mb-16">
-            Access without downloads. Training without custody. Evidence without manual work.
+            Test access policies, simulate workloads, export evidence — all before paying for production usage.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
             <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
-              <h3 className="text-xl font-medium mb-4 text-white" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Model Evaluation</h3>
+              <h3 className="text-xl font-medium mb-4 text-white" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Sandbox Testing</h3>
               <div className="space-y-3 text-sm text-gray-400">
-                <div>Test models against real-world edge cases</div>
-                <div>Benchmark performance on actual user data</div>
-                <div>Validate accuracy before production</div>
+                <div><span className="text-white">Free tier:</span> Test policies without consuming credits</div>
+                <div><span className="text-white">Policy simulation:</span> See what gets allowed or denied</div>
+                <div><span className="text-white">API playground:</span> Try access patterns before production</div>
+                <div><span className="text-white">Evidence preview:</span> Export sample bundles to verify format</div>
               </div>
             </div>
 
             <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
-              <h3 className="text-xl font-medium mb-4 text-white" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Domain Adaptation</h3>
+              <h3 className="text-xl font-medium mb-4 text-white" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Production Workflow</h3>
               <div className="space-y-3 text-sm text-gray-400">
-                <div>Fine-tune models for specific industries</div>
-                <div>Learn from domain-specific patterns</div>
-                <div>Adapt to regional or cultural contexts</div>
+                <div><span className="text-white">Authenticate:</span> API key-based access control</div>
+                <div><span className="text-white">Request access:</span> Specify purpose and duration</div>
+                <div><span className="text-white">Execute:</span> Run models in secure environment</div>
+                <div><span className="text-white">Track usage:</span> Real-time billing and metrics</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
+            <div className="text-lg font-medium text-white mb-4">Use cases</div>
+            <div className="grid md:grid-cols-3 gap-6 text-sm text-gray-400">
+              <div>
+                <div className="text-white mb-2">Model Evaluation</div>
+                <div>Test against real-world edge cases, benchmark on actual user data, validate before production</div>
+              </div>
+              <div>
+                <div className="text-white mb-2">Domain Adaptation</div>
+                <div>Fine-tune for specific industries, learn domain patterns, adapt to regional contexts</div>
+              </div>
+              <div>
+                <div className="text-white mb-2">Research & Development</div>
+                <div>Experiment with architectures, study failure modes, develop safety mechanisms</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Evidence Bundles Detail */}
+      <section className="py-20 md:py-32 px-6 border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-light text-center mb-4 tracking-tight" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>
+            Evidence bundles explained
+          </h2>
+          <p className="text-center text-gray-400 max-w-3xl mx-auto mb-16">
+            Not just logs. Cryptographically signed, offline-verifiable proof of policy enforcement.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
+              <h3 className="text-xl font-medium mb-4 text-white" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>What's inside</h3>
+              <div className="space-y-3 text-sm text-gray-400">
+                <div><span className="text-white">Policy snapshot:</span> Exact rules that were enforced</div>
+                <div><span className="text-white">Access records:</span> Who, when, what, why — timestamped</div>
+                <div><span className="text-white">Denials logged:</span> Every rejected request with reason</div>
+                <div><span className="text-white">Cryptographic signatures:</span> Tamper-proof chain of custody</div>
+                <div><span className="text-white">Audit metadata:</span> Environment, versions, checksums</div>
               </div>
             </div>
 
             <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
-              <h3 className="text-xl font-medium mb-4 text-white" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Research & Development</h3>
+              <h3 className="text-xl font-medium mb-4 text-white" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Why it matters</h3>
               <div className="space-y-3 text-sm text-gray-400">
-                <div>Experiment with novel architectures</div>
-                <div>Study failure modes and biases</div>
-                <div>Develop safety mechanisms</div>
+                <div><span className="text-white">Court-admissible:</span> Designed for legal proceedings</div>
+                <div><span className="text-white">Offline verifiable:</span> No database access needed</div>
+                <div><span className="text-white">Compliance ready:</span> GDPR, SOC2, industry standards</div>
+                <div><span className="text-white">Export anytime:</span> ZIP file with all proofs</div>
+                <div><span className="text-white">Third-party auditable:</span> Hand to regulators directly</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-white/5 to-white/[0.02] border border-white/10 rounded-xl p-8">
+            <div className="flex items-start gap-4">
+              <div className="mt-1 w-8 h-8 rounded-full border border-white/20 bg-white/5 flex items-center justify-center">
+                <div className="w-3 h-3 rounded-full bg-white/40" />
+              </div>
+              <div>
+                <div className="text-white font-medium mb-2">Difference from simple logs</div>
+                <div className="text-sm text-gray-400">
+                  Traditional logs can be edited, deleted, or lost. Evidence bundles are cryptographically signed at generation time, 
+                  include the complete policy context, and provide offline verification. You can prove compliance without giving auditors 
+                  database access or trusting a third party's word.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Industry Use Cases */}
+      <section className="py-20 md:py-32 px-6 border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-light text-center mb-4 tracking-tight" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>
+            Real-world applications
+          </h2>
+          <p className="text-center text-gray-400 max-w-3xl mx-auto mb-16">
+            Production deployments across regulated industries where data governance is non-negotiable.
+          </p>
+
+          <div className="space-y-8">
+            <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
+              <div className="flex items-start gap-6">
+                <div className="mt-1 w-8 h-8 rounded-full border border-white/20 bg-white/5 flex items-center justify-center">
+                  <div className="w-3 h-3 rounded-full bg-white/40" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-medium text-white mb-3" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Healthcare & Medical AI</h3>
+                  <div className="text-sm text-gray-400 mb-4">
+                    Hospital network monetizes de-identified patient records for AI research. Research labs access data for model training without HIPAA violations.
+                  </div>
+                  <div className="grid md:grid-cols-3 gap-4 text-xs">
+                    <div>
+                      <div className="text-white mb-1">Policy example</div>
+                      <div className="text-gray-500">Purpose: medical research only. Duration: 90 days. Cost: $500/hour. No PII export.</div>
+                    </div>
+                    <div>
+                      <div className="text-white mb-1">Evidence generated</div>
+                      <div className="text-gray-500">Every query logged, access timestamps, denied requests, audit trail for compliance officers.</div>
+                    </div>
+                    <div>
+                      <div className="text-white mb-1">Revenue impact</div>
+                      <div className="text-gray-500">$45K/month from 3 research partners. Zero legal incidents. Full audit trail.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
+              <div className="flex items-start gap-6">
+                <div className="mt-1 w-8 h-8 rounded-full border border-white/20 bg-white/5 flex items-center justify-center">
+                  <div className="w-3 h-3 rounded-full bg-white/40" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-medium text-white mb-3" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Financial Services & Fraud Detection</h3>
+                  <div className="text-sm text-gray-400 mb-4">
+                    Bank provides transaction data to fintech for fraud model training. Data never leaves secure environment. Every access logged for regulators.
+                  </div>
+                  <div className="grid md:grid-cols-3 gap-4 text-xs">
+                    <div>
+                      <div className="text-white mb-1">Policy example</div>
+                      <div className="text-gray-500">Purpose: fraud detection. Duration: 6 months. Cost: $1000/hour. No customer data export.</div>
+                    </div>
+                    <div>
+                      <div className="text-white mb-1">Evidence generated</div>
+                      <div className="text-gray-500">Model training runs, feature extraction logs, compliance reports for SOC2 and PCI-DSS audits.</div>
+                    </div>
+                    <div>
+                      <div className="text-white mb-1">Revenue impact</div>
+                      <div className="text-gray-500">$120K/month from 2 fintech partners. Regulator-approved evidence bundles. Zero breaches.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-[#080808] border border-white/10 rounded-xl p-8">
+              <div className="flex items-start gap-6">
+                <div className="mt-1 w-8 h-8 rounded-full border border-white/20 bg-white/5 flex items-center justify-center">
+                  <div className="w-3 h-3 rounded-full bg-white/40" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-medium text-white mb-3" style={{ fontFamily: 'var(--font-canela), Canela, ui-serif, serif' }}>Call Centers & Voice AI</h3>
+                  <div className="text-sm text-gray-400 mb-4">
+                    Enterprise call center licenses conversation data to voice AI startups. Models train on real customer interactions with full consent tracking.
+                  </div>
+                  <div className="grid md:grid-cols-3 gap-4 text-xs">
+                    <div>
+                      <div className="text-white mb-1">Policy example</div>
+                      <div className="text-gray-500">Purpose: voice model training. Duration: 12 months. Cost: $300/hour. Anonymized transcripts only.</div>
+                    </div>
+                    <div>
+                      <div className="text-white mb-1">Evidence generated</div>
+                      <div className="text-gray-500">Training session logs, data access patterns, consent verification records, GDPR compliance proof.</div>
+                    </div>
+                    <div>
+                      <div className="text-white mb-1">Revenue impact</div>
+                      <div className="text-gray-500">$36K/month from 4 AI labs. Automated billing. Legal approved all evidence bundles.</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
