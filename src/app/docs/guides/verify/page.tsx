@@ -1,77 +1,89 @@
 'use client';
-import CodeBlock from '../../../../components/docs/CodeBlock';
-import { useDocsTheme } from '../../ThemeContext';
+
 import DocsContent from '../../../../components/docs/DocsContent';
+import CodeBlock from '../../../../components/docs/CodeBlock';
 import Callout from '../../../../components/docs/Callout';
 
-export default function GuideVerifyPage() {
+export default function VerifyGuidePage() {
   const offline = `# Extract the bundle
 unzip evidence_bundle.zip
-cd evidence_bundle
 
 # Run verification
+chmod +x verify.sh
 ./verify.sh
 
 # Expected output:
-# ✓ Checking signature... Valid (RSA-SHA256)
-# ✓ Checking hash chain... Intact (block 847 of 12,847)
-# ✓ Checking timestamps... Consistent
-# ✓ Checking model registry... Hash matches credit-scoring-v4.2.1
-# 
+# ✓ Signature valid
+# ✓ Manifest hashes match
+# ✓ Hash chain intact
+# ✓ Timestamps consistent
 # RESULT: Evidence bundle is AUTHENTIC`;
 
-  const whatVerified = `Check             What It Proves
-Signature         Bundle was signed by XASE KMS, not modified after
-Hash Chain        This record links to previous/next records correctly
-Timestamps        Decision and intervention times are consistent
-Model Hash        Model version matches registered model card
-Actor Identity    Human reviewer's identity is cryptographically bound`;
+  const whatVerified = `Check             What it proves
+Signature         Bundle was signed and not modified after issuance
+Manifest          Files match declared hashes in the bundle manifest
+Hash chain        Session/record chain pointers are consistent
+Timestamps        Evidence timestamps are consistent and ordered`;
 
-  const manual = `# 1) Verify Signature (manual)
+  const manual = `# 1) Verify signature (manual)
 openssl x509 -in certificate.pem -pubkey -noout > pubkey.pem
-openssl dgst -sha256 -verify pubkey.pem -signature signature.sig decision.json
+openssl dgst -sha256 -verify pubkey.pem -signature signatures/bundle.sig manifest.json
 # Output: Verified OK
 
-# 2) Verify Record Hash
+# 2) Verify manifest hashes
 python3 - <<'PY'
-import hashlib, json
-with open('decision.json') as f:
-  decision = json.load(f)
-record_hash = hashlib.sha256(
-  json.dumps(decision, sort_keys=True).encode()
-).hexdigest()
-assert record_hash == decision['hash']
-print('Hash OK')
-PY
-
-# 3) Verify Timestamps
-python3 - <<'PY'
-from datetime import datetime
-import json
-with open('decision.json') as f:
-  decision = json.load(f)
-with open('intervention.json') as f:
-  intervention = json.load(f)
-assert datetime.fromisoformat(intervention['signed_at']) > datetime.fromisoformat(decision['created_at'])
-print('Timestamps OK')
+import hashlib, json, pathlib
+manifest = json.loads(pathlib.Path('manifest.json').read_text())
+for entry in manifest['files']:
+  p = pathlib.Path(entry['path'])
+  digest = hashlib.sha256(p.read_bytes()).hexdigest()
+  assert digest == entry['sha256'], (entry['path'], 'hash mismatch')
+print('Manifest OK')
 PY`;
 
   return (
     <DocsContent>
-      <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
-        <h1 className="text-4xl font-light tracking-tight mb-2">Guide: Verifying Bundles</h1>
-        <p className="text-lg text-gray-400 mb-8">Verify a XASE evidence bundle offline. Auditors can validate integrity in air-gapped environments.</p>
+      <div className="mb-16">
+        <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] leading-tight mb-6">
+          Verification
+        </h1>
+        <p className="text-[16px] text-neutral-400 leading-relaxed max-w-2xl mb-8">
+          Verify evidence bundles offline. Auditors can validate integrity in air-gapped environments.
+        </p>
+      </div>
 
-        <h2 className="text-2xl font-light mt-8 mb-3">Offline Verification</h2>
+      <section className="mb-16">
+        <h2 className="text-[13px] font-medium text-neutral-500 uppercase tracking-wider mb-8">
+          Offline verification
+        </h2>
         <CodeBlock language="bash" filename="verify.sh" code={offline} />
+        <div className="mt-4">
+          <Callout type="tip">
+            Offline verification requires no API calls and no dependency on Xase infrastructure.
+          </Callout>
+        </div>
+      </section>
 
-        <h2 className="text-2xl font-light mt-8 mb-3">What Gets Verified</h2>
+      <section className="mb-16">
+        <h2 className="text-[13px] font-medium text-neutral-500 uppercase tracking-wider mb-8">
+          What gets verified
+        </h2>
         <CodeBlock language="text" code={whatVerified} />
-        <Callout type="info">Public key/certificates and chain proofs are included in the bundle.</Callout>
+      </section>
 
-        <h2 className="text-2xl font-light mt-8 mb-3">Manual Verification (Advanced)</h2>
+      <section className="mb-16">
+        <h2 className="text-[13px] font-medium text-neutral-500 uppercase tracking-wider mb-8">
+          Manual verification (advanced)
+        </h2>
         <CodeBlock language="bash" code={manual} />
-      </main>
+      </section>
+
+      <div className="mt-20 pt-8 border-t border-neutral-800/50 flex items-center justify-between text-[13px] text-neutral-600">
+        <span>© 2025 Xase</span>
+        <a href="mailto:founders@xase.ai" className="hover:text-neutral-400 transition-colors">
+          founders@xase.ai
+        </a>
+      </div>
     </DocsContent>
   );
 }

@@ -1,6 +1,5 @@
 'use client';
 import Tabs from '../../../components/docs/Tabs';
-import { useDocsTheme } from '../ThemeContext';
 import DocsContent from '../../../components/docs/DocsContent';
 import CodeBlock from '../../../components/docs/CodeBlock';
 import Callout from '../../../components/docs/Callout';
@@ -13,138 +12,217 @@ yarn add @xase/sdk
 # or
 pnpm add @xase/sdk`;
   const goInstall = `go get github.com/xase-ai/xase-go`;
-  const curlCreate = `curl -X POST https://api.xase.ai/v1/records \
+  const curlAccess = `curl -X POST https://api.xase.ai/v1/access \
   -H "Authorization: Bearer xase_pk_..." \
   -H "Content-Type: application/json" \
   -d '{
-    "model_id": "credit-model-v1",
-    "input": {"customer_id": "cust_123", "income": 85000},
-    "output": {"decision": "APPROVED", "limit": 25000},
-    "confidence": 0.94
+    "dataset_id": "medical-records-2025",
+    "purpose": "model-training",
+    "model_id": "diagnostic-model-v2",
+    "duration": "30d"
   }'`;
 
-  const pythonFirstRecord = `import xase
+  const pythonAccess = `import xase
 
 client = xase.Client(api_key="xase_pk_...")
 
-record = client.records.create(
-    model_id="credit-model-v1",
-    input={"customer_id": "cust_123", "income": 85000},
-    output={"decision": "APPROVED", "limit": 25000},
-    confidence=0.94
+# Request access to data
+session = client.access(
+    dataset="medical-records-2025",
+    purpose="model-training",
+    model_id="diagnostic-model-v2",
+    duration="30d"
 )
 
-print(f"Recorded: {record.id}")`;
+print(f"Access granted! Session ID: {session.id}")`;
 
-  const nodeFirstRecord = `import { Xase } from '@xase/sdk';
+  const nodeAccess = `import { Xase } from '@xase/sdk';
 
 const xase = new Xase({ apiKey: 'xase_pk_...' });
 
-const record = await xase.records.create({
-  modelId: 'credit-model-v1',
-  input: { customerId: 'cust_123', income: 85000 },
-  output: { decision: 'APPROVED', limit: 25000 },
-  confidence: 0.94
+// Request access to data
+const session = await xase.access({
+  dataset: 'medical-records-2025',
+  purpose: 'model-training',
+  modelId: 'diagnostic-model-v2',
+  duration: '30d'
 });
 
-console.log('Recorded:', record.id);`;
+console.log('Access granted! Session ID:', session.id);`;
 
-  const curlIntervene = `curl -X POST https://api.xase.ai/v1/records/rec_8a7f3b2c/intervene \
-  -H "Authorization: Bearer xase_pk_..." \
-  -H "Content-Type: application/json" \
-  -d '{
-    "actor_email": "analyst@company.com",
-    "action": "APPROVED",
-    "reason": "Documentation verified manually"
-  }'`;
+  const pythonStream = `# Stream data in batches
+for batch in session.stream(batch_size=32):
+    # Train your model
+    model.train_on_batch(batch)
+    
+    # All operations automatically tracked`;
 
-  const pythonExport = `bundle = client.exports.create(record_id=record.id)
-# Download the ZIP file
+  const nodeStream = `// Stream data in batches
+for await (const batch of session.stream({ batchSize: 32 })) {
+  // Train your model
+  await model.trainOnBatch(batch);
+  
+  // All operations automatically tracked
+}`;
+
+  const pythonEvidence = `# Get evidence bundle for session
+bundle = session.get_evidence()
+
+# Download the bundle
 bundle.download("./evidence_bundle.zip")`;
-  const nodeExport = `const bundle = await xase.exports.create({ recordId: record.id });
+  const nodeEvidence = `// Get evidence bundle for session
+const bundle = await session.getEvidence();
+
+// Download the bundle
 await bundle.download('./evidence_bundle.zip');`;
 
   return (
     <DocsContent>
-      <main className="flex-1 w-full md:w-auto px-4 md:px-12 py-6 md:py-10 max-w-full md:max-w-[900px]">
-        <h1 className="text-3xl md:text-4xl font-light tracking-tight mb-2">Quickstart</h1>
-        <p className="text-base md:text-lg text-gray-400 mb-6">Record your first AI decision in 5 minutes.</p>
-
-        <h2 className="text-xl md:text-2xl font-light mt-6 md:mt-8 mb-3">1. Get Your API Key</h2>
-        <ol className="list-decimal list-inside text-gray-300 space-y-1">
-          <li>Go to dashboard.xase.ai</li>
-          <li>Create an account (free tier available)</li>
-          <li>Navigate to <span className="text-gray-400">Settings → API Keys</span></li>
-          <li>Click <span className="text-gray-400">Create API Key</span></li>
-          <li>Copy the key (starts with <span className="text-gray-500">xase_pk_...</span>)</li>
-        </ol>
-        <Callout type="warning">Store your API key securely. It won't be shown again.</Callout>
-
-        <h2 className="text-xl md:text-2xl font-light mt-6 md:mt-8 mb-3">2. Install SDK</h2>
-        <Tabs
-          tabs={[
-            { title: 'Python', content: <CodeBlock language="bash" code={pythonInstall} /> },
-            { title: 'Node.js', content: <CodeBlock language="bash" code={nodeInstall} /> },
-            { title: 'Go', content: <CodeBlock language="bash" code={goInstall} /> },
-            { title: 'cURL', content: <CodeBlock language="bash" code={curlCreate} /> },
-          ]}
-        />
-
-        <h2 className="text-xl md:text-2xl font-light mt-6 md:mt-8 mb-3">2.1 Use the CLI (optional)</h2>
-        <CodeBlock
-          language="bash"
-          code={`npm i -g xase
-xase --help
-
-# point to production API
-xase config set baseUrl https://api.xase.ai/api/xase/v1
-
-# authenticate and run a quick check
-xase auth login
-xase metrics summary`}
-        />
-        <p className="text-sm text-gray-500 mt-2">
-          Prefer commands? See the full guide: <a className="underline" href="/docs/guides/cli">CLI</a>
+      <div className="mb-16">
+        <h1 className="text-[32px] md:text-[40px] font-medium tracking-[-0.02em] leading-tight mb-6">
+          Quickstart
+        </h1>
+        <p className="text-[16px] text-neutral-400 leading-relaxed max-w-2xl mb-8">
+          Get started with governed data access in 5 minutes.
         </p>
 
-        <h2 className="text-xl md:text-2xl font-light mt-6 md:mt-8 mb-3">3. Record a Decision</h2>
-        <Tabs
-          tabs={[
-            { title: 'Python', content: <CodeBlock language="python" filename="first.py" code={pythonFirstRecord} /> },
-            { title: 'Node.js', content: <CodeBlock language="typescript" filename="first.ts" code={nodeFirstRecord} /> },
-            { title: 'cURL', content: <CodeBlock language="bash" code={curlCreate} /> },
-          ]}
-        />
+        <section className="mb-16">
+          <h2 className="text-[13px] font-medium text-neutral-500 uppercase tracking-wider mb-8">
+            Get started
+          </h2>
+          
+          <h3 className="text-[17px] font-medium text-white mb-3">1. Get Your API Key</h3>
+          <ol className="list-decimal list-inside text-neutral-400 space-y-1 ml-4">
+            <li>Go to dashboard.xase.ai</li>
+            <li>Create an account (free tier available)</li>
+            <li>Navigate to <span className="text-white">Settings → API Keys</span></li>
+            <li>Click <span className="text-white">Create API Key</span></li>
+            <li>Copy the key (starts with <span className="text-neutral-600">xase_pk_...</span>)</li>
+          </ol>
+          <div className="mt-4 p-4 border border-amber-800/30 bg-amber-900/10 rounded-lg">
+            <p className="text-[14px] text-neutral-400">
+              <strong className="text-amber-300">Warning:</strong> Store your API key securely. It won't be shown again.
+            </p>
+          </div>
 
-        <h2 className="text-xl md:text-2xl font-light mt-6 md:mt-8 mb-3">4. Record Human Intervention</h2>
-        <Tabs
-          tabs={[
-            { title: 'cURL', content: <CodeBlock language="bash" code={curlIntervene} /> },
-          ]}
-        />
+        </section>
+        
+        <section className="mb-16">
+          <h2 className="text-[13px] font-medium text-neutral-500 uppercase tracking-wider mb-8">
+            Installation
+          </h2>
+        
+          <h3 className="text-[17px] font-medium text-white mb-3">2. Install SDK</h3>
+          <Tabs
+            tabs={[
+              { title: 'Python', content: <CodeBlock language="bash" code={pythonInstall} /> },
+              { title: 'Node.js', content: <CodeBlock language="bash" code={nodeInstall} /> },
+              { title: 'Go', content: <CodeBlock language="bash" code={goInstall} /> },
+            ]}
+          />
 
-        <h2 className="text-xl md:text-2xl font-light mt-6 md:mt-8 mb-3">5. Export Evidence Bundle</h2>
-        <Tabs
-          tabs={[
-            { title: 'Python', content: <CodeBlock language="python" filename="export.py" code={pythonExport} /> },
-            { title: 'Node.js', content: <CodeBlock language="typescript" filename="export.ts" code={nodeExport} /> },
-          ]}
-        />
+        </section>
+        
+        <section className="mb-16">
+          <h2 className="text-[13px] font-medium text-neutral-500 uppercase tracking-wider mb-8">
+            Request access to data
+          </h2>
+        
+          <h3 className="text-[17px] font-medium text-white mb-3">3. Request Governed Access</h3>
+          <p className="text-[14px] text-neutral-500 leading-relaxed mb-4">
+            Create an access session with specified purpose and duration:
+          </p>
 
-        <h2 className="text-xl md:text-2xl font-light mt-6 md:mt-8 mb-3">6. Verify the Bundle (Offline)</h2>
-        <CodeBlock language="bash" code={`unzip evidence_bundle.zip\n./verify.sh\n\n# ✓ Signature valid\n# ✓ Hash chain intact\n# ✓ Timestamps consistent\n# RESULT: Evidence is authentic`} />
+          <Tabs
+            tabs={[
+              { title: 'Python', content: <CodeBlock language="python" filename="access.py" code={pythonAccess} /> },
+              { title: 'Node.js', content: <CodeBlock language="typescript" filename="access.ts" code={nodeAccess} /> },
+              { title: 'cURL', content: <CodeBlock language="bash" code={curlAccess} /> },
+            ]}
+          />
+          
+          <p className="text-[14px] text-neutral-500 mt-4 leading-relaxed">
+            Policy evaluation happens automatically. If approved, a session is created. If rejected, an error with the specific policy violation is returned.
+          </p>
 
-        <div className="mt-8 md:mt-10 grid md:grid-cols-2 gap-3">
-          <a href="/docs/concepts" className="p-4 bg-[#080808] border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-            <div className="text-white text-sm md:text-base">Core Concepts</div>
-            <div className="text-xs md:text-sm text-gray-500">Understand the architecture</div>
-          </a>
-          <a href="/docs/sdk/python" className="p-4 bg-[#080808] border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-            <div className="text-white text-sm md:text-base">Python SDK</div>
-            <div className="text-xs md:text-sm text-gray-500">Full installation guide</div>
+        </section>
+        
+        <section className="mb-16">
+          <h2 className="text-[13px] font-medium text-neutral-500 uppercase tracking-wider mb-8">
+            Use the data
+          </h2>
+          
+          <h3 className="text-[17px] font-medium text-white mb-3">4. Stream Data</h3>
+          <p className="text-[14px] text-neutral-500 leading-relaxed mb-4">
+            Access and process data through the session interface:
+          </p>
+          
+          <Tabs
+            tabs={[
+              { title: 'Python', content: <CodeBlock language="python" filename="stream.py" code={pythonStream} /> },
+              { title: 'Node.js', content: <CodeBlock language="typescript" filename="stream.ts" code={nodeStream} /> },
+            ]}
+          />
+
+        </section>
+        
+        <section className="mb-16">
+          <h2 className="text-[13px] font-medium text-neutral-500 uppercase tracking-wider mb-8">
+            Generate evidence
+          </h2>
+        
+          <h3 className="text-[17px] font-medium text-white mb-3">5. Get Evidence Bundle</h3>
+          <p className="text-[14px] text-neutral-500 leading-relaxed mb-4">
+            Generate cryptographic proof of compliant data use:
+          </p>
+          
+          <Tabs
+            tabs={[
+              { title: 'Python', content: <CodeBlock language="python" filename="evidence.py" code={pythonEvidence} /> },
+              { title: 'Node.js', content: <CodeBlock language="typescript" filename="evidence.ts" code={nodeEvidence} /> },
+            ]}
+          />
+
+        </section>
+        
+        <section className="mb-16">
+          <h2 className="text-[13px] font-medium text-neutral-500 uppercase tracking-wider mb-8">
+            Verify evidence
+          </h2>
+        
+          <h3 className="text-[17px] font-medium text-white mb-3">6. Verify the Bundle (Offline)</h3>
+          <p className="text-[14px] text-neutral-500 leading-relaxed mb-4">
+            Verify the evidence bundle without depending on Xase infrastructure:
+          </p>
+          
+          <CodeBlock language="bash" code={`unzip evidence_bundle.zip\n./verify.sh\n\n# ✓ Signature valid\n# ✓ Hash chain intact\n# ✓ Timestamps consistent\n# RESULT: Evidence is authentic`} />
+        </section>
+
+        <section>
+          <h2 className="text-[13px] font-medium text-neutral-500 uppercase tracking-wider mb-6">
+            Next steps
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-4">
+            <a href="/docs/concepts" className="p-4 border border-neutral-800 rounded-lg hover:bg-white/[0.02] transition-colors">
+              <div className="text-[15px] font-medium text-white mb-1">Core Concepts</div>
+              <div className="text-[14px] text-neutral-600">Understand the architecture</div>
+            </a>
+            <a href="/docs/guides/policy" className="p-4 border border-neutral-800 rounded-lg hover:bg-white/[0.02] transition-colors">
+              <div className="text-[15px] font-medium text-white mb-1">Policy Engine</div>
+              <div className="text-[14px] text-neutral-600">Configure governed access</div>
+            </a>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <div className="mt-20 pt-8 border-t border-neutral-800/50 flex items-center justify-between text-[13px] text-neutral-600">
+          <span>© 2025 Xase</span>
+          <a href="mailto:founders@xase.ai" className="hover:text-neutral-400 transition-colors">
+            founders@xase.ai
           </a>
         </div>
-      </main>
+      </div>
     </DocsContent>
   );
 }

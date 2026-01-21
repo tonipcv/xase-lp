@@ -13,10 +13,14 @@ datasource db {
 model Lead {
   id        String        @id @default(cuid())
   name      String
-  whatsapp  String
+  whatsapp  String?
   email     String
-  segment   String
-  budget    String
+  segment   String?
+  budget    String?
+  company   String?
+  role      String?
+  dataType  String?
+  source    String?
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt
   messages  ChatMessage[]
