@@ -45,7 +45,7 @@ export default function BookCallForm({ redirectUrl, plan }: Props) {
         if (plan) notes.push(`Plan: ${plan}`);
         if (notes.length > 0) params.set('notes', notes.join(' | '));
 
-        const url = new URL(redirectUrl);
+        const url = new URL(redirectUrl, window.location.origin);
         params.forEach((value, key) => {
           url.searchParams.set(key, value);
         });

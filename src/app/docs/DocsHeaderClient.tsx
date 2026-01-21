@@ -19,7 +19,7 @@ export default function DocsHeaderClient() {
         isOpen={bookOpen}
         onClose={() => setBookOpen(false)}
         plan="Demo"
-        redirectUrl="/"
+        redirectUrl="https://app.cal.eu/xaseai/30min?overlayCalendar=true"
       />
     </>
   );
