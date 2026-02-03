@@ -22,3 +22,20 @@ body {
   font-family: var(--font-montserrat);
   font-weight: 300;
 }
+
+/* Light theme defaults for form controls */
+input, select, textarea {
+  background-color: #ffffff;
+  color: #111827; /* neutral-900 */
+}
+
+/* Fix for Safari/Chrome autofill forcing dark backgrounds */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+select:-webkit-autofill,
+textarea:-webkit-autofill {
+  -webkit-text-fill-color: #111827;
+  transition: background-color 9999s ease-in-out 0s;
+  box-shadow: 0 0 0px 1000px #ffffff inset;
+}

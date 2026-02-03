@@ -90,7 +90,7 @@ export default function RootLayout({
       <head>
         <title>Xase: Real-World Data For AI</title>
         <link rel="manifest" href="/site.webmanifest" />
-        <meta name="theme-color" content="#16181b" />
+        <meta name="theme-color" content="#ffffff" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <JsonLd

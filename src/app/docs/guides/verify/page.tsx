@@ -58,9 +58,7 @@ PY`;
         </h2>
         <CodeBlock language="bash" filename="verify.sh" code={offline} />
         <div className="mt-4">
-          <Callout type="tip">
-            Offline verification requires no API calls and no dependency on Xase infrastructure.
-          </Callout>
+          <Callout type="tip">Offline verification requires no API calls and no dependency on Xase infrastructure.</Callout>
         </div>
       </section>
 

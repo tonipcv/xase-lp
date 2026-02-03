@@ -65,7 +65,7 @@ export default function BookCallForm({ redirectUrl, plan }: Props) {
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full rounded-lg bg-black border border-neutral-700 px-3 py-2.5 text-[14px] text-white placeholder:text-neutral-600 focus:outline-none focus:border-neutral-500 transition-colors"
+          className="w-full rounded-lg bg-white border border-neutral-300 px-3 py-2.5 text-[14px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-400 transition-colors"
           required
         />
         <input
@@ -73,7 +73,7 @@ export default function BookCallForm({ redirectUrl, plan }: Props) {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-lg bg-black border border-neutral-700 px-3 py-2.5 text-[14px] text-white placeholder:text-neutral-600 focus:outline-none focus:border-neutral-500 transition-colors"
+          className="w-full rounded-lg bg-white border border-neutral-300 px-3 py-2.5 text-[14px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-400 transition-colors"
           required
         />
       </div>
@@ -82,13 +82,13 @@ export default function BookCallForm({ redirectUrl, plan }: Props) {
         placeholder="Company"
         value={company}
         onChange={(e) => setCompany(e.target.value)}
-        className="w-full rounded-lg bg-black border border-neutral-700 px-3 py-2.5 text-[14px] text-white placeholder:text-neutral-600 focus:outline-none focus:border-neutral-500 transition-colors"
+        className="w-full rounded-lg bg-white border border-neutral-300 px-3 py-2.5 text-[14px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-400 transition-colors"
         required
       />
       <select
         value={role}
         onChange={(e) => setRole(e.target.value)}
-        className="w-full rounded-lg bg-black border border-neutral-700 px-3 py-2.5 text-[14px] text-white focus:outline-none focus:border-neutral-500 transition-colors"
+        className="w-full rounded-lg bg-white border border-neutral-300 px-3 py-2.5 text-[14px] text-neutral-900 focus:outline-none focus:border-neutral-400 transition-colors"
         required
       >
         <option value="" disabled>I'm a...</option>
@@ -101,12 +101,12 @@ export default function BookCallForm({ redirectUrl, plan }: Props) {
         placeholder="What type of data? (optional)"
         value={dataType}
         onChange={(e) => setDataType(e.target.value)}
-        className="w-full rounded-lg bg-black border border-neutral-700 px-3 py-2.5 text-[14px] text-white placeholder:text-neutral-600 focus:outline-none focus:border-neutral-500 transition-colors"
+        className="w-full rounded-lg bg-white border border-neutral-300 px-3 py-2.5 text-[14px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-400 transition-colors"
       />
       <button
         type="submit"
         disabled={submitting}
-        className="w-full mt-4 h-11 rounded-lg bg-white text-black text-[14px] font-medium hover:bg-neutral-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="w-full mt-4 h-11 rounded-lg bg-black text-white text-[14px] font-medium hover:bg-neutral-900 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
       >
         {submitting ? 'Submitting...' : 'Request demo'}
       </button>

@@ -194,5 +194,5 @@ export default function PricingPage() {
         redirectUrl="https://app.cal.eu/xaseai/30min?overlayCalendar=true"
       />
     </main>
-  );
+  );√
 }
