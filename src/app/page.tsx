@@ -22,72 +22,34 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Manifesto hero (minimal, wiki/arXiv vibe) */}
+      {/* Manifesto hero (minimal prose) */}
       <section className="pt-36 pb-16 px-6">
         <div className="max-w-2xl mx-auto">
-          <p className="text-[14px] text-neutral-600 mb-5">To those building AI that matters,</p>
-          <h1 className="text-[34px] md:text-[40px] font-medium tracking-[-0.02em] leading-[1.15] text-neutral-900 mb-6">
-            What will make AI capable of curing cancer?
-          </h1>
-          <p className="text-[18px] text-neutral-900 leading-relaxed mb-2">Not bigger models.</p>
-          <p className="text-[18px] text-neutral-900 leading-relaxed mb-4">Not more scraped text.</p>
-          <p className="text-[20px] text-neutral-900 leading-relaxed font-medium mb-8">Real-world data.</p>
+          <p className="text-[18px] text-neutral-900 leading-relaxed mb-6">AGI will not emerge from internet data alone.</p>
 
-          <ul className="space-y-2 text-[16px] text-neutral-800 mb-8">
-            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Clinical voice records.</li>
-            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Medical imaging.</li>
-            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Operational hospital logs.</li>
-            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Scientific experiments.</li>
-            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Financial systems.</li>
-            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Industrial processes.</li>
-          </ul>
+          <p className="text-[16px] text-neutral-800 leading-relaxed mb-6">The breakthroughs people talk about — curing cancer, improving healthcare systems, preventing financial crime, optimizing energy grids — require real world data.</p>
 
-          <p className="text-[16px] text-neutral-800 leading-relaxed mb-4">
-            The breakthroughs we want from AI — in healthcare, energy, science, infrastructure — require access to reality.
-          </p>
-          <p className="text-[16px] text-neutral-800 leading-relaxed mb-8">But reality is regulated.</p>
+          <p className="text-[16px] text-neutral-800 leading-relaxed mb-6">Clinical records. Call center conversations. Financial logs. Operational systems.</p>
 
-          <ul className="space-y-2 text-[16px] text-neutral-800 mb-8">
-            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Hospitals cannot just “share data.”</li>
-            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Banks cannot just “export records.”</li>
-            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Governments cannot just “upload systems.”</li>
-          </ul>
+          <p className="text-[16px] text-neutral-800 leading-relaxed mb-6">That data already exists. But it lives inside regulated institutions.</p>
 
-          <ul className="space-y-2 text-[16px] text-neutral-800 mb-8">
-            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Every access must be justified.</li>
-            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Every use constrained.</li>
-            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Every decision defensible.</li>
-          </ul>
+          <p className="text-[16px] text-neutral-800 leading-relaxed mb-6">Hospitals cannot export it. Banks cannot copy it. Enterprises cannot risk leaking it.</p>
 
-          <p className="text-[16px] text-neutral-800 leading-relaxed mb-4">
-            Without enforcement, AI is limited to the surface of the internet.
-          </p>
-          <p className="text-[16px] text-neutral-800 leading-relaxed mb-8">
-            With governed access, AI can safely learn from the systems that actually matter.
-          </p>
+          <p className="text-[16px] text-neutral-800 leading-relaxed mb-6">So AI is stuck training on what is public, not what is real.</p>
 
-          <p className="text-[16px] text-neutral-900 leading-relaxed font-medium mb-4">
-            Xase makes real-world data usable by AI — without transferring ownership, without violating compliance, without losing control.
-          </p>
+          <p className="text-[16px] text-neutral-800 leading-relaxed mb-6">If we want AI to move beyond chatbots and into civilization scale impact, it needs lawful access to real world data.</p>
 
-          <ul className="space-y-2 text-[16px] text-neutral-800 mb-8">
-            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Policy executes in runtime.</li>
-            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Consent is provable.</li>
-            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Usage is metered.</li>
-            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Evidence is cryptographic.</li>
-          </ul>
+          <p className="text-[16px] text-neutral-900 leading-relaxed font-medium mb-6">That is the bottleneck.</p>
 
-          <p className="text-[16px] text-neutral-800 leading-relaxed mb-4">
-            If AI is going to solve the hardest problems of our time, it must move beyond public data.
-          </p>
-          <p className="text-[16px] text-neutral-900 leading-relaxed font-medium mb-4">
-            It must access the real world — legally.
-          </p>
-          <p className="text-[16px] text-neutral-800 leading-relaxed mb-8">
-            We are building the infrastructure that makes that possible.
-          </p>
-          <p className="text-[16px] text-neutral-700 leading-relaxed mb-1">With respect,</p>
-          <p className="text-[16px] text-neutral-900 leading-relaxed font-medium">Xase</p>
+          <p className="text-[16px] text-neutral-800 leading-relaxed mb-6">Xase enables AI Labs to access regulated data without transferring ownership, without breaking compliance, and without months of legal overhead.</p>
+
+          <p className="text-[16px] text-neutral-800 leading-relaxed mb-6">Access is governed in runtime. Policies are enforced by code. Every use generates cryptographic evidence.</p>
+
+          <p className="text-[16px] text-neutral-800 leading-relaxed mb-6">Real world data stays where it is. AI accesses it under rules.</p>
+
+          <p className="text-[16px] text-neutral-800 leading-relaxed mb-6">If AGI is going to solve meaningful problems, it will need access to the systems that actually run the world.</p>
+
+          <p className="text-[16px] text-neutral-900 leading-relaxed font-medium">We are building the infrastructure that makes that access possible.</p>
         </div>
       </section>
 
