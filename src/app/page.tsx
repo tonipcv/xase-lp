@@ -15,41 +15,79 @@ export default function Home() {
             <img src="/logo-xase.png" alt="XASE" className="h-5 w-5 opacity-90" />
             <span className="text-[15px] font-medium tracking-tight text-neutral-900">XASE</span>
           </div>
-          <nav className="hidden md:flex items-center gap-8 text-[13px] text-neutral-600">
+          <nav className="flex md:hidden items-center gap-8 text-[13px] text-neutral-600">
             <a href="/docs" className="hover:text-neutral-900 transition-colors">Docs</a>
             <a href="/pricing" className="hover:text-neutral-900 transition-colors">Pricing</a>
           </nav>
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="pt-40 pb-24 px-6">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-[56px] md:text-[72px] font-medium tracking-[-0.04em] leading-[1.05] text-neutral-900 mb-6">
-            Data access
-            <br />
-            <span className="text-neutral-600">without data transfer.</span>
+      {/* Manifesto hero (minimal, wiki/arXiv vibe) */}
+      <section className="pt-36 pb-16 px-6">
+        <div className="max-w-2xl mx-auto">
+          <p className="text-[14px] text-neutral-600 mb-5">To those building AI that matters,</p>
+          <h1 className="text-[34px] md:text-[40px] font-medium tracking-[-0.02em] leading-[1.15] text-neutral-900 mb-6">
+            What will make AI capable of curing cancer?
           </h1>
-          <p className="text-[18px] text-neutral-700 leading-relaxed max-w-xl mb-10">
-            AI labs access real-world datasets for training. Data holders keep ownership and control. Every access is policy-evaluated with cryptographic proof.
+          <p className="text-[18px] text-neutral-900 leading-relaxed mb-2">Not bigger models.</p>
+          <p className="text-[18px] text-neutral-900 leading-relaxed mb-4">Not more scraped text.</p>
+          <p className="text-[20px] text-neutral-900 leading-relaxed font-medium mb-8">Real-world data.</p>
+
+          <ul className="space-y-2 text-[16px] text-neutral-800 mb-8">
+            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Clinical voice records.</li>
+            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Medical imaging.</li>
+            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Operational hospital logs.</li>
+            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Scientific experiments.</li>
+            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Financial systems.</li>
+            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Industrial processes.</li>
+          </ul>
+
+          <p className="text-[16px] text-neutral-800 leading-relaxed mb-4">
+            The breakthroughs we want from AI — in healthcare, energy, science, infrastructure — require access to reality.
           </p>
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setBookOpen(true)}
-              className="h-11 px-6 text-[14px] font-medium bg-black text-white rounded-lg hover:bg-neutral-900 transition-colors"
-            >
-              Request demo
-            </button>
-            <a
-              href="/docs"
-              className="h-11 px-6 text-[14px] font-medium text-neutral-700 hover:text-neutral-900 transition-colors flex items-center gap-2"
-            >
-              Documentation
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
+          <p className="text-[16px] text-neutral-800 leading-relaxed mb-8">But reality is regulated.</p>
+
+          <ul className="space-y-2 text-[16px] text-neutral-800 mb-8">
+            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Hospitals cannot just “share data.”</li>
+            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Banks cannot just “export records.”</li>
+            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Governments cannot just “upload systems.”</li>
+          </ul>
+
+          <ul className="space-y-2 text-[16px] text-neutral-800 mb-8">
+            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Every access must be justified.</li>
+            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Every use constrained.</li>
+            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Every decision defensible.</li>
+          </ul>
+
+          <p className="text-[16px] text-neutral-800 leading-relaxed mb-4">
+            Without enforcement, AI is limited to the surface of the internet.
+          </p>
+          <p className="text-[16px] text-neutral-800 leading-relaxed mb-8">
+            With governed access, AI can safely learn from the systems that actually matter.
+          </p>
+
+          <p className="text-[16px] text-neutral-900 leading-relaxed font-medium mb-4">
+            Xase makes real-world data usable by AI — without transferring ownership, without violating compliance, without losing control.
+          </p>
+
+          <ul className="space-y-2 text-[16px] text-neutral-800 mb-8">
+            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Policy executes in runtime.</li>
+            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Consent is provable.</li>
+            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Usage is metered.</li>
+            <li className="flex items-start gap-3"><span className="text-neutral-400">—</span>Evidence is cryptographic.</li>
+          </ul>
+
+          <p className="text-[16px] text-neutral-800 leading-relaxed mb-4">
+            If AI is going to solve the hardest problems of our time, it must move beyond public data.
+          </p>
+          <p className="text-[16px] text-neutral-900 leading-relaxed font-medium mb-4">
+            It must access the real world — legally.
+          </p>
+          <p className="text-[16px] text-neutral-800 leading-relaxed mb-8">
+            We are building the infrastructure that makes that possible.
+          </p>
+          <p className="text-[16px] text-neutral-700 leading-relaxed mb-1">With respect,</p>
+          <p className="text-[16px] text-neutral-900 leading-relaxed font-medium">Xase</p>
         </div>
       </section>
 
